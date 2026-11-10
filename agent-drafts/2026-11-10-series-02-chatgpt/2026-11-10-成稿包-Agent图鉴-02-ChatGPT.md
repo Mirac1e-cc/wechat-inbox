@@ -312,9 +312,9 @@ Pricing 页还写 Pro 含每月 API credits，用于自建应用和 Agent；抓�
 | # | 关键事实 | 链接 | 信息日期 | 核对日期 |
 |---|----------|------|----------|----------|
 | 1 | GPT-6 + Intelligent UI 推向 Chat；付费档 Sol、Free/Go Luna 的公告口径 | https://openai.com/index/gpt-6-for-everyone/ | 2026-10-07 | 2026-11-10 |
-| 2 | Chat 中的型号、思考档位、Intelligent UI 边界、Free/Go 写 GPT-5.6 Luna | https://help.openai.com/en/articles/20001354-gpt-6-and-other-models-in-chatgpt | 页头 Updated 10 days ago | 2026-11-10 |
+| 2 | Chat 中的型号、思考档位（Instant 至 Extra High 由 GPT-6 Sol 驱动；Pro 为 GPT-6 Pro，由 GPT-6 Astra 驱动）、Intelligent UI 边界、Free/Go 写 GPT-5.6 Luna；Astra 须 Codex CLI 0.153.0 或更新 | https://help.openai.com/en/articles/20001354-gpt-6-and-other-models-in-chatgpt | 页头 Updated 10 days ago（R1 重抓时显示 Updated 11 days ago） | 2026-11-10；R1 重抓 2026-11-10 19:27（Asia/Shanghai，UTC+8） |
 | 3 | Work / Codex 定位、入口、Astra / 6.1 Sol / Terra、Voice、Ultrafast 规则 | https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex | 页头 Updated 4 days ago | 2026-11-10 |
-| 4 | ChatGPT agent 已不可用，改走 Work；文内仍残留旧说明 | https://help.openai.com/en/articles/11752874-chatgpt-agent | 页头 Updated 14 days ago | 2026-11-10 |
+| 4 | ChatGPT agent 已不可用，改走 Work；文内仍残留旧说明 | https://help.openai.com/en/articles/11752874-chatgpt-agent | 页头 Updated 14 days ago | 2026-11-10；R1 重抓 2026-11-10 19:27（Asia/Shanghai，UTC+8），Overview 开头仍为 “ChatGPT agent is no longer available.” |
 | 5 | Codex 产品定位与套餐入口价签 | https://openai.com/codex/ | 核对日读取 | 2026-11-10 |
 | 6 | Codex 各档可用性、Cloud 不含 Free/Go、CLI 登录 | https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan | 页头 Updated 5 days ago | 2026-11-10 |
 | 7 | Pro 100 / 200 / 500 标价、月付、Ultrafast、用量口径 | https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers | 页头 Updated 7 days ago | 2026-11-10 |
@@ -334,6 +334,7 @@ Pricing 页还写 Pro 含每月 API credits，用于自建应用和 Agent；抓�
 | 21 | 支持地区名单 | https://help.openai.com/en/articles/7947663-chatgpt-supported-countries | 页头 Updated 19 days ago | 2026-11-10 |
 | 22 | 公司定位与现行治理结构 | https://openai.com/about/ | 核对日读取 | 2026-11-10 |
 | 23 | Arena Agent 榜快照（与 003 数据文件同一笔） | https://arena.ai/leaderboard/agent | 页面标注 Nov 8, 2026 | 2026-11-10 |
+| 24 | Plus 在 Work / Codex 含 Astra 且限量：Plus 每 5 小时本地消息估算 5–45 条（页面注明是估算，不是固定上限） | https://developers.openai.com/codex/pricing（308 跳转至 https://learn.chatgpt.com/docs/pricing） | 核对日读取 | 2026-11-10 19:28（Asia/Shanghai，UTC+8） |
 
 配图来源 URL 见第 5 节各行，下载日期 2026-11-10。
 
@@ -360,4 +361,4 @@ Pricing 页还写 Pro 含每月 API credits，用于自建应用和 Agent；抓�
 - **来源是否齐**：是。模型名、API 价、订阅档位、Work / Codex / dots 限制、地区名单、Agent 榜名次，均回源至核对日已打开的官方页；无凭空步骤，无编造实测。官方不一致处已并陈并标待核。  
 - **待核剩几条**：**11** 条（见上）。  
 - **配图缺哪几张**：开场榜单图已制；已落盘多张官方 OG（Astra / Sol-Luna / 6.1 Sol / Terra、Intelligent UI、Codex、dots、Go、定价视觉、About）。仍缺：**Arena Agent 榜 OG**（下载 403）、**定价页现网价签界面截图**。按要求不自制假 UI。  
-- **去味自检：已过（改动 8 处）**。按附则检查正文散文：删了重复预告和套话收尾，合并了同义限定；归因、待核、表格中的数字、URL、模型名与价格未改。
+- **去味自检：已过（改动 8 处；R1 正文无改动句，仅来源清单 3 行，属表格，按附则不适用）**。按附则检查正文散文：删了重复预告和套话收尾，合并了同义限定；归因、待核、表格中的数字、URL、模型名与价格未改。
