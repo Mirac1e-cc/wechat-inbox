@@ -1,0 +1,318 @@
+<section style="font-size:16px;line-height:1.75;color:#222;font-family:system-ui,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
+<span style="color:#0F7A74;font-size:12px;display:block;text-align:left;">曾经的小狂 · Agent 图鉴 第 3 篇</span>
+<h2 style="font-size:18px;margin:24px 0 12px;color:#1B2A2A;">先说结论</h2>
+<p style="margin:12px 0;">《Agent 图鉴》一家一家讲：模型是谁家的、Agent 产品怎么用、钱怎么算。前面两家是 Anthropic 的 Claude，以及 OpenAI 的 ChatGPT。这一篇是第三家，产品叫 Grok。</p>
+<p style="margin:12px 0;">先说公司怎么署名。写作单里按习惯写成 xAI。核对日打开的官网（域名仍是 <code>x.ai</code>）页眉和新闻都署名 <strong>SpaceXSI</strong>；面向消费者的 FAQ 写作 <strong>SpaceX Super Intelligence LLC（“SpaceXSI”）</strong>，并写明它和 X Corp. 是两家公司。官方公司时间线写：2023 年 7 月 12 日是公司公告，2026 年 2 月 2 日是「xAI joins SpaceX」。Arena Agent 榜的厂商栏则仍写作 <strong>SpaceXAI</strong>。这三处我都按原文写，不擅自改成一个「唯一正式名」。</p>
+<p style="margin:12px 0;">我先把结论放在前面。这篇是介绍，不是评测——版本、价格、档位都对过 2026 年 11 月 10 日的官方页面；我没上手用过的，不会写成我的体验。官方页说法不一致的地方，我并陈，并标了待核。</p>
+<ul style="padding-left:1.2em;margin:8px 0;"><li style="margin:6px 0;"><strong>模型是自家的。</strong> Grok 的聊天、搜索、生成，以及 Bot、Build，用的都是这家公司自己的 Grok 系模型，不是套别人的接口。</li><li style="margin:6px 0;"><strong>日常怎么选。</strong> 开发者文档把 <strong>Grok 4.7</strong> 写成当前最强、也是编码和一般聊天的首选，调用名 <code>grok-4.7</code>。知识截止日期官方写的是 <strong>2026 年 5 月</strong>；要看当下的事，须打开网页搜索或 X 搜索。更深入的研究，产品里有 <strong>Multi-agent</strong>（多个 Agent 并行），API 里另有 <strong>grok-4.20-multi-agent</strong>。</li><li style="margin:6px 0;"><strong>你从哪进。</strong> 普通聊天走 <code>grok.com</code>，以及 iOS / Android 应用，也可以用 X 或邮箱登录。在 X 上还有 Grok 标签页。要把一件事做完，走 <strong>Grok Bot</strong>——官方把它写成有云端电脑的 AI 队友，可以在桌面、手机、Slack 和 X 上协作。写代码，官方还提供 <strong>Grok Build</strong>（4.7 是它的默认模型），以及 The X Subscription 里捆绑的 Cursor。Cursor 本身会在本连载后面单独写，这里只交代它和 Grok 用量池的关系，不展开成另一篇产品介绍。</li><li style="margin:6px 0;"><strong>钱怎么分。</strong> 新用户的主路径是 <strong>The X Subscription</strong>：Free、Plus（$8/月）、Premium（$30/月）、Super（$100/月）、Ultra（$200/月）。官方文档写：<strong>Grok Bot 只在 Premium、Super、Ultra</strong>，Plus 不含。用量是一份按周刷新的共享池，覆盖 Grok、Grok Bot 和 Cursor 里的 Grok 模型。老用户可以继续留在 SuperGrok、Cursor 或 X Premium，切换是可选的。产品页上仍出现「升级到 SuperGrok」的字样，和定价页的新订阅名称不完全一样，下面单独说明。</li><li style="margin:6px 0;"><strong>榜上什么位置。</strong> 只说一句，跟开场图用的是同一份数据：Arena（原来的 LMArena）Agent 榜在 <strong>2026-11-08</strong> 这份快照里，<strong>Grok 4.7 (xHigh)</strong> 净改进 <strong>2.65%</strong>，排第 <strong>16</strong>，没有进前 10。这个指标叫 Net Improvement（净改进），是按真实 Agent 会话里的综合表现排的，不是考试式跑分。同快照里 <strong>Grok 4.6 (xHigh)</strong> 是第 32（<strong>0.16%</strong>）。厂商栏原文是 SpaceXAI。</li></ul>
+<p style="margin:12px 0;">价格我按官方的 <strong>美元标价</strong> 写。税多少、你那边能不能订，以定价页、文档和结账页当场显示为准。我打开的官方页没有给出中国大陆的人民币税后价，这里不猜。</p>
+<p style="margin:12px 0;">---</p>
+<h2 style="font-size:18px;margin:24px 0 12px;color:#1B2A2A;">〇、本期榜单数据</h2>
+<p style="margin:12px 0;">开场图是我按官方表做的，米白底、钢蓝条，本期主角 <strong>Grok 4.7</strong> 用深蓝条标出。因为 4.7 不在前 10，图里在前 10 名和国产最高（第 13）之后，另画出第 16 名，避免读者误以为榜上没有它。</p>
+<p style="margin:12px 0;">数据来自 <a href="https://arena.ai/leaderboard/agent">Arena Agent 榜</a>，页面标注快照日期 <strong>Nov 8, 2026</strong>（2026-11-08），同时写着 2,750,973 个会话、57 个模型。核对时间是 <strong>2026-11-10 17:31–17:35</strong>（Asia/Shanghai，UTC+8）。</p>
+<p style="margin:12px 0;"><strong>Net Improvement（净改进）</strong> 是这个榜的综合排序指标。官方说明里写：按真实 Agent Arena 会话中的表现动态排名，信号包括任务成功、用户满意度、可引导性等。它不是把模型拉去考一张卷再排座次。图里的百分数是官方表的中心值，后面的 ± 是页面给出的区间。第 2 名 <strong>Gemini 4 Carbon (High)</strong> 带官方 <strong>Preliminary</strong> 标注，表示初步结果。</p>
+<p style="margin:12px 0;">前 10 名、国产最高 1 名，以及本期主角的最高名次如下（与开场图、文末来源清单同一组数字）：</p>
+<table style="border-collapse:collapse;width:100%;font-size:14px;margin:12px 0;">
+<thead><tr>
+<th style="border:1px solid #ddd;padding:8px;background:#F4F1E8;text-align:left;">名次</th>
+<th style="border:1px solid #ddd;padding:8px;background:#F4F1E8;text-align:left;">模型</th>
+<th style="border:1px solid #ddd;padding:8px;background:#F4F1E8;text-align:left;">厂商（榜上原文）</th>
+<th style="border:1px solid #ddd;padding:8px;background:#F4F1E8;text-align:left;">净改进</th>
+</tr></thead><tbody>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">1</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">Claude Opus 5.5 (Max)</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">Anthropic</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">19.96%±2.05%</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">2</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">Gemini 4 Carbon (High)</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">Google</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">16.63%±0.71%（Preliminary）</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">3</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">Claude Sonnet 5.5 (Max)</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">Anthropic</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">15.99%±2.84%</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">4</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">Claude Fable 5.1 (Max)</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">Anthropic</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">14.34%±1.98%</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">5</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">GPT-6 Astra (Max)</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">OpenAI</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">14.24%±2.03%</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">6</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">GPT-6.1 Sol (Max)</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">OpenAI</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">12.53%±1.12%</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">7</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">GPT-6.1 Terra (Max)</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">OpenAI</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">12.10%±1.36%</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">8</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">Gemini 4 Argon (High)</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">Google</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">10.83%±0.87%</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">9</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">Muse Wonder Full (Max)</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">Meta</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">9.09%±0.94%</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">10</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">Claude Fable 5 (High)</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">Anthropic</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">7.70%±1.13%</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">13</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">Kimi K3.1 Pro (Max)</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">Moonshot</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">5.24%±1.12%（国产最高）</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">16</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">Grok 4.7 (xHigh)</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">SpaceXAI</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">2.65%±1.47%</td>
+</tr>
+</tbody></table>
+<p style="margin:12px 0;">这份快照的日期是 11 月 8 日。Claude Fable 5.2 是第二天（11 月 9 日）才发布的，没有进这期名次，图里也不写。</p>
+<p style="color:#888;font-size:13px;">配图：<code>images/01-arena-agent-top10-grok.jpg</code></p>
+<p style="margin:12px 0;">---</p>
+<h2 style="font-size:18px;margin:24px 0 12px;color:#1B2A2A;">一、一句话定位</h2>
+<p style="margin:12px 0;">Grok 是 SpaceXSI（域名 x.ai，原 xAI）做的 AI 助手和 Agent 产品线。聊天、实时搜索、图像和视频生成在 Grok 应用里；要把一件事做完，走 Grok Bot；写代码还可以走 Grok Build，以及订阅里捆绑的 Cursor。</p>
+<p style="margin:12px 0;"><strong>大脑来源：自家模型。</strong> Grok 应用、X 上的 Grok、Grok Bot、Grok Build，用的都是这家公司自己的 Grok 系模型。</p>
+<p style="margin:12px 0;">---</p>
+<h2 style="font-size:18px;margin:24px 0 12px;color:#1B2A2A;">二、这家公司是怎么过来的</h2>
+<p style="margin:12px 0;">下面只写官方公司页、时间线和 FAQ 里能对上的节点，没有打开专页的融资金额不补。</p>
+<p style="margin:12px 0;">官方 <a href="https://x.ai/company">Company</a> 页把使命写成：加速人类的科学发现，建造用于理解宇宙的 AI。时间线把 <strong>2023 年 7 月 12 日</strong> 标为 Company announcement，把 <strong>2023 年 11 月 3 日</strong> 标为 Announcing Grok，<strong>2023 年 12 月 7 日</strong> 标为 Grok on X。2026 年 2 月 2 日这一条是 「xAI joins SpaceX」；该新闻页的机器可读字段把发布日期写成 <strong>2026-02-02</strong>（UTC 零点，换算为北京时间仍是 2 月 2 日）。</p>
+<p style="margin:12px 0;">面向消费者的 <a href="https://x.ai/legal/faq">FAQ</a> 现网写：SpaceX Super Intelligence LLC（“SpaceXSI”）是一家美国公司，和 X Corp.（此前的 Twitter）是分开的。Grok 在 X 上的使用，另受 X 的条款约束。</p>
+<p style="margin:12px 0;">和本期直接相关的产品节点，公司时间线里还有：2026 年 8 月 11 日 Introducing Grok Bot；8 月 12 日 Introducing Grok 4.6；8 月 19 日 Grok Build 登陆网页和手机；8 月 29 日 Grok Bot now works with X；9 月 21 日 Introducing Grok 4.7；10 月 12 日 Introducing The X Subscription。这些日期以时间线页为准；细节以对应新闻和文档为准。</p>
+<p style="margin:12px 0;">公司页时间线还列有 Grok for Excel / Word / PowerPoint / Outlook 等条目。本篇没有逐页打开这些办公插件的产品说明，不展开用法。</p>
+<p style="margin:12px 0;">---</p>
+<h2 style="font-size:18px;margin:24px 0 12px;color:#1B2A2A;">2.5 现在有哪些模型（核对 2026-11-10）</h2>
+<p style="margin:12px 0;">开发者文档 <a href="https://docs.x.ai/developers/models">Models</a> 写：除了音频、图像、视频要走专用接口，其余事情——包括写代码——用 <strong>Grok 4.7</strong>，并称它是目前最强的一款。发布说明 <a href="https://x.ai/news/grok-4-7">Introducing Grok 4.7</a> 把它写成面向编码和知识工作的最强型号，价格和速度与 4.6 相同。</p>
+<p style="margin:12px 0;">怎么选，我按官方自己的说法整理，不是我用过之后的判断。</p>
+<table style="border-collapse:collapse;width:100%;font-size:14px;margin:12px 0;">
+<thead><tr>
+<th style="border:1px solid #ddd;padding:8px;background:#F4F1E8;text-align:left;">模型</th>
+<th style="border:1px solid #ddd;padding:8px;background:#F4F1E8;text-align:left;">官方怎么说</th>
+<th style="border:1px solid #ddd;padding:8px;background:#F4F1E8;text-align:left;">调用名 / 要点</th>
+</tr></thead><tbody>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;"><strong>Grok 4.7</strong></td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">面向编码、Agent 任务和知识工作的主力。文档：上下文 50 万 token；知识截止日期 2026 年 5 月；输入可为文字和图像，输出为文字；推理档位 low / medium / <strong>high（默认）</strong> / xhigh；工具包括函数调用、网页搜索、X 搜索、代码执行。</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;"><code>grok-4.7</code>。标准价：输入 $2 / 百万 token，输出 $6；提示达到 20 万 token 时，整单按更高档计（输入 $4，输出 $12）。缓存命中：短上下文 $0.50，长上下文 $1.00。</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;"><strong>Grok 4.7 Fast</strong></td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">同一模型，跑在更快的基础设施上。文档写：标准价的 2 倍，长上下文请求为 1.5 倍。只在 Cursor 和 Grok Build 里提供，走那边的套餐计费；<strong>不在公开的 xAI API 里</strong>，也不含在 Grok Build 的免费档。</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">见定价页；公开 API 没有这一档。</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;"><strong>Grok 4.6</strong></td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">仍列在模型价目表，价与 4.7 相同（含 20 万 token 的长上下文分档）。Arena 快照里另有 Grok 4.6 (xHigh)，第 32 名。</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;"><code>grok-4.6</code></td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;"><strong>Grok 4.5 及更早列出的 4.3、4.20</strong></td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">价目表仍列出。4.3 与 4.20 推理 / 非推理档的上下文是 100 万 token，价低于 4.7。不是文档推荐的日常首选。</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">用时再查模型页，不把它们当成当前主力</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;"><strong>grok-4.20-multi-agent</strong></td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">官方 Multi Agent 文档（Beta）：用于实时、多步的深度研究，由多个 Agent 协作，由一个 leader Agent 汇总。可选 4 个或 16 个 Agent。不支持客户端自定义函数调用，也不走 Chat Completions，要用 xAI SDK 或 Responses API。</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;"><code>grok-4.20-multi-agent</code>（价目表中的具体名含日期后缀 <code>0309</code>）。上下文 100 万 token；短上下文输入 $1.25 / 输出 $2.50，长上下文加倍。</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;"><strong>grok-build-0.1</strong></td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">价目表单列，上下文 25.6 万 token，价低于 4.7。Grok Build 产品本身，4.7 文档把它写成编码 Agent 的默认模型。</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">以模型页为准</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;"><strong>Imagine / Voice</strong></td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">图像、视频、语音走专用接口和价目，不与 4.7 的文本价混算。产品页写：图像最高 2K，视频最高 15 秒（定价页 Ultra 还写可做 1080p、15 秒视频，以现网档位说明为准）。</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">见开发者价目表</td>
+</tr>
+</tbody></table>
+<p style="margin:12px 0;">官方还写：Grok 没有训练截止日期之后的实时知识；要把当下事件算进去，须启用服务端的 Web Search 或 X Search。</p>
+<h3 style="font-size:16px;margin:20px 0 10px;color:#1B2A2A;">API 价目（美元 / 百万 token，核对于 2026-11-10）</h3>
+<p style="margin:12px 0;">来源：<a href="https://docs.x.ai/developers/models">docs.x.ai/developers/models</a> 与 <a href="https://docs.x.ai/developers/grok-4-7">Grok 4.7 文档</a>。达到长上下文阈值的请求，官方写：整单按更高价计，不是只对超出的部分加价。</p>
+<table style="border-collapse:collapse;width:100%;font-size:14px;margin:12px 0;">
+<thead><tr>
+<th style="border:1px solid #ddd;padding:8px;background:#F4F1E8;text-align:left;">模型（提示 < 20 万 token）</th>
+<th style="border:1px solid #ddd;padding:8px;background:#F4F1E8;text-align:left;">输入</th>
+<th style="border:1px solid #ddd;padding:8px;background:#F4F1E8;text-align:left;">缓存命中</th>
+<th style="border:1px solid #ddd;padding:8px;background:#F4F1E8;text-align:left;">输出</th>
+</tr></thead><tbody>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">grok-4.7</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">$2.00</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">$0.50</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">$6.00</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">grok-4.6</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">$2.00</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">$0.50</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">$6.00</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">grok-4.20-multi-agent-0309</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">$1.25</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">$0.20</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">$2.50</td>
+</tr>
+</tbody></table>
+<p style="margin:12px 0;">提示 ≥ 20 万 token 时，上表三款都是输入、缓存命中、输出各加倍（例如 4.7 为 $4 / $1 / $12）。美国区域端点 <code>https://us.api.x.ai/v1</code> 官方写：把推理留在美国，token 价再加 <strong>10%</strong>。</p>
+<p style="margin:12px 0;">列表价是否含税，以结账页为准。官方声明，价格可以调整。团队的实时价和速率限制，以控制台为准。</p>
+<p style="margin:12px 0;">---</p>
+<h2 style="font-size:18px;margin:24px 0 12px;color:#1B2A2A;">三、能干什么</h2>
+<p style="margin:12px 0;">这里只讲官方产品里，和「模型 + Agent」直接相关的部分。</p>
+<p style="margin:12px 0;"><strong>Grok 聊天、搜索、生成。</strong> 产品页把它写成一个助手：聊天、搜索、推理和创作放在一起。可以按步骤显示推理；同一条对话里生成图像、视频和代码；也可以用低延迟语音对话。搜索官方写会查网页和 X 的实时内容，并给出引用。Imagine 可以从文本或参考图生成、再改。还可以上传文件（文档写：PDF、图像、表格、代码、音频等）做分析。产品页还列出 30 多种语言、跨对话记忆、可分享的公开链接等。免费可以在网页和 App 里试用。</p>
+<p style="margin:12px 0;"><strong>Multi-agent（产品里的多 Agent）。</strong> 产品页写：多个 Agent 并行处理更难的问题，各自展示推理过程，再合并成一个带引用的答案。页脚仍写：升级到 <strong>SuperGrok</strong>，可得到更高额度、优先访问和 multi-agent。这和定价页上的 The X Subscription 名称不完全一致，我在「多少钱」一节并陈，不在这里替你裁定「SuperGrok」四个字是不是已经全部换成新套餐名。</p>
+<p style="margin:12px 0;"><strong>Grok 在 X 里。</strong> 公司时间线从 2023 年 12 月就把 Grok on X 列为节点。The X Subscription 公告写：共享用量池覆盖 Grok 应用、<strong>X 上的 Grok 标签页</strong>，以及 Cursor 里的 Grok 模型。付费档在连接个人 X 账号后，还带上对应的 X 权益（Plus 是勾号、创作者工具、更少广告；Premium 及以上官方写含完整的 X Premium+ 权益）。在 X 上使用 Grok，FAQ 提醒要看 X 帮助中心和 X 的条款。</p>
+<p style="margin:12px 0;"><strong>Grok Bot。</strong> 官方文档把它写成主动的 AI 队友：有一台云端的真实电脑，能做你在电脑上能做的事，例如做演示、跑活动、订餐、同步日历。多个 Bot 可以分工，共用这台云端电脑（浏览器、文件系统、终端）。可以聊天，也可以语音通话或发语音条。官方举例连接的工具包括 Google Drive、日历、Gmail、Slack、Notion 等，并支持 MCP 或 API 的自定义工具。入口：桌面、手机、Slack，以及 X。The X Subscription 文档写：Bot 含在 <strong>Premium、Super、Ultra</strong>，Plus 不含；Bot 的用量从该座位的每周共享池里扣，不是另给一池。</p>
+<p style="margin:12px 0;"><strong>Grok Build。</strong> 4.7 文档把它写成编码 Agent，并且 4.7 是默认模型。公司时间线写：2026 年 5 月 25 日推出，7 月 15 日开源，8 月 19 日登陆网页和手机。Fast 变体只在 Cursor 和 Grok Build 里提供。本篇没有把 Build 的每一份安装说明逐页展开；要用，以当时的官方文档为准。</p>
+<p style="margin:12px 0;"><strong>API 里的 Agent 能力。</strong> 4.7 支持函数调用、网页搜索、X 搜索和代码执行。若要做「一组 Agent 一起做深度研究」，官方走 <code>grok-4.20-multi-agent</code>（Beta），规则见上一节。</p>
+<p style="margin:12px 0;">---</p>
+<h2 style="font-size:18px;margin:24px 0 12px;color:#1B2A2A;">四、怎么用：从哪进、怎么上手、有什么门槛</h2>
+<h3 style="font-size:16px;margin:20px 0 10px;color:#1B2A2A;">从哪进</h3>
+<table style="border-collapse:collapse;width:100%;font-size:14px;margin:12px 0;">
+<thead><tr>
+<th style="border:1px solid #ddd;padding:8px;background:#F4F1E8;text-align:left;">入口</th>
+<th style="border:1px solid #ddd;padding:8px;background:#F4F1E8;text-align:left;">官方位置</th>
+<th style="border:1px solid #ddd;padding:8px;background:#F4F1E8;text-align:left;">谁能用（据官方）</th>
+</tr></thead><tbody>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">网页</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">https://grok.com</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">免费可试用；付费提高额度。可用 X 或邮箱登录，对话在各端同步</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">iOS / Android</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">产品页写安装官方应用</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">同上</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">X 上的 Grok</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">X 的 Grok 标签页</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">受 X 条款约束；付费档连接个人 X 账号后，X 权益按 The X Subscription 档位走</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">Grok Bot</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">文档：桌面、手机、Slack、X</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">The X Subscription 的 Premium / Super / Ultra；老用户也可能通过仍在继续的 SuperGrok 等套餐获得，以账户为准</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">Grok Build</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">官方文档与产品入口</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">4.7 为默认模型；Fast 变体不含在 Build 免费档</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">API</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">https://api.x.ai/v1 ；美国区域端点 https://us.api.x.ai/v1</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">须在控制台申请密钥。The X Subscription 的 Plus 说明里写含 Grok API access，具体额度以账单和文档为准</td>
+</tr>
+</tbody></table>
+<h3 style="font-size:16px;margin:20px 0 10px;color:#1B2A2A;">上手</h3>
+<p style="margin:12px 0;">产品页写的起步就这三步，我不加自己的路径。</p>
+<ol style="padding-left:1.2em;margin:8px 0;"><li style="margin:6px 0;">打开 <code>grok.com</code>，或安装 iOS / Android 官方应用。</li><li style="margin:6px 0;">用 X 账号或邮箱登录，以便在各设备接上同一份对话和订阅。</li><li style="margin:6px 0;">开始聊天；按需要切换搜索、推理、语音或图像等模式。</li></ol>
+<p style="margin:12px 0;">若要用 Grok Bot：先确认你的档位含 Bot（新订阅须 Premium 及以上），再按 <a href="https://docs.x.ai/grok-bot/overview">Grok Bot 文档</a> 和入门页连接要用的应用，把任务交给它。官方写，重要动作仍要你确认。</p>
+<p style="margin:12px 0;">若要用 API：在控制台申请密钥，按 Quickstart 调用；4.7 示例走 Responses API，模型名 <code>grok-4.7</code>。文档建议设置 <code>prompt_cache_key</code>，以便缓存命中更稳定。</p>
+<p style="margin:12px 0;">若已经有 SuperGrok、Cursor 或 X Premium：可以继续留在旧套餐；若要并到 The X Subscription，按官方 Unify / 账单入口走，不要从非官方渠道买订阅。<a href="https://x.ai/legal/bundled-subscription-terms">订阅条款</a>写：订阅由 X Subscription Corp. 出售；条款同时写明可经应用商店或其他分销方购买。</p>
+<h3 style="font-size:16px;margin:20px 0 10px;color:#1B2A2A;">地区、账号、年龄、语言</h3>
+<p style="margin:12px 0;">Consumer FAQ 写：Grok 可在 iOS、Android 和 grok.com 使用；「视所在地而定」，可能有有限的免费使用和付费完整功能。该页 <strong>没有</strong> 给出一份像 ChatGPT 那样的国家名单。中国大陆能不能注册、能不能完成扣款，我不以这份 FAQ 自行推断，标待核，以结账页和当时的地区说明为准。</p>
+<p style="margin:12px 0;">年龄：FAQ 写 Grok 不面向 13 岁以下；13 到 17 岁须有家长或监护人同意，并同意服务条款。</p>
+<p style="margin:12px 0;">语言：产品页写原生支持 30 多种语言。我没有在该页看到「不含中文」的限制，也不把「一定支持某种中文界面」写成保证。</p>
+<p style="margin:12px 0;">在 X 上使用时，访问与隐私以 X 的条款和帮助中心为准。</p>
+<p style="margin:12px 0;">---</p>
+<h2 style="font-size:18px;margin:24px 0 12px;color:#1B2A2A;">五、多少钱（核对 2026-11-10）</h2>
+<p style="margin:12px 0;">个人档以 <a href="https://x.ai/news/x-subscription">The X Subscription 公告</a>（新闻列表标注 2026-10-12）、<a href="https://docs.x.ai/x-subscription/pricing">定价文档</a>（文档写 Last updated October 11, 2026）和 <a href="https://x.ai/pricing">x.ai/pricing</a> 为准。列表价 <strong>不含适用税</strong>；需要时，税可能在结账时另加。官方声明，价格可以调整。</p>
+<h3 style="font-size:16px;margin:20px 0 10px;color:#1B2A2A;">The X Subscription（新用户主路径）</h3>
+<table style="border-collapse:collapse;width:100%;font-size:14px;margin:12px 0;">
+<thead><tr>
+<th style="border:1px solid #ddd;padding:8px;background:#F4F1E8;text-align:left;">档位</th>
+<th style="border:1px solid #ddd;padding:8px;background:#F4F1E8;text-align:left;">月付（USD）</th>
+<th style="border:1px solid #ddd;padding:8px;background:#F4F1E8;text-align:left;">年付（文档表）</th>
+<th style="border:1px solid #ddd;padding:8px;background:#F4F1E8;text-align:left;">含用量（相对 Plus）</th>
+<th style="border:1px solid #ddd;padding:8px;background:#F4F1E8;text-align:left;">跟 Grok / Agent 相关的要点（据官方）</th>
+</tr></thead><tbody>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;"><strong>Free</strong></td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">$0</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">$0</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">Limited</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">每日可使用 Grok；Cursor 的 coding agents 有起步额度；标准 X。定价页还写有限的 Chat 和 agent 请求。</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;"><strong>Plus</strong></td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">$8/月</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">$80/年（约合 $7/月）</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">Base（1×）</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">更多 Grok / Cursor 用量；含 Grok Chat、Voice、Imagine、Build，以及文档所列的 Grok API access 与 Cursor。X：勾号、创作者工具、更少广告。<strong>不含 Grok Bot</strong>。</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;"><strong>Premium</strong></td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">$30/月</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">$300/年（约合 $25/月）</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;"><strong>4×</strong></td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">公告写：含原先 SuperGrok + Cursor Pro + X Premium+ 的权益，并称此前合计约 <strong>$90</strong>/月。<strong>含 Grok Bot</strong>。定价页还列有最新 Grok 模型、更快回复、云端 Agent 与自动化等。Cursor 里的第三方模型另计。</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;"><strong>Super</strong></td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">$100/月</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">$1000/年（约合 $84/月）</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;"><strong>15×</strong></td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">在 Premium 之上，更大的共享池；定价页写高峰期优先访问等。含 Grok Bot。</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;"><strong>Ultra</strong></td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">$200/月</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">$2000/年（约合 $167/月）</td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;"><strong>50×</strong></td>
+<td style="border:1px solid #ddd;padding:8px;vertical-align:top;">再上一级。含 Grok Bot。定价页写可创建 1080p、15 秒视频等，以现网说明为准。</td>
+</tr>
+</tbody></table>
+<p style="margin:12px 0;">用量官方口径：每一档有一份 <strong>按周刷新</strong> 的 AI 用量池，在 Grok 与 Cursor 之间共享；在 Grok 里覆盖 Chat、Imagine、Voice 和 Bot。用超了可以 top-up，或等下周刷新。第三方模型在 Cursor 里从一开始就不走这份含用量，按 API 列表价另计，可以用消费上限管理。</p>
+<p style="margin:12px 0;">团队档：公告写，Team 用户的 Premium / Super / Ultra 是和人档相同的每座价格，并含 SSO、管理员控制等。Enterprise 走销售，可把 Grok 与 Cursor 放在同一个用量池里。定价页 FAQ 的建议是：新 AI 用户看 Premium，每日用 Agent 的人看 Super，重度用户看 Ultra；Plus 更偏社交创作者、AI 用量有限的人。</p>
+<h3 style="font-size:16px;margin:20px 0 10px;color:#1B2A2A;">和 SuperGrok 的关系（官方页说法不完全一样）</h3>
+<ul style="padding-left:1.2em;margin:8px 0;"><li style="margin:6px 0;">定价与订阅文档：新的自助用户走 The X Subscription；已有的 Cursor、SuperGrok、X Premium <strong>可以不切</strong>，旧价旧权益继续。切的话，旧订阅在结账时取消，并按比例退未用完的周期（苹果、谷歌应用店另有规则）。并账（unify）一旦完成，官方写不可撤销。</li><li style="margin:6px 0;">产品页 <code>x.ai/grok</code>：核对日仍写「免费试用，升级到 SuperGrok 以获得更高额度和 multi-agent」。</li></ul>
+<p style="margin:12px 0;">两处我都保留。下单时看 <code>x.ai/pricing</code> 和结账页当时展示的方案名，不要只根据产品页上的「SuperGrok」四个字去对价。</p>
+<h3 style="font-size:16px;margin:20px 0 10px;color:#1B2A2A;">API 怎么算</h3>
+<p style="margin:12px 0;">具体单价见前面的价表。订阅里的含用量，覆盖的是 Grok 模型在应用和 Cursor 中的使用；公开 API 的账单、速率和是否包含在某一档的「Grok API access」里，以控制台和账单为准，我不把订阅月费理解成「无限 API」。</p>
+<h3 style="font-size:16px;margin:20px 0 10px;color:#1B2A2A;">国内能不能订</h3>
+<p style="margin:12px 0;">标价是美元，不含适用税。支付方式和所在地是否可订，以结账页为准，没有写明的渠道我不补。走官方入口办理，别从非官方渠道买。</p>
+<p style="margin:12px 0;"><strong>中国大陆能不能订阅、人民币税后价是多少：以官方结账页和地区说明为准。</strong> 我所用的官方页里，没有中国大陆的人民币税后价目表，也没有一份可逐行核对的国家开放名单，这里不猜。</p>
+<p style="margin:12px 0;">---</p>
+<h2 style="font-size:18px;margin:24px 0 12px;color:#1B2A2A;">六、适合谁，不适合谁</h2>
+<p style="margin:12px 0;">这一节只根据官方自己的定位、文档限制、定价和地区说明来对照，不是我用过之后给你分级。</p>
+<p style="margin:12px 0;"><strong>更对得上官方描述的，大概是这些人：</strong></p>
+<ul style="padding-left:1.2em;margin:8px 0;"><li style="margin:6px 0;">想在一个入口里聊天、查网页和 X、生成图像或视频，并接受从免费试用起跳的人。</li><li style="margin:6px 0;">已经在用 X，希望聊天和勾号、广告权益走同一份订阅，也愿意把个人 X 账号连上 The X Subscription。</li><li style="margin:6px 0;">要把一件多步的事交给云端电脑去做，并接受付费到 <strong>Premium 或以上</strong> 来用 <strong>Grok Bot</strong>。</li><li style="margin:6px 0;">写代码时想用 Grok 4.7，走 Grok Build，或走订阅里捆绑的 Cursor（Cursor 的完整用法，本连载后面单独写）。</li><li style="margin:6px 0;">要在自己产品里调 Grok，能接受按 token 计费，也清楚没有搜索工具时模型没有截止日期之后的实时知识。</li></ul>
+<p style="margin:12px 0;"><strong>按官方规则，往往对不上的是这些情况：</strong></p>
+<ul style="padding-left:1.2em;margin:8px 0;"><li style="margin:6px 0;"><strong>只订 Plus，却想用 Grok Bot。</strong> 官方写 Plus 不含，须 Premium 或以上。</li><li style="margin:6px 0;"><strong>假定免费档或 Plus 就有完整的多 Agent 与最高额度。</strong> 产品页把 multi-agent 写在 SuperGrok 的升级说明里；新套餐里对应到哪一档，以定价页和产品内实际开关为准，待核。</li><li style="margin:6px 0;"><strong>所在地或支付方式在结账页过不去。</strong> 官方 FAQ 没有给出完整国家名单，不要假定一定能完成注册或扣款。</li><li style="margin:6px 0;"><strong>13 岁以下，或 13–17 岁尚未得到家长同意。</strong> FAQ 写明了这条门槛。</li><li style="margin:6px 0;"><strong>把 Arena 第 16 名读成「不能用」。</strong> 那只是 2026-11-08 这份 Agent 榜快照里的净改进名次，不是购买资格，也不是考试分数。</li><li style="margin:6px 0;"><strong>还想继续分别付 SuperGrok、Cursor、X Premium 三笔，又以为必须立刻切到新订阅。</strong> 官方写可以不切；切不切由你自己选。</li></ul>
+<p style="margin:12px 0;">---</p>
+<h2 style="font-size:18px;margin:24px 0 12px;color:#1B2A2A;">七、同类对手一句话</h2>
+<p style="margin:12px 0;">同样是「有自家模型，并做成聊天或 Agent 产品」的，公开产品线可以对上的，包括 <strong>Anthropic</strong>（Claude 等，本连载第 1 篇）、<strong>OpenAI</strong>（ChatGPT 等，第 2 篇）、<strong>Google</strong>（Gemini 等）、<strong>月之暗面</strong>（Kimi 等）。这里只点名，不展开评测。</p>
+<p style="margin:12px 0;">---</p>
+<h2 style="font-size:18px;margin:24px 0 12px;color:#1B2A2A;">信息时效与系列目录</h2>
+<p style="margin:12px 0;">关键价目、档位、模型名和入口，核对于 <strong>2026-11-10（Asia/Shanghai，UTC+8）</strong>。产品会改价、改规则、改默认模型——你下单或安装前，最好再打开 <code>x.ai/pricing</code> 和对应文档看一眼。</p>
+<p style="margin:12px 0;"><strong>系列目录</strong>（《Agent 图鉴》第 3 篇）：</p>
+<ol style="padding-left:1.2em;margin:8px 0;"><li style="margin:6px 0;">Claude（Anthropic）← 已刊</li><li style="margin:6px 0;">ChatGPT（OpenAI）← 已完成本单第 2 篇</li><li style="margin:6px 0;">Grok（SpaceXSI，原 xAI）← 本篇</li><li style="margin:6px 0;">其后已定顺序、尚未下单成稿：Cursor、Kimi。其余按点单，不预先写未公布的标题。</li></ol>
+</section>
