@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DaylightUI：国服安装与设置教程</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+/* preview shell: WordPress constrained layout is absent, so give the page the paper background and a readable width */
+html,body{margin:0;background:#f4edda}
+body{padding:28px 16px 64px}
+.wxh-preview-wrap{max-width:980px;margin:0 auto}
+
+  .wxh-gde{--g:#c9973f;--gb:#e9c96f;--gd:#8f6b1e;--ink:#22333d;--paper:#fffaf0;--bg:#f4edda;--line:#d8c795;--sub:#46565f;--plaque1:#1e5069;--plaque2:#11374c;--ink2:#f2dfa0;--gold:#c9973f;--gold-deep:#8f6b1e;--muted:#7d919b;
+    font-family:"Noto Serif SC","Songti SC","STSong","Source Han Serif SC",serif;color:#46565f;font-size:15px;line-height:1.95;
+    background:rgba(253,251,243,.95);border:1px solid #d9c795;border-radius:18px;padding:24px 30px 30px}
+  .wxh-gde .back a{display:inline-flex;align-items:center;gap:6px;font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;font-size:13.5px;font-weight:700;color:#8f6b1e;background:#fffdf6;border:1px solid #c9973f;border-radius:8px;padding:8px 14px;line-height:1.4;text-decoration:none}
+  .wxh-gde .back a:hover{background:linear-gradient(180deg,#1e5069,#11374c);border-color:#11374c;color:#f2dfa0;text-decoration:none}
+  .wxh-gde .jump-bar{position:sticky;top:105px;z-index:40;background:#f3ecd7;border:1px solid #d9c795;border-radius:12px;padding:10px 14px 8px;margin:0 0 22px;text-align:center}
+  .wxh-gde .jumps{display:flex;flex-wrap:wrap;gap:7px;justify-content:center}
+  .wxh-gde .jumps a{font-family:"Noto Sans SC",sans-serif;font-size:13px;font-weight:700;color:#8f6b1e;background:#fffdf6;border:1px solid #c9973f;border-radius:999px;padding:5px 13px;line-height:1.5;text-decoration:none}
+  .wxh-gde .jumps a:hover,.wxh-gde .jumps a.on{background:linear-gradient(180deg,#1e5069,#11374c);border-color:#11374c;color:#f2dfa0;text-decoration:none}
+  .wxh-gde .jump-hint{font-size:12px;color:#7d919b;margin:6px 0 2px}
+  .wxh-gde h3.sec-t{font-size:20px;color:#22333d;font-weight:900;border-bottom:2px solid #c9973f;padding-bottom:8px;margin:26px 0 14px;scroll-margin-top:196px}
+  @media (max-width:760px){.wxh-gde{padding:18px 15px 24px;border-radius:14px}.wxh-gde h3.sec-t{scroll-margin-top:208px}}
+
+.wxh-gde *{box-sizing:border-box}
+.wxh-gde .head{margin:0 0 18px;padding-bottom:12px;border-bottom:2px solid var(--g)}
+.wxh-gde .head h1{margin:0 0 6px;font-family:var(--wxh-font-serif,"Noto Serif SC","Songti SC",serif);font-size:clamp(26px,3.2vw,36px);font-weight:700;letter-spacing:.06em;color:var(--ink)}
+.wxh-gde .chips{display:flex;flex-wrap:wrap;gap:8px;margin:0}
+.wxh-gde .chip{font-size:12.5px;color:var(--gd);background:rgba(201,151,63,.14);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.wxh-gde .lead{margin:0 0 16px;color:var(--sub);font-size:15px}
+.wxh-gde .meta{margin:0 0 20px;font-size:12.5px;color:var(--gd)}
+.wxh-gde .rewards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 14px}
+.wxh-gde .rew{background:linear-gradient(180deg,var(--plaque1),var(--plaque2));border:1px solid var(--g);border-radius:12px;padding:16px 12px;text-align:center;color:var(--ink2);box-shadow:0 4px 12px rgba(17,55,76,.22)}
+.wxh-gde .rew .ico{width:44px;height:44px;margin:0 auto 10px;border-radius:10px;overflow:hidden;border:1px solid rgba(201,151,63,.45)}
+.wxh-gde .rew .ico img{width:100%;height:100%;object-fit:cover;display:block}
+.wxh-gde .rew b{display:block;font-size:14px;font-weight:700}
+.wxh-gde .rew span{display:block;margin-top:4px;font-size:12px;opacity:.88;font-weight:400}
+.wxh-gde .diff{margin:0 0 20px;font-size:13px;color:var(--sub)}
+.wxh-gde .starts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 22px}
+.wxh-gde .start{background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(120,95,30,.08);display:grid;grid-template-columns:118px 1fr}
+.wxh-gde .start .map{background:linear-gradient(160deg,rgba(30,80,105,.55),rgba(17,55,76,.35)),linear-gradient(180deg,#c5d6c0,#e8dfc8);min-height:118px;position:relative}
+.wxh-gde .start.alliance .map{background:linear-gradient(160deg,rgba(40,80,140,.5),rgba(30,60,110,.25)),linear-gradient(180deg,#b8c9a8,#dfe7d2)}
+.wxh-gde .start.horde .map{background:linear-gradient(160deg,rgba(140,40,40,.45),rgba(90,30,30,.25)),linear-gradient(180deg,#c9b48a,#e5d6b8)}
+.wxh-gde .pin{position:absolute;left:50%;top:48%;width:18px;height:18px;border-radius:50% 50% 50% 0;transform:translate(-50%,-60%) rotate(-45deg);border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.wxh-gde .alliance .pin{background:#3a6ea5}
+.wxh-gde .horde .pin{background:#a23b3b}
+.wxh-gde .start .body{padding:14px 14px 14px 12px}
+.wxh-gde .start .faction{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.wxh-gde .alliance .faction{background:rgba(58,110,165,.15);color:#2a4f7a}
+.wxh-gde .horde .faction{background:rgba(162,59,59,.15);color:#7a2a2a}
+.wxh-gde .start h3{margin:0 0 6px;font-family:var(--wxh-font-serif,"Noto Serif SC",serif);font-size:17px;font-weight:700}
+.wxh-gde .start p{margin:0 0 8px;font-size:13.5px;color:#46565f}
+.wxh-gde .coord{display:inline-block;font-weight:700;color:var(--gd);background:rgba(201,151,63,.16);border:1px solid var(--line);border-radius:4px;padding:2px 8px;font-size:13px;margin:0 4px 4px 0}
+.wxh-gde .sec{margin:0 0 10px;font-family:var(--wxh-font-serif,"Noto Serif SC",serif);font-size:22px;font-weight:700;border-bottom:1px solid var(--g);padding-bottom:6px}
+.wxh-gde .steps-wrap{position:relative;margin:0 0 22px}
+.wxh-gde .opt-float{position:static;background:var(--paper);border:1px dashed var(--g);color:var(--gd);border-radius:8px;padding:8px 12px;font-size:12.5px;box-shadow:0 2px 8px rgba(120,95,30,.1);max-width:340px;margin:0 0 10px}
+.wxh-gde .opt-float b{display:block;font-size:13px;margin-bottom:2px}
+.wxh-gde .steps{list-style:none;margin:0;padding:0;display:grid;gap:0;background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(120,95,30,.07)}
+.wxh-gde .steps li{display:grid;grid-template-columns:52px 1.1fr .9fr 1.4fr;gap:10px;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line);font-size:14px}
+.wxh-gde .steps li:last-child{border-bottom:0}
+.wxh-gde .steps li:nth-child(even){background:rgba(244,237,218,.55)}
+.wxh-gde .steps .n{width:36px;height:36px;border-radius:50%;background:linear-gradient(180deg,var(--plaque1),var(--plaque2));color:var(--ink2);border:1px solid var(--g);display:flex;align-items:center;justify-content:center;font-family:var(--wxh-font-serif,serif);font-weight:700;font-size:16px}
+.wxh-gde .steps .name{font-family:var(--wxh-font-serif,serif);font-weight:700;font-size:15px;color:var(--ink)}
+.wxh-gde .steps .zone{color:#46565f;font-size:13.5px}
+.wxh-gde .steps .tip{color:var(--sub);font-size:13px}
+.wxh-gde .start .map img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.wxh-gde .fig{margin:0 0 22px}
+.wxh-gde .fig img{width:100%;height:auto;border-radius:14px;border:1px solid var(--line);display:block}
+.wxh-gde .tom{background:#1a2431;border-radius:14px;padding:16px 18px;margin:0 0 22px;color:#f4edda;position:relative}
+.wxh-gde .tom .lab{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:13px;color:var(--g);font-weight:700}
+.wxh-gde .tom pre{margin:0;white-space:pre-wrap;word-break:break-word;font-family:ui-monospace,Consolas,monospace;font-size:12.5px;line-height:1.7;color:#e7dcc0}
+.wxh-gde .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:0 0 18px}
+.wxh-gde .card h3{margin:0 0 10px;font-family:var(--wxh-font-serif,serif);font-size:18px}
+.wxh-gde .card ul{margin:0;padding-left:1.15em}
+.wxh-gde .card li{margin:0 0 6px;font-size:14.5px;color:#46565f}
+.wxh-gde .card a{color:var(--gd);font-weight:700;text-decoration:none}
+.wxh-gde .src{font-size:12.5px;color:var(--sub);border-top:1px solid var(--line);padding-top:12px}
+.wxh-gde .steps.two li{grid-template-columns:1.15fr 1.85fr}
+.wxh-gde .steps .bname{font-family:var(--wxh-font-serif,serif);font-weight:700;font-size:14.5px;color:var(--ink)}
+.wxh-gde .steps .bname small{display:block;font-family:var(--wxh-font-sans,sans-serif);font-weight:400;font-size:12px;color:var(--sub)}
+@media (max-width:860px){.wxh-gde .rewards{grid-template-columns:1fr 1fr}
+.wxh-gde .starts{grid-template-columns:1fr}
+.wxh-gde .start{grid-template-columns:100px 1fr}
+.wxh-gde .opt-float{position:static;max-width:none;margin:0 0 10px}
+.wxh-gde .steps li{grid-template-columns:42px 1fr;grid-template-areas:"n name" "n zone" "n tip"}
+.wxh-gde .steps .n{grid-area:n}
+.wxh-gde .steps .name{grid-area:name}
+.wxh-gde .steps .zone{grid-area:zone}
+.wxh-gde .steps .tip{grid-area:tip}
+.wxh-gde .steps.two li{grid-template-columns:1fr;grid-template-areas:none}
+.wxh-gde .steps.two .bname,.wxh-gde .steps.two .zone{grid-area:auto}}
+@media (max-width:520px){.wxh-gde .rewards{grid-template-columns:1fr}
+.wxh-gde .start{grid-template-columns:1fr}
+.wxh-gde .start .map{min-height:88px}}
+
+/* admin-bar-offset */
+body.admin-bar .wxh-gde .jump-bar{top:137px}
+body.admin-bar .wxh-gde .sec-t{scroll-margin-top:240px}
+@media (max-width:782px){body.admin-bar .wxh-gde .jump-bar{top:151px}body.admin-bar .wxh-gde .sec-t{scroll-margin-top:254px}}
+
+/* head-format */
+.wxh-gde .head h1{font-size:32px;font-weight:900;letter-spacing:.03em;line-height:1.2}
+@media (max-width:640px){.wxh-gde .head h1{font-size:27px}}
+
+/* supplements: figcaption, command code, compact preset row; listed in NOTES.md */
+.wxh-gde .fig figcaption{margin:8px 2px 0;font-size:12.5px;color:var(--sub);line-height:1.7}
+.wxh-gde code{font-family:ui-monospace,Consolas,monospace;font-size:.92em;color:var(--gd)}
+.wxh-gde .figs-3{display:flex;flex-direction:column;gap:0;margin:0}
+
+  /* 独立预览：现网 jump-bar 的 top:105px 是给站点顶栏的，这里贴顶 */
+  .wxh-preview-wrap .jump-bar{top:0}
+</style>
+</head>
+<body>
+<div class="wxh-preview-wrap wp-block-group alignwide has-global-padding is-layout-constrained">
+<div class="wxh-gde">
+  <p class="back"><a href="/wp/addons/">← 返回插件专区</a></p>
+  <div class="head">
+    <h1>DaylightUI：国服安装与设置教程</h1>
+    <div class="chips">
+      <span class="chip">国服</span>
+      <span class="chip">黑盒工坊</span>
+      <span class="chip">v1.6.7.1</span>
+      <span class="chip">适配 1.60.1</span>
+    </div>
+  </div>
+  <p class="lead">面向国服《魔兽世界：无限》的 DaylightUI 安装与设置教程。用黑盒工坊一键安装正式包，进游戏后向导和 <code>/dui</code> 设置都是简体中文，不必再装旧的独立汉化补丁。</p>
+  <p class="meta">数据核对：2026-11-11｜界面用词以国服黑盒工坊与游戏内截图为准</p>
+  <div class="jump-bar"><nav class="jumps" aria-label="本页分区"><a href="#s1">装哪一条</a><a href="#s2">安装与目录</a><a href="#s3">首次向导</a><a href="#s4">设置与解锁</a><a href="#s5">命令与模块</a><a href="#s6">常见问题</a></nav><p class="jump-hint">点分区跳转到对应块 · 全部内容都在本页</p></div>
+
+  <h3 class="sec sec-t" id="s1">装什么、装哪一条</h3>
+  <p class="lead">DaylightUI 是一套只为 WoW: Forever（《魔兽世界：无限》）写的完整界面整合，风格偏柔和、简洁，框体、动作条和窗口共用同一套外观。当前要装的正式包是 <strong>v1.6.7.1-forever</strong>，适配游戏 <strong>1.60.1</strong>。自 1.6.5.2 起，插件已内置完整简体中文。</p>
+  <p class="lead">在黑盒工坊把版本选成「无限服」，到插件库搜索 <code>DaylightUI</code> 时，列表里会同时出现正式包和一条旧的独立汉化补丁。只装第一条正式 DaylightUI。</p>
+
+  <div class="card">
+    <h3>不要装旧汉化补丁</h3>
+    <ul>
+      <li>同一搜索结果里还有 <strong>DaylightUI Simplified Chinese Localization</strong>，文件名是 <code>DaylightUI_zhCN-0.2.0-for-1.3.1.zip</code>，体积 123.99 KB，适配 1.60.1。英文说明写着 Requires the original DaylightUI addon。</li>
+      <li>这是面向旧版的独立汉化补丁，不是现在要装的主包。正式包进游戏后，向导和 <code>/dui</code> 已经全是简体中文。</li>
+      <li>只装列表第一条正式 DaylightUI（v1.6.7.1-forever），不要再装这条补丁。</li>
+    </ul>
+  </div>
+
+  <figure class="fig">
+    <img src="images/01-heybox-plugin-library.jpg" alt="黑盒工坊插件库搜索 DaylightUI，第一条是正式包 v1.6.7.1-forever，下方还有旧汉化补丁">
+    <figcaption>黑盒工坊 · 插件库。版本已选「无限服」，左侧点「全部插件」，搜索 DaylightUI。红框里第一条是正式包 v1.6.7.1-forever，截图时显示刚更新过，体积 7.96 MB，适配游戏 1.60.1。同列表里还有旧汉化补丁，不要装。红框为标注。来源：国服黑盒工坊截图，2026-11-11。</figcaption>
+  </figure>
+
+  <h3 class="sec sec-t" id="s2">黑盒工坊安装与目录核对</h3>
+  <p class="lead">官网是 <a href="https://workshop.xiaoheihe.cn/">https://workshop.xiaoheihe.cn/</a>，用桌面客户端操作。不要和「新手盒子」（wclbox.com）搞混，那是另一个平台。</p>
+  <div class="steps-wrap">
+    <ol class="steps">
+      <li>
+        <div class="n">1</div>
+        <div class="name">打开黑盒工坊</div>
+        <div class="zone">版本选「无限服」</div>
+        <div class="tip">别停在正式服或怀旧服，否则列表对不上</div>
+      </li>
+      <li>
+        <div class="n">2</div>
+        <div class="name">进入插件库</div>
+        <div class="zone">左侧点「全部插件」</div>
+        <div class="tip">顶栏还有本地插件、WA、配置分享、云端备份、配置同步</div>
+      </li>
+      <li>
+        <div class="n">3</div>
+        <div class="name">搜索 DaylightUI</div>
+        <div class="zone">只装列表第一条正式包</div>
+        <div class="tip">版本 v1.6.7.1-forever，适配 1.60.1；不要装同页的旧汉化补丁</div>
+      </li>
+      <li>
+        <div class="n">4</div>
+        <div class="name">到「本地插件」核对</div>
+        <div class="zone">应显示「当前为最新版本」</div>
+        <div class="tip">游戏版本 1.60.1，插件 v1.6.7.1-forever</div>
+      </li>
+      <li>
+        <div class="n">5</div>
+        <div class="name">完全退出并重启游戏</div>
+        <div class="zone">新插件通常只在启动时扫描</div>
+        <div class="tip">只输入 /reload 往往不够</div>
+      </li>
+    </ol>
+  </div>
+
+  <figure class="fig">
+    <img src="images/02-heybox-local-addons.jpg" alt="黑盒工坊本地插件页，DaylightUI 显示当前为最新版本 v1.6.7.1-forever">
+    <figcaption>装完后在「本地插件」里可见 DaylightUI，显示「当前为最新版本」，游戏版本 1.60.1，插件 v1.6.7.1-forever。红线为标注。来源：国服黑盒工坊截图，2026-11-11。</figcaption>
+  </figure>
+
+  <div class="card">
+    <h3>核对 AddOns 目录</h3>
+    <ul>
+      <li>黑盒会把文件写到游戏的 <code>Interface\AddOns</code> 目录。下面是一台国服电脑上的典型战网路径，只作例子——不是所有人都在 D 盘：</li>
+    </ul>
+  </div>
+  <div class="tom">
+    <div class="lab"><span>典型路径例</span><span style="font-weight:400;opacity:.75">目录名是英文 World of Warcraft，上一层是「战网」</span></div>
+    <pre>D:\战网\World of Warcraft\_forever_\Interface\AddOns</pre>
+  </div>
+
+  <figure class="fig">
+    <img src="images/03-addons-folder.jpg" alt="国服 AddOns 目录，可见 DaylightUI 核心与 11 个模块文件夹，以及黑盒自带的 HeyboxPlayerInfo">
+    <figcaption>国服 AddOns 目录实况。DaylightUI 与 11 个模块文件夹的修改日期是 2026/11/11 13:44；同目录的 HeyboxPlayerInfo 是 13:41，那是黑盒自带，不是 DaylightUI 的一部分。红框和红箭头为标注。来源：国服游戏目录截图，2026-11-11。</figcaption>
+  </figure>
+
+  <p class="lead">目录里是 1 个核心 + 11 个模块，文件夹名称与原版一致，不要改名，也不要多套一层（例如 <code>AddOns/DaylightUI-版本号/DaylightUI/</code>），否则游戏找不到。同目录的 <code>HeyboxPlayerInfo</code> 不要当成多余文件删掉。</p>
+  <ol class="steps two">
+    <li><div class="bname">DaylightUI<small>核心，必须启用</small></div><div class="zone">设置入口，以及角色、法术书等写在核心里的窗口</div></li>
+    <li><div class="bname">DaylightUI_ActionBars<small>动作条</small></div><div class="zone">动作条与冷却管理器</div></li>
+    <li><div class="bname">DaylightUI_Bags<small>背包</small></div><div class="zone">背包与银行</div></li>
+    <li><div class="bname">DaylightUI_Buffs<small>增益</small></div><div class="zone">增益与减益</div></li>
+    <li><div class="bname">DaylightUI_Chat<small>聊天</small></div><div class="zone">聊天面板</div></li>
+    <li><div class="bname">DaylightUI_InfoPanel<small>信息</small></div><div class="zone">微缩地图、伤害统计、数据栏</div></li>
+    <li><div class="bname">DaylightUI_Nameplates<small>姓名板</small></div><div class="zone">姓名板</div></li>
+    <li><div class="bname">DaylightUI_QoL<small>额外</small></div><div class="zone">便捷功能</div></li>
+    <li><div class="bname">DaylightUI_Quests<small>任务</small></div><div class="zone">任务追踪与寻路</div></li>
+    <li><div class="bname">DaylightUI_Skins<small>游戏窗口皮肤</small></div><div class="zone">给游戏原窗口换同一套外观</div></li>
+    <li><div class="bname">DaylightUI_Tooltip<small>鼠标提示</small></div><div class="zone">鼠标提示</div></li>
+    <li><div class="bname">DaylightUI_UnitFrames<small>框体</small></div><div class="zone">玩家、目标、小队与团队框体</div></li>
+  </ol>
+  <p class="lead">设置首页显示 20 / 20 已启用模块。AddOns 目录里是 1 个核心 + 11 个模块文件夹；多出来的项来自写在核心里、不单独出现在插件目录中的窗口。文件夹名保持英文，不要自译、不要改名。</p>
+
+  <h3 class="sec sec-t" id="s3">首次向导</h3>
+  <p class="lead">进游戏后会进入首次向导，界面已是简体中文。问候会带上你的角色名——截图里是「下午好，曾经的小狂 信仰圣光」，这是按当前角色问候，不是固定写给所有人的名字。</p>
+  <p class="lead">向导开场写：「DaylightUI以柔和、简约的外观替换你的框体、动作条、背包、聊天等。来为这个角色进行设置吧。」左侧是「快速设置」：全部开启，使用 DaylightUI 的推荐设置。右侧是「让我选择」：两分钟浏览 DaylightUI 的全部功能，边看边选。完成之前不会保存任何内容。</p>
+
+  <div class="card">
+    <h3>快速设置三项</h3>
+    <ul>
+      <li><strong>伤害 / 坦克：</strong>小队在左侧，你和你的目标在中间偏下。</li>
+      <li><strong>治疗者：</strong>你的小队和团队以方形格子显示在你下方，驱散一目了然。</li>
+      <li><strong>沉浸预设：</strong>适合做任务的平静模式：战斗后动作条和你的框体会淡出。地下城中全部显示。</li>
+    </ul>
+  </div>
+  <p class="diff">欢迎页按钮写的是「伤害 / 坦克」，完成页里保存的布局名显示为「DPS / 坦克」。两边用词不一致，按游戏里实际显示辨认即可，不要自行改掉其中一侧。</p>
+
+  <div class="figs-3">
+    <figure class="fig">
+      <img src="images/04-wizard-preset-dps-tank.jpg" alt="首次向导欢迎页，光标停在伤害/坦克预设上，并显示说明">
+      <figcaption>伤害 / 坦克。红框和红箭头为标注。</figcaption>
+    </figure>
+    <figure class="fig">
+      <img src="images/05-wizard-preset-healer.jpg" alt="首次向导欢迎页，光标停在治疗者预设上，并显示说明">
+      <figcaption>治疗者。红框和红箭头为标注。</figcaption>
+    </figure>
+    <figure class="fig">
+      <img src="images/06-wizard-preset-immersion.jpg" alt="首次向导欢迎页，光标停在沉浸预设上，并显示说明">
+      <figcaption>沉浸预设。红框和红箭头为标注。来源：国服游戏内截图，2026-11-11。</figcaption>
+    </figure>
+  </div>
+
+  <p class="lead">若点「让我选择」，会进入 10 步向导。侧栏在「欢迎」之后、「完成」之前，依次是下面这些步骤。第 2 步「你的职责」本次没有截图，这里只记下侧栏有这一步，页面细节以游戏内为准，以后仍可改。向导页脚写「以后可更改：/dui &gt; …」。按钮是「后退」「下一页」；第 10 步右下角是「查看」。</p>
+
+  <div class="steps-wrap">
+    <ol class="steps">
+      <li>
+        <div class="n">1</div>
+        <div class="name">包含内容</div>
+        <div class="zone">按模块开关</div>
+        <div class="tip">关掉不需要的部分，重载后生效。页脚：/dui &gt; 常规 &gt; 首页</div>
+      </li>
+      <li>
+        <div class="n">2</div>
+        <div class="name">你的职责</div>
+        <div class="zone">侧栏有这一步</div>
+        <div class="tip">本批截图没有这一页，不展开猜测，可以后再改</div>
+      </li>
+      <li>
+        <div class="n">3</div>
+        <div class="name">外观</div>
+        <div class="zone">强调色、字体</div>
+        <div class="tip">强调色可选 Daylight、Daylight渐变、职业颜色、职业渐变、自定义颜色。选了画面会马上变。页脚：/dui &gt; 常规 &gt; 外观</div>
+      </li>
+      <li>
+        <div class="n">4</div>
+        <div class="name">框体</div>
+        <div class="zone">框体样式、生命条颜色</div>
+        <div class="tip">样式有 Daylight 与缎带；生命条颜色有职业和阵营关系、职业渐变、按生命值（绿到红）。页脚：/dui &gt; 单位框体 &gt; 额外</div>
+      </li>
+      <li>
+        <div class="n">5</div>
+        <div class="name">动作条</div>
+        <div class="zone">屏幕上的条</div>
+        <div class="tip">一行、两行、两行和侧边动作条。另有「显示空按钮」。页脚：/dui &gt; 动作条 &gt; 动作条布局</div>
+      </li>
+      <li>
+        <div class="n">6</div>
+        <div class="name">姓名板</div>
+        <div class="zone">尺寸与显示内容</div>
+        <div class="tip">小 / 中 / 大；可开关生命值文字、你的减益、威胁颜色。页脚：/dui &gt; 姓名板 &gt; 常规</div>
+      </li>
+      <li>
+        <div class="n">7</div>
+        <div class="name">平静或始终显示</div>
+        <div class="zone">脱离战斗时</div>
+        <div class="tip">始终显示、平静、仅在有变化时；可开「仅在野外淡出」。页脚：/dui &gt; 常规 &gt; 淡出</div>
+      </li>
+      <li>
+        <div class="n">8</div>
+        <div class="name">日常</div>
+        <div class="zone">背包、聊天、信息面板</div>
+        <div class="tip">背包可按分类或逐个背包；另有自动出售垃圾、自动修理，以及时间戳、职业颜色名字、短标签、聊天隐藏、伤害统计。页脚：/dui &gt; 背包 &gt; 背包</div>
+      </li>
+      <li>
+        <div class="n">9</div>
+        <div class="name">任务</div>
+        <div class="zone">寻路与追踪器</div>
+        <div class="tip">含 DaylightUI风格的任务标记、标记外观（信标等）、地面路标、指向最近目标的箭头（需 QuestieDB）。页脚：/dui &gt; 任务追踪器 &gt; 导航</div>
+      </li>
+      <li>
+        <div class="n">10</div>
+        <div class="name">便捷功能</div>
+        <div class="zone">省时间的小开关</div>
+        <div class="tip">帮我输入 DELETE、更快拾取、自动接受任务、自动交付任务、跳过NPC对话、跳过过场动画。本步按钮是「查看」。页脚：/dui &gt; 额外 &gt; 便捷功能</div>
+      </li>
+    </ol>
+  </div>
+
+  <figure class="fig">
+    <img src="images/07-wizard-01-modules.jpg" alt="向导第1步包含内容，左侧列出全部10步，右侧是各模块开关">
+    <figcaption>第 1 步「包含内容」。左侧能看到整条 10 步侧栏；右侧是单位框体、动作条、姓名板、增益与减益、背包、聊天、信息面板、任务追踪器。来源：国服游戏内截图，2026-11-11。</figcaption>
+  </figure>
+
+
+  <figure class="fig">
+    <img src="images/08-wizard-03-appearance.jpg" alt="向导第3步外观，强调色选了职业渐变，字体选了 Expressway">
+    <figcaption>第 3 步「外观」。强调色和字体会马上改画面。来源：国服游戏内截图，2026-11-11。</figcaption>
+  </figure>
+
+  <figure class="fig">
+    <img src="images/09-wizard-04-frames.jpg" alt="向导第4步框体，可选 Daylight 或缎带样式，以及三种生命条颜色">
+    <figcaption>第 4 步「框体」。样式有 Daylight 与缎带；生命条颜色有职业和阵营关系、职业渐变、按生命值（绿到红）。来源：国服游戏内截图，2026-11-11。</figcaption>
+  </figure>
+
+  <figure class="fig">
+    <img src="images/10-wizard-05-actionbars.jpg" alt="向导第5步动作条，可选一行、两行、或两行和侧边动作条">
+    <figcaption>第 5 步「动作条」。可另开「显示空按钮」。来源：国服游戏内截图，2026-11-11。</figcaption>
+  </figure>
+
+  <figure class="fig">
+    <img src="images/11-wizard-06-nameplates.jpg" alt="向导第6步姓名板，尺寸可选小、中、大，并可开关生命值文字、减益和威胁颜色">
+    <figcaption>第 6 步「姓名板」。来源：国服游戏内截图，2026-11-11。</figcaption>
+  </figure>
+
+  <figure class="fig">
+    <img src="images/12-wizard-07-fade.jpg" alt="向导第7步平静或始终显示，可选始终显示、平静或仅在有变化时">
+    <figcaption>第 7 步「平静或始终显示」。若选了沉浸预设，这一页值得再看一眼；选完仍可到「常规 &gt; 淡出」改。来源：国服游戏内截图，2026-11-11。</figcaption>
+  </figure>
+
+
+  <figure class="fig">
+    <img src="images/13-wizard-08-daily.jpg" alt="向导第8步日常，背包可按分类或逐个背包，另有自动出售垃圾、自动修理和聊天选项">
+    <figcaption>第 8 步「日常」。来源：国服游戏内截图，2026-11-11。</figcaption>
+  </figure>
+
+  <figure class="fig">
+    <img src="images/14-wizard-09-quests.jpg" alt="向导第9步任务，含 DaylightUI 风格任务标记、地面路标和追踪器选项">
+    <figcaption>第 9 步「任务」。指向最近目标的箭头需要 QuestieDB。来源：国服游戏内截图，2026-11-11。</figcaption>
+  </figure>
+
+  <figure class="fig">
+    <img src="images/15-wizard-10-qol.jpg" alt="向导第10步便捷功能，含帮我输入 DELETE、更快拾取、自动接受和交付任务等开关">
+    <figcaption>第 10 步「便捷功能」。本步右下角按钮是「查看」。来源：国服游戏内截图，2026-11-11。</figcaption>
+  </figure>
+
+  <p class="lead">走完 10 步后来到「全部就绪」，副标题是「一切就绪。」可以把设置保存为配置名（截图里默认用了角色名），再点「重载」。页上会勾选：配置已保存、布局已放置、模块已更新、全部就绪。</p>
+  <div class="card">
+    <h3>完成页上的实用提示</h3>
+    <ul>
+      <li><code>/dui</code> 打开设置。</li>
+      <li><code>/dui unlock</code> 可移动框体，右键点击拖动柄可将其复位。</li>
+      <li>可从「综合 &gt; 首页」再次运行本向导，或使用 <code>/dui install</code>。</li>
+    </ul>
+  </div>
+  <p class="diff">用词有一处不一致：向导各页页脚写「/dui &gt; 常规 &gt; 首页」，完成页提示写「综合 &gt; 首页」，设置窗口左侧分区实际用词是「常规」。三者指向同一处，以侧栏看到的「常规」为准。</p>
+
+  <figure class="fig">
+    <img src="images/16-wizard-complete.jpg" alt="向导完成页全部就绪，可保存配置名并点重载，下方有实用提示">
+    <figcaption>完成页「全部就绪」。截图里布局与配置显示为 DPS / 坦克，配置名是角色名。来源：国服游戏内截图，2026-11-11。</figcaption>
+  </figure>
+
+  <h3 class="sec sec-t" id="s4">打开设置与解锁布局</h3>
+  <p class="lead">打开设置有两种办法：聊天栏输入 <code>/dui</code>；或按 Esc，在游戏菜单里点 <strong>DaylightUI</strong>。</p>
+
+  <figure class="fig">
+    <img src="images/17-game-menu-entry.jpg" alt="游戏菜单中有 DaylightUI 入口，位于商城与插件之间">
+    <figcaption>Esc 打开的游戏菜单里有 DaylightUI 入口，可直接打开设置。红框和红箭头为标注。来源：国服游戏内截图，2026-11-11。</figcaption>
+  </figure>
+
+  <div class="card">
+    <h3>设置首页里能看到什么</h3>
+    <ul>
+      <li>截图为 v1.6.7.1，显示 20 / 20 已启用模块。顶部搜索框文案是「搜索设置」。</li>
+      <li>左侧分区用词：<strong>常规</strong>（其下有首页、外观、淡出、伤害数字、浮动战斗信息、渐变、布局、配置、顶级捐助者）、框体、动作条、冷却、信息、任务、背包、姓名板、增益、鼠标提示、聊天、额外、新闻。左下角有「解锁框体」。</li>
+      <li>首页快捷操作：预览框体 · 显示；移动框体 · 解锁；重置所有位置 · 重置；设置向导 · 打开。</li>
+      <li>「从哪里开始」四项：字体、强调色与颜色；哪些内容淡出，以及何时淡出；你的框体；配置与分享。</li>
+    </ul>
+  </div>
+
+  <figure class="fig">
+    <img src="images/18-dui-settings-home.jpg" alt="斜杠 dui 设置首页，左侧是常规等分区，右下是快捷操作与从哪里开始">
+    <figcaption><code>/dui</code> 设置首页。左侧分区第一项是「常规」，不是「综合」。来源：国服游戏内截图，2026-11-11。</figcaption>
+  </figure>
+
+  <div class="card">
+    <h3>移动框体</h3>
+    <ul>
+      <li>入口：左下角「解锁框体」，或首页快捷操作里的「移动框体」，或输入 <code>/dui unlock</code>。</li>
+      <li>按完成页提示：右键点击拖动柄，可把该框复位。结束移动用 <code>/dui lock</code>。</li>
+      <li>还没跑完向导就先解锁，位置可能会在退出后还原，先走完向导或再运行 <code>/dui install</code>。战斗中不能解锁。</li>
+      <li>本次没有拖拽过程的截图，网格吸附、滚轮缩放等细节以游戏内提示为准。原版说明还写了：拖动移动，滚轮缩放，右键手柄复位。</li>
+    </ul>
+  </div>
+
+  <p class="lead">装完进游戏，按「伤害 / 坦克」布局大致是下面这样：玩家和目标框在中间偏下，右上是微缩地图和任务追踪，底部是动作条。截图地点是丧钟镇。</p>
+  <figure class="fig">
+    <img src="images/19-ingame-preview.jpg" alt="丧钟镇游戏内效果：玩家和目标框、右上微缩地图与任务追踪、底部动作条">
+    <figcaption>装完后的游戏内效果。来源：国服游戏内截图，2026-11-11。</figcaption>
+  </figure>
+
+  <h3 class="sec sec-t" id="s5">常用命令与模块</h3>
+  <p class="lead">主命令是 <code>/dui</code>。只输入 <code>/dui</code> 或打错子命令时，默认只列出少数几条，并提示 <code>/dui all</code> 可看全部。</p>
+  <ol class="steps two">
+    <li><div class="bname">/dui</div><div class="zone">打开设置。Esc 游戏菜单里的 DaylightUI 也能进。</div></li>
+    <li><div class="bname">/dui install</div><div class="zone">再次打开设置向导，给当前角色做设置或再走一遍。</div></li>
+    <li><div class="bname">/dui unlock</div><div class="zone">移动框体。右键拖动柄复位；结束后输入 /dui lock。</div></li>
+    <li><div class="bname">/dui reset</div><div class="zone">把所有框体放回默认位置。这不是卸载。</div></li>
+    <li><div class="bname">/dui test</div><div class="zone">用样例单位预览。/dui test raid 预览 40 人团队。</div></li>
+    <li><div class="bname">/dui export · /dui import</div><div class="zone">导出或导入配置字符串。导入会做成新配置，不覆盖正在用的。</div></li>
+    <li><div class="bname">/cdm</div><div class="zone">打开冷却管理器编辑器，也可 /dui cdm。本批没有这页截图。</div></li>
+    <li><div class="bname">/dui bank</div><div class="zone">不靠近银行也能看自己的银行和其他角色背包。</div></li>
+  </ol>
+  <p class="lead">另外还有 <code>/rl</code>（若没被其他插件占用）、<code>/dui notes</code>、<code>/dui buffs</code>，以及姓名板排错用的 <code>/dui platecheck</code>、<code>plateprobe</code>、<code>platefix</code>。以游戏内 <code>/dui all</code> 为准。</p>
+
+  <div class="card">
+    <h3>配置导入导出</h3>
+    <ul>
+      <li>位置：<code>/dui</code> → 常规 → 配置（页面上也称「配置与分享」）。也可用 <code>/dui export</code>、<code>/dui import</code>。</li>
+      <li>导出包括设置、框体位置和 Edit Mode 布局，不包括「玩的过程中学到的」数据。从较新版本导出的字符串，旧版会拒绝。</li>
+      <li>本批没有配置页截图，不展开。黑盒工坊另有「配置同步 / 云端备份 / 配置分享」，和插件自己的配置字符串不是同一件事，能不能用来同步 DaylightUI，待核，不要两套流程混用。</li>
+    </ul>
+  </div>
+
+  <p class="lead">中文客户端如遇到缺字，可到「常规 &gt; 外观」里查看是否有「使用我所用语言的字体」。这是原版设置说明里的项，本批截图没有打开外观页，以游戏里实际选项为准。</p>
+
+  <h3 class="sec sec-t" id="s6">常见问题</h3>
+  <div class="card">
+    <h3>安装与显示</h3>
+    <ul>
+      <li><strong>搜到两个 DaylightUI：</strong>只装正式包 v1.6.7.1-forever，不要装 DaylightUI Simplified Chinese Localization。</li>
+      <li><strong>装了但游戏里没有：</strong>先看文件夹有没有多套一层，是不是放到了 <code>_forever_</code> 而不是 <code>_retail_</code>、<code>_classic_era_</code> 或旧的 <code>_classic_beta_</code>，以及有没有只 <code>/reload</code> 没重启。</li>
+      <li><strong>微缩地图发黑或自己变焦：</strong>原版在 1.6.7.1 已修，确认「本地插件」里就是这个版本。</li>
+      <li><strong>姓名板不见了：</strong>输入 <code>/dui platecheck</code>，再按提示用 <code>plateprobe</code> 或 <code>platefix</code>。</li>
+      <li><strong>战斗中拖不动框：</strong>正常限制，出战斗再解锁。</li>
+      <li><strong>手柄模式下安装失败：</strong>先在游戏设置里关掉手柄模式，再执行 <code>/dui install</code>。原版提示原文：「手柄模式开启时无法安装：请先关闭（设置选项 &gt; 手柄），执行/dui install，然后再重新开启。」</li>
+    </ul>
+  </div>
+
+  <p class="lead">下面这些插件和对应的 DaylightUI 模块不要同时开。向导遇到冲突时会让你二选一；也可以到角色选择界面的插件列表里关掉其中一方。插件名保持官方英文。</p>
+  <ol class="steps two">
+    <li><div class="bname">动作条 / 冷却管理器</div><div class="zone">EllesmereUI Action Bars、EllesmereUI Cooldown Manager</div></li>
+    <li><div class="bname">背包</div><div class="zone">Baganator</div></li>
+    <li><div class="bname">增益与减益</div><div class="zone">BuffLedger（同时开会警告，/bl 也可能被占用）</div></li>
+    <li><div class="bname">聊天 / 信息面板 / 任务</div><div class="zone">EllesmereUI Chat、Minimap、Damage Meters、Quest Tracker；以及 Kaliel's Tracker</div></li>
+    <li><div class="bname">姓名板</div><div class="zone">Platynator、EllesmereUI Nameplates、Threat Plates、Plater、Kui Nameplates</div></li>
+    <li><div class="bname">游戏窗口皮肤 / 框体</div><div class="zone">EllesmereUI Blizzard Skin、EllesmereUI Unit Frames</div></li>
+    <li><div class="bname">鼠标提示 / 点击施法</div><div class="zone">PrettyTooltip 会让出完整提示框；已加载 Clique 时由 Clique 接管点击施法</div></li>
+  </ol>
+
+  <div class="card">
+    <h3>卸载与还原</h3>
+    <ul>
+      <li>完全退出游戏。若只是暂时不用，在角色选择界面的插件列表里取消勾选 <code>DaylightUI</code> 和所有 <code>DaylightUI_*</code> 即可。</li>
+      <li>要卸掉文件，删除 <code>_forever_\Interface\AddOns\</code> 下这 1 个核心 + 11 个模块文件夹。不要误删 <code>HeyboxPlayerInfo</code>。<code>/dui reset</code> 只还原框体位置，不是卸载。</li>
+      <li>设置存在账号的 SavedVariables 里，变量名是 <strong>DaylightUIDB</strong>，路径在 <code>WTF\Account\&lt;账号&gt;\SavedVariables\</code>。只删插件文件夹不会自动清这份存档。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>相关链接</h3>
+    <ul>
+      <li><a href="https://workshop.xiaoheihe.cn/">黑盒工坊官网</a>：本教程的安装主线。</li>
+      <li><a href="https://www.curseforge.com/wow/addons/daylightui">CurseForge · DaylightUI</a>：原版备选下载，不是本稿主线。</li>
+      <li><a href="https://daylightui.com/">daylightui.com</a>：作者官网，含配置说明。</li>
+    </ul>
+  </div>
+
+  <p class="src">数据来源：国服黑盒工坊与游戏内截图（2026-11-11）；原版插件包 DaylightUI-v1.6.7.1-forever 的 README、toc、Locales/zhCN.lua 与命令说明；CurseForge 项目页与更新说明；https://daylightui.com/。数据核对：2026 年 11 月 11 日。</p>
+</div>
+</div>
+<script>(function(){var ids=['s1','s2','s3','s4','s5','s6'];var links={};document.querySelectorAll('.wxh-gde .jumps a').forEach(function(a){links[a.getAttribute('href').slice(1)]=a;});var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){ids.forEach(function(i){if(links[i])links[i].classList.toggle('on',i===e.target.id);});}});},{rootMargin:'-30% 0px -60% 0px'});ids.forEach(function(i){var el=document.getElementById(i);if(el)io.observe(el);});})();</script>
+</body>
+</html>
