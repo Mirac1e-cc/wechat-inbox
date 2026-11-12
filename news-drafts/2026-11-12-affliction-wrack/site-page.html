@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>痛苦术 Wrack 重做：从「加伤害」改成「加速跳伤」，循环要先挂满三个持续伤害（站内页预览）</title>
+<style>
+/* 预览外壳：上线时删除 .wxh-preview-wrap 及本段 */
+body{margin:0;background:#f4edda;padding:16px}
+.wxh-preview-wrap{max-width:980px;margin:0 auto}
+/* 预览覆盖：线上 jump-bar 为 top:105px（站点头部高度），单独打开预览没有站头，改为 top:0；上线时删除本行 */
+.wxh-preview-wrap .jump-bar{top:0}
+</style>
+</head><body>
+<!-- 站内页 · 干货皮 .wxh-gde（沿用模板 940 样式 + 1001 两栏行列表追加）。上线：只取「上线粘贴开始」与「上线粘贴结束」两个注释标记之间的内容，贴进 WordPress 自定义 HTML 块；图片先传媒体库再替换 images/ 相对路径 -->
+<!-- 预览外壳 .wxh-preview-wrap：上线时删除 -->
+<div class="wxh-preview-wrap">
+<!-- 上线粘贴开始 -->
+<style>
+
+  .wxh-gde{--g:#c9973f;--gb:#e9c96f;--gd:#8f6b1e;--ink:#22333d;--paper:#fffaf0;--bg:#f4edda;--line:#d8c795;--sub:#46565f;--plaque1:#1e5069;--plaque2:#11374c;--ink2:#f2dfa0;--gold:#c9973f;--gold-deep:#8f6b1e;--muted:#7d919b;
+    font-family:"Noto Serif SC","Songti SC","STSong","Source Han Serif SC",serif;color:#46565f;font-size:15px;line-height:1.95;
+    background:rgba(253,251,243,.95);border:1px solid #d9c795;border-radius:18px;padding:24px 30px 30px}
+  .wxh-gde .back a{display:inline-flex;align-items:center;gap:6px;font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;font-size:13.5px;font-weight:700;color:#8f6b1e;background:#fffdf6;border:1px solid #c9973f;border-radius:8px;padding:8px 14px;line-height:1.4;text-decoration:none}
+  .wxh-gde .back a:hover{background:linear-gradient(180deg,#1e5069,#11374c);border-color:#11374c;color:#f2dfa0;text-decoration:none}
+  .wxh-gde .jump-bar{position:sticky;top:105px;z-index:40;background:#f3ecd7;border:1px solid #d9c795;border-radius:12px;padding:10px 14px 8px;margin:0 0 22px;text-align:center}
+  .wxh-gde .jumps{display:flex;flex-wrap:wrap;gap:7px;justify-content:center}
+  .wxh-gde .jumps a{font-family:"Noto Sans SC",sans-serif;font-size:13px;font-weight:700;color:#8f6b1e;background:#fffdf6;border:1px solid #c9973f;border-radius:999px;padding:5px 13px;line-height:1.5;text-decoration:none}
+  .wxh-gde .jumps a:hover,.wxh-gde .jumps a.on{background:linear-gradient(180deg,#1e5069,#11374c);border-color:#11374c;color:#f2dfa0;text-decoration:none}
+  .wxh-gde .jump-hint{font-size:12px;color:#7d919b;margin:6px 0 2px}
+  .wxh-gde h3.sec-t{font-size:20px;color:#22333d;font-weight:900;border-bottom:2px solid #c9973f;padding-bottom:8px;margin:26px 0 14px;scroll-margin-top:196px}
+  @media (max-width:760px){.wxh-gde{padding:18px 15px 24px;border-radius:14px}.wxh-gde h3.sec-t{scroll-margin-top:208px}}
+
+.wxh-gde *{box-sizing:border-box}
+.wxh-gde .head{margin:0 0 18px;padding-bottom:12px;border-bottom:2px solid var(--g)}
+.wxh-gde .head h1{margin:0 0 6px;font-family:var(--wxh-font-serif,"Noto Serif SC","Songti SC",serif);font-size:clamp(26px,3.2vw,36px);font-weight:700;letter-spacing:.06em;color:var(--ink)}
+.wxh-gde .chips{display:flex;flex-wrap:wrap;gap:8px;margin:0}
+.wxh-gde .chip{font-size:12.5px;color:var(--gd);background:rgba(201,151,63,.14);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.wxh-gde .lead{margin:0 0 16px;color:var(--sub);font-size:15px}
+.wxh-gde .meta{margin:0 0 20px;font-size:12.5px;color:var(--gd)}
+.wxh-gde .rewards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 14px}
+.wxh-gde .rew{background:linear-gradient(180deg,var(--plaque1),var(--plaque2));border:1px solid var(--g);border-radius:12px;padding:16px 12px;text-align:center;color:var(--ink2);box-shadow:0 4px 12px rgba(17,55,76,.22)}
+.wxh-gde .rew .ico{width:44px;height:44px;margin:0 auto 10px;border-radius:10px;overflow:hidden;border:1px solid rgba(201,151,63,.45)}
+.wxh-gde .rew .ico img{width:100%;height:100%;object-fit:cover;display:block}
+.wxh-gde .rew b{display:block;font-size:14px;font-weight:700}
+.wxh-gde .rew span{display:block;margin-top:4px;font-size:12px;opacity:.88;font-weight:400}
+.wxh-gde .diff{margin:0 0 20px;font-size:13px;color:var(--sub)}
+.wxh-gde .starts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 22px}
+.wxh-gde .start{background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(120,95,30,.08);display:grid;grid-template-columns:118px 1fr}
+.wxh-gde .start .map{background:linear-gradient(160deg,rgba(30,80,105,.55),rgba(17,55,76,.35)),linear-gradient(180deg,#c5d6c0,#e8dfc8);min-height:118px;position:relative}
+.wxh-gde .start.alliance .map{background:linear-gradient(160deg,rgba(40,80,140,.5),rgba(30,60,110,.25)),linear-gradient(180deg,#b8c9a8,#dfe7d2)}
+.wxh-gde .start.horde .map{background:linear-gradient(160deg,rgba(140,40,40,.45),rgba(90,30,30,.25)),linear-gradient(180deg,#c9b48a,#e5d6b8)}
+.wxh-gde .pin{position:absolute;left:50%;top:48%;width:18px;height:18px;border-radius:50% 50% 50% 0;transform:translate(-50%,-60%) rotate(-45deg);border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.wxh-gde .alliance .pin{background:#3a6ea5}
+.wxh-gde .horde .pin{background:#a23b3b}
+.wxh-gde .start .body{padding:14px 14px 14px 12px}
+.wxh-gde .start .faction{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.wxh-gde .alliance .faction{background:rgba(58,110,165,.15);color:#2a4f7a}
+.wxh-gde .horde .faction{background:rgba(162,59,59,.15);color:#7a2a2a}
+.wxh-gde .start h3{margin:0 0 6px;font-family:var(--wxh-font-serif,"Noto Serif SC",serif);font-size:17px;font-weight:700}
+.wxh-gde .start p{margin:0 0 8px;font-size:13.5px;color:#46565f}
+.wxh-gde .coord{display:inline-block;font-weight:700;color:var(--gd);background:rgba(201,151,63,.16);border:1px solid var(--line);border-radius:4px;padding:2px 8px;font-size:13px;margin:0 4px 4px 0}
+.wxh-gde .sec{margin:0 0 10px;font-family:var(--wxh-font-serif,"Noto Serif SC",serif);font-size:22px;font-weight:700;border-bottom:1px solid var(--g);padding-bottom:6px}
+.wxh-gde .steps-wrap{position:relative;margin:0 0 22px}
+.wxh-gde .opt-float{position:static;background:var(--paper);border:1px dashed var(--g);color:var(--gd);border-radius:8px;padding:8px 12px;font-size:12.5px;box-shadow:0 2px 8px rgba(120,95,30,.1);max-width:340px;margin:0 0 10px}
+.wxh-gde .opt-float b{display:block;font-size:13px;margin-bottom:2px}
+.wxh-gde .steps{list-style:none;margin:0;padding:0;display:grid;gap:0;background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(120,95,30,.07)}
+.wxh-gde .steps li{display:grid;grid-template-columns:52px 1.1fr .9fr 1.4fr;gap:10px;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line);font-size:14px}
+.wxh-gde .steps li:last-child{border-bottom:0}
+.wxh-gde .steps li:nth-child(even){background:rgba(244,237,218,.55)}
+.wxh-gde .steps .n{width:36px;height:36px;border-radius:50%;background:linear-gradient(180deg,var(--plaque1),var(--plaque2));color:var(--ink2);border:1px solid var(--g);display:flex;align-items:center;justify-content:center;font-family:var(--wxh-font-serif,serif);font-weight:700;font-size:16px}
+.wxh-gde .steps .name{font-family:var(--wxh-font-serif,serif);font-weight:700;font-size:15px;color:var(--ink)}
+.wxh-gde .steps .zone{color:#46565f;font-size:13.5px}
+.wxh-gde .steps .tip{color:var(--sub);font-size:13px}
+.wxh-gde .start .map img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.wxh-gde .fig{margin:0 0 22px}
+.wxh-gde .fig img{width:100%;height:auto;border-radius:14px;border:1px solid var(--line);display:block}
+.wxh-gde .tom{background:#1a2431;border-radius:14px;padding:16px 18px;margin:0 0 22px;color:#f4edda;position:relative}
+.wxh-gde .tom .lab{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:13px;color:var(--g);font-weight:700}
+.wxh-gde .tom pre{margin:0;white-space:pre-wrap;word-break:break-word;font-family:ui-monospace,Consolas,monospace;font-size:12.5px;line-height:1.7;color:#e7dcc0}
+.wxh-gde .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:0 0 18px}
+.wxh-gde .card h3{margin:0 0 10px;font-family:var(--wxh-font-serif,serif);font-size:18px}
+.wxh-gde .card ul{margin:0;padding-left:1.15em}
+.wxh-gde .card li{margin:0 0 6px;font-size:14.5px;color:#46565f}
+.wxh-gde .card a{color:var(--gd);font-weight:700;text-decoration:none}
+.wxh-gde .src{font-size:12.5px;color:var(--sub);border-top:1px solid var(--line);padding-top:12px}
+@media (max-width:860px){.wxh-gde .rewards{grid-template-columns:1fr 1fr}
+.wxh-gde .starts{grid-template-columns:1fr}
+.wxh-gde .start{grid-template-columns:100px 1fr}
+.wxh-gde .opt-float{position:static;max-width:none;margin:0 0 10px}
+.wxh-gde .steps li{grid-template-columns:42px 1fr;grid-template-areas:"n name" "n zone" "n tip"}
+.wxh-gde .steps .n{grid-area:n}
+.wxh-gde .steps .name{grid-area:name}
+.wxh-gde .steps .zone{grid-area:zone}
+.wxh-gde .steps .tip{grid-area:tip}}
+@media (max-width:520px){.wxh-gde .rewards{grid-template-columns:1fr}
+.wxh-gde .start{grid-template-columns:1fr}
+.wxh-gde .start .map{min-height:88px}}
+
+/* admin-bar-offset */
+body.admin-bar .wxh-gde .jump-bar{top:137px}
+body.admin-bar .wxh-gde .sec-t{scroll-margin-top:240px}
+@media (max-width:782px){body.admin-bar .wxh-gde .jump-bar{top:151px}body.admin-bar .wxh-gde .sec-t{scroll-margin-top:254px}}
+
+/* head-format */
+.wxh-gde .head h1{font-size:32px;font-weight:900;letter-spacing:.03em;line-height:1.2}
+@media (max-width:640px){.wxh-gde .head h1{font-size:27px}}
+</style>
+<style>
+/* 1001 模板追加：两栏行列表（ol.steps.two / .bname） */
+.wxh-gde .steps.two li{grid-template-columns:1.15fr 1.85fr}
+.wxh-gde .steps .bname{font-family:var(--wxh-font-serif,serif);font-weight:700;font-size:14.5px;color:var(--ink)}
+.wxh-gde .steps .bname small{display:block;font-family:var(--wxh-font-sans,sans-serif);font-weight:400;font-size:12px;color:var(--sub)}
+@media (max-width:860px){.wxh-gde .steps.two li{grid-template-columns:1fr;grid-template-areas:none}
+.wxh-gde .steps.two .bname,.wxh-gde .steps.two .zone{grid-area:auto}}
+/* 图说（.fig figcaption） */
+.wxh-gde .fig figcaption{margin:8px 2px 0;font-size:12.5px;color:var(--sub);line-height:1.7}
+/* 手机点按区不小于 40px */
+.wxh-gde .back a,.wxh-gde .jumps a{min-height:40px;display:inline-flex;align-items:center;justify-content:center}
+.wxh-gde .lead a,.wxh-gde .diff a{color:var(--gd);font-weight:700;text-decoration:none}
+</style>
+<div class="wxh-gde">
+  <p class="back"><a href="/wp/warlock/">← 返回术士区</a></p>
+  <div class="head">
+    <h1>痛苦术 Wrack 重做：从「加伤害」改成「加速跳伤」，循环要先挂满三个持续伤害</h1>
+    <div class="chips">
+      <span class="chip">11 月 10 日热修</span>
+      <span class="chip">痛苦术士</span>
+      <span class="chip">循环逻辑</span>
+      <span class="chip">国服未同步</span>
+    </div>
+  </div>
+  <p class="lead">11 月 10 日热修复把痛苦术的 Wrack 换了一套逻辑：自身伤害 -30%，不再按百分比提高持续伤害，改成引导期间让目标身上你的生命虹吸、腐蚀术、Bane of Agony 跳伤速度加快 100%。灵魂虹吸天赋也改成只数这三个持续伤害。结果是：只引导 Wrack 不再划算，先挂满三个持续伤害再引导，才是新循环的前提。</p>
+  <p class="meta">数据核对：2026-11-12｜国际服官方热修列表与开发者说明；国服在线修正页仍停在 11 月 6 日｜Wrack、Bane of Agony 未见国服确定名，保留原文</p>
+<div class="jump-bar"><nav class="jumps" aria-label="本页分区"><a href="#s1">改了什么</a><a href="#s2">新旧逻辑</a><a href="#s3">官方例子</a><a href="#s4">循环怎么换</a><a href="#s5">待核</a></nav><p class="jump-hint">点分区跳转到对应块 · 全部内容都在本页</p></div>
+
+  <figure class="fig"><img src="images/official-hotfix-header-2400x1350.png" alt="暴雪官方热修复文章头图：黄昏下的部落营地，几名角色围着篝火"><figcaption>图源：暴雪娱乐（WoW: Forever Hotfixes 官方文章头图）</figcaption></figure>
+
+  <h3 class="sec sec-t" id="s1">改了什么</h3>
+  <div class="steps-wrap">
+    <ol class="steps">
+      <li><div class="n">1</div><div class="name">Wrack 伤害</div><div class="zone">自身伤害</div><div class="tip">降低 <strong>30%</strong></div></li>
+      <li><div class="n">2</div><div class="name">不再加持续伤害</div><div class="zone">改前：按百分比提高目标身上持续伤害的伤害</div><div class="tip">改后：不再提高</div></li>
+      <li><div class="n">3</div><div class="name">Wrack 新效果</div><div class="zone">引导 <strong>6 秒</strong>，每 <strong>1 秒</strong>一次暗影伤害</div><div class="tip">引导期间，你在目标身上的生命虹吸、腐蚀术、Bane of Agony 跳伤速度加快 <strong>100%</strong></div></li>
+      <li><div class="n">4</div><div class="name">灵魂虹吸（天赋）</div><div class="zone">改前：任何痛苦法术都算数</div><div class="tip">改后：每有一个腐蚀术 / 生命虹吸 / Bane of Agony，吸取生命、吸取灵魂、Wrack 效果 +<strong>4 / 8 / 12%</strong>，上限 <strong>36%</strong></div></li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3 class="sec-t" id="s2">新旧逻辑差在哪</h3>
+    <ul>
+      <li><strong>旧逻辑：</strong>Wrack 按百分比放大持续伤害。11 月 6 日预告里官方承认，玩家反馈「一直引导 Wrack」比穿插生命虹吸、腐蚀术、Bane of Agony 更好。</li>
+      <li><strong>另一个旧问题：</strong>按百分比加伤时，如果恰好在某个持续伤害跳之前停止引导，那一跳完全吃不到加成（官方开发者说明）。</li>
+      <li><strong>新逻辑：</strong>Wrack 让你的持续伤害「快进」。目标身上没有持续伤害，Wrack 就只剩自身那份已经降了 30% 的伤害。</li>
+      <li><strong>预告承诺：</strong>让持续伤害和 Wrack 搭配时始终值得放，同时不影响痛苦术的总伤害输出。改后是否做到，官方没给对比数据，待核。</li>
+    </ul>
+  </div>
+
+  <h3 class="sec sec-t" id="s3">官方给的两个例子</h3>
+  <ol class="steps two">
+    <li><div class="bname">持续时间不变<small>官方开发者说明</small></div><div class="zone">Wrack 加快的是跳伤频率，不是持续时间。Bane of Agony 仍持续满 <strong>24 秒</strong>，只是 Wrack 引导时它跳得快一倍。</div></li>
+    <li><div class="bname">停手不亏<small>官方开发者说明</small></div><div class="zone">跳过的时间在引导结束或被打断后保留：在 <strong>3 秒</strong>一跳的腐蚀术期间引导 Wrack <strong>1 秒</strong>，腐蚀术前进 <strong>2 秒</strong>，下一跳 <strong>1 秒</strong>后就到，而不是 2 秒后。</div></li>
+  </ol>
+
+  <h3 class="sec sec-t" id="s4">循环怎么换</h3>
+  <div class="steps-wrap">
+    <div class="opt-float"><b>说明</b>按官方机制推出的顺序，不含官方没给的数字</div>
+    <ol class="steps">
+      <li><div class="n">1</div><div class="name">先挂满三个持续伤害</div><div class="zone">腐蚀术 · 生命虹吸 · Bane of Agony</div><div class="tip">Wrack 只加速这三个；灵魂虹吸也按这三个计数，点满天赋时满 3 个才到 36%</div></li>
+      <li><div class="n">2</div><div class="name">再引导 Wrack</div><div class="zone">6 秒引导</div><div class="tip">引导期间三个持续伤害跳得快一倍</div></li>
+      <li><div class="n">3</div><div class="name">该走位就走位</div><div class="zone">被打断 / 提前停手</div><div class="tip">跳过的时间保留，提前停手不会白引导</div></li>
+      <li><div class="n">4</div><div class="name">补持续伤害照旧</div><div class="zone">持续时间不变</div><div class="tip">不用因为 Wrack 提前补，按原持续时间算</div></li>
+      <li><div class="n">5</div><div class="name">填充</div><div class="zone">吸取生命 · 吸取灵魂</div><div class="tip">同样吃灵魂虹吸的计数加成</div></li>
+    </ol>
+  </div>
+  <p class="diff">和站内<a href="/wp/warlock/affliction/">痛苦专精页</a>的关系：专精页起手「宠物先上 → 痛苦灾祸 → 腐蚀术 → 生命虹吸」、单目标「灾祸、腐蚀、虹吸不断档」，方向与新逻辑一致；该技能在专精页的写法与本篇不同（见待核），本篇不改专精页。</p>
+
+  <div class="card">
+    <h3 class="sec-t">同批术士其他改动</h3>
+    <ul>
+      <li>小鬼：火焰箭前 4 级基础伤害提高；基础生命约 +15%。</li>
+      <li>虚空行者、Incubus、魅魔：基础生命各约 +15%。</li>
+      <li>毁灭：Bane of Havoc 不触发公共冷却的错误已修。</li>
+      <li>回顾：11 月 6 日热修复已修过「灵魂虹吸错误地让 Wrack 提高自身伤害」；开服前开发说明里 Wrack 法伤系数翻倍（站内<a href="/wp/final-dev-notes-nov-2/">11-04 文</a>）。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3 class="sec-t" id="s5">待核</h3>
+    <ul>
+      <li><strong>生效时间：</strong>热修帖未给具体时刻；未进游戏核对。</li>
+      <li><strong>总伤害：</strong>官方承诺「不影响痛苦术总伤害」，改后是否做到没有官方数据。</li>
+      <li><strong>国服：</strong>在线修正页 2026-11-12 现查仍为 11 月 6 日，未同步。</li>
+      <li><strong>名称：</strong>Wrack、Bane of Agony 未见国服确定名，保留原文。站内现有「苦痛（Wrack）」「摧残（暂译）」「Wrack」三种写法；Bane of Agony 另有「痛苦灾祸」「痛苦诅咒」两种写法，待站长统一。</li>
+      <li>暗影伤害每跳数值、Wrack 的法力消耗与冷却：本次热修未给，本篇不写。</li>
+    </ul>
+  </div>
+
+  <p class="lead">相关：<a href="/wp/warlock/affliction/">痛苦 · 术士</a> ｜ <a href="/wp/news/">11 月 10 日热修复实数（同日新闻）</a></p>
+  <p class="src">数据来源：暴雪《WoW: Forever Hotfixes》官方文章 24315281（11 月 10 日段落及开发者说明，北京时间 11 月 12 日 08:46 更新版）；美服论坛 Kaivax《Class Tuning Incoming – November 10》（2026 年 11 月 6 日）；站内《11 月 6 日热修复清单》《开服前最后一版官方开发说明》。数据核对：2026 年 11 月 12 日（Asia/Shanghai）。</p>
+
+</div>
+<script>(function(){var ids=['s1','s2','s3','s4','s5'];var links={};document.querySelectorAll('.wxh-gde .jumps a').forEach(function(a){links[a.getAttribute('href').slice(1)]=a;});var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){ids.forEach(function(i){if(links[i])links[i].classList.toggle('on',i===e.target.id);});}});},{rootMargin:'-30% 0px -60% 0px'});ids.forEach(function(i){var el=document.getElementById(i);if(el)io.observe(el);});})();</script>
+<!-- 上线粘贴结束 -->
+</div>
+</body></html>

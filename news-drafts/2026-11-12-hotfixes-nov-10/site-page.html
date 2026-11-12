@@ -1,0 +1,2589 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>11 月 10 日热修复实数：增强萨风暴打击回到 100%、痛苦术 Wrack 重做，猎人宠物生命改为 115%（站内页预览）</title>
+<!-- 资讯详情皮：内联线上子主题 wuxianhe-child style.css 0.5.23 全文（作用域 body.single-post），仅供本地预览。
+     预览版把样式表里指向站点的背景图 url(...) 替换为 none，避免离线外链；上线不需要本段，主题自带。 -->
+<style>
+/*
+ Theme Name:   无限核
+ Theme URI:    https://wuxianhe.wspia.cn/
+ Description:  「无限核」站点子主题，父主题为二〇二五（Twenty Twenty-Five）。视觉风格与封面 space-2.html 统一：深色页头、金色细线、衬线标题、黑体正文、淡冰蓝点缀。
+ Author:       无限核
+ Author URI:   https://wuxianhe.wspia.cn/
+ Template:     twentytwentyfive
+ Version:      0.5.23
+ License:      GPL-2.0-or-later
+ License URI:  https://www.gnu.org/licenses/gpl-2.0.html
+ Text Domain:  wuxianhe-child
+ Tags:         one-column, custom-colors, custom-menu, custom-logo, editor-style, featured-images, full-site-editing, block-patterns
+*/
+
+/* ==========================================================
+   配色令牌 —— 与封面 space-2.html 保持一致
+   ========================================================== */
+:root {
+  /* 封面原色 */
+  --wxh-gold:        #c9973f;   /* 金：页头分隔线、按钮描边、重点标题下划线 */
+  --wxh-gold-bright: #f0c96a;   /* 亮金：悬停态、激活态 */
+  --wxh-gold-deep:   #8f6b1e;   /* 深金：导航、职业讨论区标题 */
+  --wxh-arcane:      #39a7d8;   /* 淡冰蓝：链接、标签、小点缀 */
+  --wxh-ink:         #1a2431;   /* 深墨：页头底色、主文字色（亮色模式下的深底区域） */
+  --wxh-paper:       #f4edda;   /* 羊皮纸：正文背景 */
+  --wxh-paper-dim:   #e7dcc0;   /* 暗羊皮纸：卡片底色、区块分隔 */
+  --wxh-card:        #fffaf0;   /* 亮卡白 */
+  --wxh-card-line:   #d8c795;   /* 卡片描边 */
+  --wxh-section-text: #2b3442;  /* 正文深灰 */
+  --wxh-section-sub:  #5d6572;  /* 副文灰 */
+
+  /* 字号基准 */
+  --wxh-font-serif: "Noto Serif SC", "Songti SC", "STSong", "Source Han Serif SC", serif;
+  --wxh-font-sans:  "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+
+  /* 间距 */
+  --wxh-gap-xs: 0.5rem;
+  --wxh-gap-sm: 1rem;
+  --wxh-gap-md: 2rem;
+  --wxh-gap-lg: 4rem;
+}
+
+/* ==========================================================
+   全局排版 —— 正文用黑体（sans），标题用衬线（serif）
+   ========================================================== */
+body {
+  font-family: var(--wxh-font-sans);
+  color: var(--wxh-section-text);
+  background: var(--wxh-paper);
+  line-height: 1.7;
+}
+
+h1, h2, h3, h4, h5, h6,
+.site-title,
+.entry-title,
+.wp-block-heading {
+  font-family: var(--wxh-font-serif);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--wxh-ink);
+}
+
+/* ==========================================================
+   页头 —— 深色底 + 金色细线
+   ========================================================== */
+.site-header,
+#site-header,
+header.site-header,
+.wp-block-template-part[area="header"] {
+  background: var(--wxh-ink);
+  border-bottom: 1px solid var(--wxh-gold);
+  box-shadow: 0 1px 0 rgba(201, 151, 63, 0.15);
+}
+
+.site-header a,
+.site-header .site-title a,
+.site-header .site-description {
+  color: var(--wxh-paper);
+  text-decoration: none;
+  transition: color .25s ease;
+}
+
+.site-header a:hover,
+.site-header .site-title a:hover {
+  color: var(--wxh-gold-bright);
+}
+
+/* 导航菜单项 */
+.site-header .menu a,
+.site-header .primary-menu a,
+.site-header nav a {
+  color: var(--wxh-paper);
+  font-family: var(--wxh-font-sans);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.site-header .menu a:hover,
+.site-header .primary-menu a:hover,
+.site-header nav a:hover {
+  color: var(--wxh-gold-bright);
+  border-bottom-color: var(--wxh-gold);
+}
+
+/* 导航（区块主题 header/footer 导航区块）——与职业讨论区标题统一：衬线深金 */
+.wp-block-navigation a,
+.wp-block-navigation .wp-block-navigation-item__content {
+  font-family: var(--wxh-font-serif);
+  font-weight: 700;
+  color: var(--wxh-gold-deep);
+  letter-spacing: 0.06em;
+}
+.wp-block-navigation a:hover,
+.wp-block-navigation .wp-block-navigation-item__content:hover {
+  color: var(--wxh-gold);
+}
+
+/* ==========================================================
+   链接与点缀色 —— 淡冰蓝
+   ========================================================== */
+a {
+  color: var(--wxh-arcane);
+  transition: color .2s ease;
+}
+
+a:hover {
+  color: var(--wxh-gold-bright);
+}
+
+/* 标签、分类、小徽章 */
+.tag-cloud-link,
+.wp-block-post-terms a,
+.cat-links a {
+  color: var(--wxh-arcane);
+  border: 1px solid var(--wxh-arcane);
+  padding: 0.15em 0.6em;
+  border-radius: 2px;
+  font-size: 0.8rem;
+}
+
+.tag-cloud-link:hover,
+.wp-block-post-terms a:hover,
+.cat-links a:hover {
+  color: var(--wxh-paper);
+  background: var(--wxh-arcane);
+  border-color: var(--wxh-arcane);
+}
+
+/* ==========================================================
+   内容卡片 —— 羊皮纸底 + 金色描边
+   ========================================================== */
+article.post,
+article.page,
+.wp-block-post {
+  background: var(--wxh-card);
+  border: 1px solid var(--wxh-card-line);
+  border-radius: 2px;
+  padding: var(--wxh-gap-md);
+  margin-bottom: var(--wxh-gap-md);
+  box-shadow: 0 1px 2px rgba(26, 36, 49, 0.06);
+}
+
+article.post h2 a,
+article.page h2 a {
+  color: var(--wxh-ink);
+  text-decoration: none;
+  border-bottom: 2px solid var(--wxh-gold);
+  padding-bottom: 0.15em;
+}
+
+article.post h2 a:hover,
+article.page h2 a:hover {
+  color: var(--wxh-gold);
+}
+
+/* ==========================================================
+   分隔线 —— 金色细线
+   ========================================================== */
+hr,
+.wp-block-separator {
+  border: none;
+  border-top: 1px solid var(--wxh-gold);
+  margin: var(--wxh-gap-md) 0;
+  opacity: 0.6;
+}
+
+/* ==========================================================
+   按钮 —— 金底深文字，悬停亮金
+   ========================================================== */
+.wp-block-button__link,
+input[type="submit"],
+button,
+.btn {
+  background: var(--wxh-gold);
+  color: var(--wxh-ink);
+  border: 1px solid var(--wxh-gold);
+  font-family: var(--wxh-font-serif);
+  letter-spacing: 0.1em;
+  padding: 0.6em 1.6em;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background .25s ease, color .25s ease, border-color .25s ease;
+}
+
+.wp-block-button__link:hover,
+input[type="submit"]:hover,
+button:hover,
+.btn:hover {
+  background: var(--wxh-gold-bright);
+  border-color: var(--wxh-gold-bright);
+  color: var(--wxh-ink);
+}
+
+/* ==========================================================
+   页脚 —— 沿用页头深底 + 金线
+   ========================================================== */
+.site-footer,
+#site-footer,
+footer.site-footer,
+.wp-block-template-part[area="footer"] {
+  background: var(--wxh-ink);
+  color: var(--wxh-section-sub);
+  border-top: 1px solid var(--wxh-gold);
+  padding: var(--wxh-gap-md) var(--wxh-gap-sm);
+}
+
+.site-footer a {
+  color: var(--wxh-paper);
+}
+
+.site-footer a:hover {
+  color: var(--wxh-gold-bright);
+}
+
+/* ==========================================================
+   评论区 —— 默认关闭，留作兜底（万一父主题模板带出）
+   ========================================================== */
+.comments-area,
+#comments,
+.comment-respond {
+  display: none;
+}
+
+/* ==========================================================
+   页头固定 —— 下滚不走；补米底金线防与正文叠字
+   ========================================================== */
+.wp-site-blocks > header.wp-block-template-part {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--wxh-paper);
+  border-bottom: 1px solid var(--wxh-gold);
+}
+/* 登录状态有 WP 管理栏时下移避让 */
+body.admin-bar .wp-site-blocks > header.wp-block-template-part {
+  top: 32px;
+}
+@media (max-width: 782px) {
+  body.admin-bar .wp-site-blocks > header.wp-block-template-part {
+    top: 46px;
+  }
+}
+
+/* 当前页状态：深金 + 下划线（与职业讨论区页导航同款） */
+.wp-block-navigation .current-menu-item > .wp-block-navigation-item__content,
+.wp-block-navigation .wp-block-navigation-item__content[aria-current="page"] {
+  color: var(--wxh-gold-deep);
+  text-decoration: underline;
+  text-decoration-color: var(--wxh-gold);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+.wp-block-navigation .current-menu-item > .wp-block-navigation-item__content:hover,
+.wp-block-navigation .wp-block-navigation-item__content[aria-current="page"]:hover {
+  color: var(--wxh-gold-deep);
+}
+
+/* 悬停去下划线：亮金只变色；当前项悬停保持下划线 */
+.wp-site-blocks .wp-block-navigation .wp-block-navigation-item__content:hover {
+  text-decoration: none;
+}
+.wp-site-blocks .wp-block-navigation .current-menu-item > .wp-block-navigation-item__content:hover,
+.wp-site-blocks .wp-block-navigation .wp-block-navigation-item__content[aria-current="page"]:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--wxh-gold);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+/* ===== 全站阵营水印（2026-10-31） ===== */
+body:not(.page-template-page-class-forum-php)::before,
+body:not(.page-template-page-class-forum-php)::after {
+  content: "";
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 400px;
+  height: 500px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  pointer-events: none;
+  z-index: 0;
+}
+body:not(.page-template-page-class-forum-php)::before {
+  left: -70px;
+  background-image: none;
+}
+body:not(.page-template-page-class-forum-php)::after {
+  right: -70px;
+  background-image: none;
+}
+.wp-site-blocks { position: relative; z-index: 1; }
+@media (max-width: 1180px) {
+  body::before, body::after { display: none; }
+}
+
+/* ===== 全站字体：衬线规格（2026-10-31） ===== */
+.entry-content,
+.wp-block-post-content {
+  font-family: Georgia, "Songti SC", "Songti TC", "STSong", "SimSun", serif;
+}
+.entry-content h1,
+.entry-content h2,
+.entry-content h3,
+.wp-block-post-content h1,
+.wp-block-post-content h2,
+.wp-block-post-content h3 {
+  font-family: Georgia, "Songti SC", "Songti TC", "STSong", "SimSun", serif;
+}
+/* ===== 全站正文链接：深金（2026-10-31） ===== */
+.entry-content a,
+.wp-block-post-content a { color: #8f6b1e; }
+.entry-content h2 a,
+.wp-block-post-content h2 a { color: #1a2431; }
+.entry-content h2 a:hover,
+.wp-block-post-content h2 a:hover { color: #8f6b1e; }
+
+/* B3. 焦点框：金色替代默认黑框 */
+.wp-block-post-content a:focus,
+.wp-block-post-content a:focus-visible,
+.entry-content a:focus,
+.entry-content a:focus-visible {
+  outline: 2px solid #c9973f;
+  outline-offset: 2px;
+}
+
+/* D. 查询循环卡片（首页最新动态） */
+.wp-block-query .wp-block-post-template { gap: 12px; }
+.wp-block-query .wp-block-post-template > li { background: #fffaf0; border: 1px solid #d8c795; border-radius: 10px; padding: 14px 16px; margin: 0; }
+.wp-block-query .wp-block-post-terms a { display: inline-block; font-size: 12px; color: #8f6b1e; background: rgba(201,151,63,0.16); border: 1px solid #d8c795; border-radius: 4px; padding: 2px 8px; text-decoration: none; }
+.wp-block-query .wp-block-post-title { font-size: 16px; line-height: 1.5; margin: 8px 0 6px; }
+.wp-block-query .wp-block-post-title a { color: #1a2431; text-decoration: none; }
+.wp-block-query .wp-block-post-date { font-size: 12px; color: #8f6b1e; }
+
+/* D 补充（Qoder 加，非简报原文）：后台查询循环是纵向流式布局（is-layout-flow），
+   自身列数设置达不成一行四张，故按原手工卡同款 auto-fit minmax(230px,1fr) 补网格。 */
+.wp-block-query .wp-block-post-template { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+
+/* v8: card hover breathing zoom (site-wide content cards) */
+.wp-block-post-content a[style*="border-radius"],
+.entry-content a[style*="border-radius"],
+.wp-block-query .wp-block-post-template > li {
+  transition: transform .28s ease, box-shadow .28s ease;
+}
+.wp-block-post-content a[style*="border-radius"]:hover,
+.entry-content a[style*="border-radius"]:hover,
+.wp-block-query .wp-block-post-template > li:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 24px rgba(26,36,49,.14);
+}
+@media (prefers-reduced-motion: reduce) {
+  .wp-block-post-content a[style*="border-radius"],
+  .entry-content a[style*="border-radius"],
+  .wp-block-query .wp-block-post-template > li {
+    transition: none;
+  }
+  .wp-block-post-content a[style*="border-radius"]:hover,
+  .entry-content a[style*="border-radius"]:hover,
+  .wp-block-query .wp-block-post-template > li:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* v8-4: query grid fixed columns, capped at 1340 */
+.wp-block-query .wp-block-post-template {
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 1340px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 1100px) {
+  .wp-block-query .wp-block-post-template {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 820px) {
+  .wp-block-query .wp-block-post-template {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 520px) {
+  .wp-block-query .wp-block-post-template {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* v8-5: focus outline inside query loops (archives included) */
+.wp-block-query a:focus,
+.wp-block-query a:focus-visible {
+  outline: 2px solid #c9973f;
+  outline-offset: 2px;
+}
+
+/* ===== 手机菜单浮层（导航区块）20261102 ===== */
+@media (max-width: 781px) {
+  .wp-block-navigation__responsive-container.is-menu-open {
+    background-color: #e9eff3;
+  }
+  .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content {
+    align-items: flex-start;
+    padding: 20px 26px 34px;
+  }
+  .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content::before {
+    content: "无限核";
+    display: block;
+    height: 48px;
+    line-height: 48px;
+    padding-left: 58px;
+    margin-bottom: 14px;
+    font-family: Georgia, "Songti SC", "STSong", "SimSun", serif;
+    font-size: 23px;
+    font-weight: 700;
+    color: #2f404e;
+    /* 0.5.8：46px 标改用媒体库已有的 300×300，不再请求约 1MB 的透明原图 */
+    background: none left center / 46px 46px no-repeat;
+  }
+  .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__container {
+    width: 100%;
+    align-items: stretch;
+    gap: 0;
+  }
+  .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item {
+    border-bottom: 1px solid #c2d1dd;
+  }
+  .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content {
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+    padding: 10px 2px;
+    font-size: 19px;
+  }
+  .wp-block-navigation__responsive-container.is-menu-open .current-menu-item > .wp-block-navigation-item__content {
+    color: #9c6224;
+    font-weight: 700;
+  }
+  .wp-block-navigation__responsive-container.is-menu-open a:focus {
+    outline: none;
+  }
+  .wp-block-navigation__responsive-container-close {
+    color: #2f404e;
+  }
+}
+
+/* ===== 首页新闻卡手机间距 20261102 ===== */
+@media (max-width: 640px) {
+  .wp-block-query .wp-block-post-template { gap: 10px; }
+  .wp-block-query .wp-block-post-template > li { padding: 12px 13px; }
+}
+
+/* ===== 手机菜单浮层 v2（覆盖 v1，特异性对齐核心规则）20261103 ===== */
+@media (max-width: 781px) {
+  .wp-block-navigation:not(.has-background) .wp-block-navigation__responsive-container.is-menu-open:not(.disable-default-overlay) {
+    background-color: #e9eff3 !important;
+    color: #2f404e !important;
+  }
+  .wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content {
+    align-items: flex-start !important;
+    padding: 20px 26px 34px !important;
+  }
+  .wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content::before {
+    content: "无限核";
+    display: block;
+    height: 48px;
+    line-height: 48px;
+    padding-left: 58px;
+    margin-bottom: 14px;
+    font-family: Georgia, "Songti SC", "STSong", "SimSun", serif;
+    font-size: 23px;
+    font-weight: 700;
+    color: #2f404e;
+    /* 0.5.8：与上一处浮层相同，46px 标改用已有 300×300 */
+    background: none left center / 46px 46px no-repeat;
+  }
+  .wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__container {
+    width: 100%;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    gap: 0;
+  }
+  .wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item {
+    border-bottom: 1px solid #c2d1dd;
+  }
+  .wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content {
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+    padding: 10px 2px !important;
+    font-size: 19px;
+  }
+  .wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open .current-menu-item > .wp-block-navigation-item__content {
+    color: #9c6224 !important;
+    font-weight: 700;
+  }
+  .wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open a:focus {
+    outline: none;
+  }
+  .wp-block-navigation .wp-block-navigation__responsive-container-close {
+    color: #2f404e;
+  }
+}
+
+/* ===== 手机菜单浮层 v3：补齐菜单项左对齐（核心在菜单项层另设了右对齐）20261103 ===== */
+@media (max-width: 781px) {
+  .wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content .wp-block-navigation__container {
+    align-self: stretch !important;
+  }
+  .wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item {
+    align-items: stretch !important;
+  }
+  .wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content {
+    justify-content: flex-start !important;
+    text-align: left;
+  }
+}
+
+/* ===== 手机菜单浮层 v4：列表强制满宽（容器带编辑器底色，核心规则走另一套）20261103 ===== */
+@media (max-width: 781px) {
+  .wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-dialog {
+    width: 100% !important;
+  }
+  .wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content {
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+  .wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content .wp-block-navigation__container {
+    width: 100% !important;
+    max-width: none !important;
+    align-self: stretch !important;
+  }
+}
+
+/* ===== 手机菜单浮层 v5：改为页眉下方下拉面板（同职业讨论区形态）20261103 ===== */
+@media (max-width: 781px) {
+  .wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open {
+    top: 105px !important;
+    bottom: auto !important;
+    max-height: calc(100svh - 105px);
+    overflow-y: auto;
+    border-bottom: 1px solid #c2d1dd;
+    box-shadow: 0 18px 30px rgba(47, 64, 78, .18);
+  }
+  .wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content {
+    padding-top: 8px !important;
+  }
+  .wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content::before {
+    display: none !important;
+  }
+}
+@media (max-width: 782px) {
+  body.admin-bar .wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open {
+    top: 151px !important;
+    max-height: calc(100svh - 151px);
+  }
+}
+
+/* plaque 20261103 */
+
+/* ===== 一、色板补缺（既有变量以既有为准，此处只补新增令牌，不重定义改义） ===== */
+:root{
+  --wxh-gold-2:#d9a83f;
+  --wxh-plaque-1:#1e5069;
+  --wxh-plaque-2:#11374c;
+  --wxh-plaque-ink:#f2dfa0;
+  --wxh-ink2:#22333d;
+}
+
+/* ===== 二、全站底色：天空渐变 + 主视觉淡印 =====
+   0.5.8：淡印改用媒体库已有的 1024×576（约 98KB，原图约 435KB）。
+   桌面也改为 scroll。fixed 大图滚动时容易卡顿；淡印压在高不透明度渐变下，视差几乎看不出。
+   手机端原本就是 scroll，此处与桌面对齐，不再单独覆盖。 */
+body{
+  background:
+    linear-gradient(180deg, rgba(220,236,245,.86), rgba(238,245,242,.88) 320px, rgba(243,247,239,.92)),
+    none center top / cover scroll no-repeat,
+    linear-gradient(180deg,#dcecf5,#f3f7ef);
+}
+
+/* ===== 三、资讯图+文卡（Query Loop，羊皮纸卡 + 右图淡入） ===== */
+.wp-block-post-template > li{
+  position:relative; overflow:hidden;
+  background:var(--wxh-card); border:1px solid var(--wxh-card-line); border-radius:12px;
+  box-shadow:0 2px 6px rgba(120,95,30,.07);
+}
+.wp-block-post-template > li .wp-block-post-featured-image{
+  position:absolute; top:0; right:0; bottom:0; width:44%; margin:0; z-index:0;
+}
+.wp-block-post-template > li .wp-block-post-featured-image img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  -webkit-mask-image:linear-gradient(90deg, transparent, #000 46%);
+          mask-image:linear-gradient(90deg, transparent, #000 46%);
+}
+.wp-block-post-template > li > *:not(.wp-block-post-featured-image){ position:relative; z-index:1; }
+.wp-block-post-template > li{ padding-right:34%; }
+@media (max-width:640px){
+  .wp-block-post-template > li{ padding-right:0; }
+  .wp-block-post-template > li .wp-block-post-featured-image{
+    position:static; width:100%; height:auto; aspect-ratio:16/7;
+  }
+  .wp-block-post-template > li .wp-block-post-featured-image img{
+    -webkit-mask-image:linear-gradient(180deg, #000 62%, transparent);
+            mask-image:linear-gradient(180deg, #000 62%, transparent);
+  }
+}
+/* 分类小签改牌匾迷你款（只换背景/字色/金边三项，沿用既有选择器） */
+.wp-block-query .wp-block-post-terms a{
+  background:linear-gradient(180deg,var(--wxh-plaque-1),var(--wxh-plaque-2));
+  color:var(--wxh-plaque-ink);
+  border:1px solid var(--wxh-gold);
+}
+
+/* ===== 四、导航面板改色（只换色不动几何；末尾追加覆盖，不改 v2–v5 既有规则） ===== */
+@media (max-width:781px){
+  .wp-block-navigation:not(.has-background) .wp-block-navigation__responsive-container.is-menu-open:not(.disable-default-overlay){
+    background:linear-gradient(180deg,#fffdf4,#fdf6dd) !important;
+    color:#22333d !important;
+  }
+  .wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open{
+    border-bottom-color:#d9c795;
+    box-shadow:0 18px 30px rgba(143,107,30,.20);
+  }
+  .wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item{
+    border-bottom:1px solid #d9c795;
+  }
+  .wp-block-navigation .wp-block-navigation__responsive-container-close{
+    color:#22333d;
+  }
+}
+
+/* ===== 0.5.1 资讯卡改横版 + 摘要字体（追加覆盖 0.5.0 资讯卡旧规；旧章节一字不动） ===== */
+/* 作用域：仅首页(.page-id-33)、前瞻资讯页(.page-id-136)、分类归档(.archive) 三处；其余页面查询循环不受本章影响 */
+
+/* 卡片：grid 横版，图左文右，图文彻底分离不重叠 */
+body:is(.page-id-33,.page-id-136,.archive) .wp-block-post-template > li{
+  display:grid;
+  grid-template-columns:35% 1fr auto;
+  grid-template-areas:
+    "img cat date"
+    "img title title"
+    "img excerpt excerpt"
+    "img more more";
+  column-gap:16px;
+  row-gap:6px;
+  align-items:start;
+  padding:14px 16px;
+}
+/* 特色图：取消旧规绝对定位与渐隐 mask，占满左列卡高，横幅 cover，圆角细金边 */
+body:is(.page-id-33,.page-id-136,.archive) .wp-block-post-template > li > .wp-block-post-featured-image{
+  grid-area:img;
+  position:static;
+  align-self:stretch;
+  width:100%; height:100%;
+  margin:0;
+  -webkit-mask-image:none; mask-image:none;
+  border:1px solid var(--wxh-gold);
+  border-radius:10px;
+  overflow:hidden;
+}
+body:is(.page-id-33,.page-id-136,.archive) .wp-block-post-template > li > .wp-block-post-featured-image img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  -webkit-mask-image:none; mask-image:none;
+}
+/* 右列第一行：分类小牌（左，沿用 0.5.0 小牌样式）+ 日期（右端） */
+body:is(.page-id-33,.page-id-136,.archive) .wp-block-post-template > li > .wp-block-post-terms{
+  grid-area:cat; align-self:center;
+}
+body:is(.page-id-33,.page-id-136,.archive) .wp-block-post-template > li > .wp-block-post-date{
+  grid-area:date; justify-self:end; align-self:center;
+  font-size:13.5px; color:#7d919b; background:none;
+}
+/* 右列第二行：标题，衬线 700；资讯页/归档 21px（首页 18px 见下） */
+body:is(.page-id-33,.page-id-136,.archive) .wp-block-post-template > li > .wp-block-post-title{
+  grid-area:title;
+  font-family:var(--wxh-font-serif); font-weight:700;
+  font-size:21px; line-height:1.3; margin:0;
+}
+/* 右列第三行：摘要（黑体栈、14.5px、400、行高1.75、#46565f，资讯页/归档最多3行） */
+body:is(.page-id-33,.page-id-136,.archive) .wp-block-post-template > li > .wp-block-post-excerpt{
+  grid-area:excerpt; margin:0;
+}
+body:is(.page-id-33,.page-id-136,.archive) .wp-block-post-template > li > .wp-block-post-excerpt .wp-block-post-excerpt__excerpt{
+  font-family:var(--wxh-font-sans); font-weight:400;
+  font-size:14.5px; line-height:1.75; color:#46565f; margin:0;
+  display:-webkit-box; -webkit-box-orient:vertical; overflow:hidden;
+  -webkit-line-clamp:3; line-clamp:3;
+}
+/* 右列第四行：阅读全文（.wp-block-read-more，如存在） */
+body:is(.page-id-33,.page-id-136,.archive) .wp-block-post-template > li > .wp-block-read-more{
+  grid-area:more;
+  font-size:14.5px; color:#8f6b1e; text-decoration:none;
+}
+body:is(.page-id-33,.page-id-136,.archive) .wp-block-post-template > li > .wp-block-read-more:hover{
+  text-decoration:underline;
+}
+
+/* 三处循环的列数（只此三处受影响） */
+body.page-id-33 .wp-block-post-template{ display:grid; grid-template-columns:repeat(2,1fr); }
+body.page-id-136 .wp-block-post-template{ display:grid; grid-template-columns:1fr; }
+body.archive .wp-block-post-template{ display:grid; grid-template-columns:1fr; }
+/* 首页：标题 18px、摘要最多 2 行 */
+body.page-id-33 .wp-block-post-template > li > .wp-block-post-title{ font-size:18px; }
+body.page-id-33 .wp-block-post-template > li > .wp-block-post-excerpt .wp-block-post-excerpt__excerpt{ -webkit-line-clamp:2; line-clamp:2; }
+
+/* 响应式：≤820px 首页也变 1 列（2 列保持到 821px） */
+@media (max-width:820px){
+  body.page-id-33 .wp-block-post-template{ grid-template-columns:1fr; }
+}
+/* ≤640px：卡内改上下排，图在上（宽幅 16:8）、文字在下；标题 19px */
+@media (max-width:640px){
+  body:is(.page-id-33,.page-id-136,.archive) .wp-block-post-template > li{
+    grid-template-columns:1fr auto;
+    grid-template-areas:
+      "img img"
+      "cat date"
+      "title title"
+      "excerpt excerpt"
+      "more more";
+    padding:12px 13px;
+  }
+  body:is(.page-id-33,.page-id-136,.archive) .wp-block-post-template > li > .wp-block-post-featured-image{
+    align-self:start; height:auto; aspect-ratio:16/8;
+  }
+  body:is(.page-id-33,.page-id-136,.archive) .wp-block-post-template > li > .wp-block-post-title{
+    font-size:19px;
+  }
+}
+
+/* ===== 0.5.2 归档资讯卡适配（作用域仅 body.archive；归档卡块被 li > .wp-block-group 包着，非直子） ===== */
+/* li 改回 block，解除 0.5.1 grid 对组层的挤压；卡面底色/金边/圆角/阴影沿用既有 */
+body.archive .wp-block-post-template > li{
+  display:block;
+}
+/* 改由内层组当 grid 容器（套用 0.5.1 li 的同一 grid 定义；组自身 alignfull 与 padding:0 不动） */
+body.archive .wp-block-post-template > li > .wp-block-group{
+  display:grid;
+  grid-template-columns:35% 1fr auto;
+  grid-template-areas:
+    "img cat date"
+    "img title title"
+    "img excerpt excerpt"
+    "img more more";
+  column-gap:16px;
+  row-gap:6px;
+  align-items:start;
+}
+/* 组的直接子级按 0.5.1 同规分配 grid-area 并复用样式值 */
+body.archive .wp-block-post-template > li > .wp-block-group > .wp-block-post-featured-image{
+  grid-area:img;
+  position:static;
+  align-self:stretch;
+  width:100%; height:100%;
+  margin:0;
+  -webkit-mask-image:none; mask-image:none;
+  border:1px solid var(--wxh-gold);
+  border-radius:10px;
+  overflow:hidden;
+}
+body.archive .wp-block-post-template > li > .wp-block-group > .wp-block-post-featured-image img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  -webkit-mask-image:none; mask-image:none;
+}
+body.archive .wp-block-post-template > li > .wp-block-group > .wp-block-post-terms{
+  grid-area:cat; align-self:center;
+}
+body.archive .wp-block-post-template > li > .wp-block-group > .wp-block-post-date{
+  grid-area:date; justify-self:end; align-self:center;
+  font-size:13.5px; color:#7d919b; background:none;
+}
+body.archive .wp-block-post-template > li > .wp-block-group > .wp-block-post-title{
+  grid-area:title;
+  font-family:var(--wxh-font-serif); font-weight:700;
+  font-size:21px !important; line-height:1.3; margin:0;
+}
+body.archive .wp-block-post-template > li > .wp-block-group > .wp-block-post-excerpt{
+  grid-area:excerpt; margin:0;
+}
+body.archive .wp-block-post-template > li > .wp-block-group > .wp-block-post-excerpt .wp-block-post-excerpt__excerpt{
+  font-family:var(--wxh-font-sans); font-weight:400;
+  font-size:14.5px; line-height:1.75; color:#46565f; margin:0;
+  display:-webkit-box; -webkit-box-orient:vertical; overflow:hidden;
+  -webkit-line-clamp:3; line-clamp:3;
+}
+body.archive .wp-block-post-template > li > .wp-block-group > .wp-block-read-more{
+  grid-area:more;
+  font-size:14.5px; color:#8f6b1e; text-decoration:none;
+}
+body.archive .wp-block-post-template > li > .wp-block-group > .wp-block-read-more:hover{
+  text-decoration:underline;
+}
+/* ≤640px：组同 0.5.1 移动规，卡内上下排，图在上 16:8、标题 19px */
+@media (max-width:640px){
+  body.archive .wp-block-post-template > li > .wp-block-group{
+    grid-template-columns:1fr auto;
+    grid-template-areas:
+      "img img"
+      "cat date"
+      "title title"
+      "excerpt excerpt"
+      "more more";
+  }
+  body.archive .wp-block-post-template > li > .wp-block-group > .wp-block-post-featured-image{
+    align-self:start; height:auto; aspect-ratio:16/8;
+  }
+  body.archive .wp-block-post-template > li > .wp-block-group > .wp-block-post-title{
+    font-size:19px !important;
+  }
+}
+
+/* ===== 0.5.3 归档页标题统一（作用域仅 body.archive；query-title 原为裸奔，本章为纯追加） ===== */
+body.archive .wp-block-query-title{
+  box-sizing:border-box;
+  max-width:1340px;
+  margin:0 auto 18px;
+  padding:0 20px 10px;
+  border-bottom:2px solid var(--wxh-gold);
+  font-family:var(--wxh-font-serif);
+  font-weight:700;
+  font-size:40px;
+  line-height:1.25;
+  letter-spacing:.08em;
+  color:var(--wxh-ink);
+}
+@media (max-width:640px){
+  body.archive .wp-block-query-title{ font-size:30px; }
+}
+
+/* ===== 0.5.4 单篇正文字体统一 + 整篇羊皮纸（作用域仅 body.single-post；旧 10-31 段原文保留不删） ===== */
+body.single-post main.wp-block-group{
+  background:#fdfbf3;
+  border:1px solid #d9c795;
+  border-radius:18px;
+  box-shadow:0 6px 18px rgb(70 50 10 / .08);
+  max-width:1080px;
+  margin-inline:auto;
+  padding:36px 40px;
+}
+body.single-post main.wp-block-group .wp-block-post-featured-image img{
+  border-radius:12px;
+}
+body.single-post .wp-block-post-content{
+  font-family:var(--wxh-font-serif);
+  font-size:17px;
+  font-weight:400;
+  line-height:1.9;
+  color:#22333d;
+}
+body.single-post .wp-block-post-content h2{
+  font-family:var(--wxh-font-serif);
+  font-size:24px;
+}
+body.single-post .wp-block-post-content h3{
+  font-family:var(--wxh-font-serif);
+  font-size:20px;
+}
+@media (max-width:640px){
+  body.single-post main.wp-block-group{
+    padding:36px 18px;
+    border-radius:14px;
+  }
+}
+
+/* ===== 0.5.5 文章页「返回前瞻资讯」样式（作用域仅 body.single-post，类 wxh-backlink；其他元素不动） ===== */
+body.single-post .wxh-backlink{
+  font-family:var(--wxh-font-sans);
+  font-size:13.5px;
+  margin:0 0 12px;
+}
+body.single-post .wxh-backlink a{
+  color:#8f6b1e;
+  text-decoration:none;
+  font-weight:600;
+}
+body.single-post .wxh-backlink a:hover{
+  text-decoration:underline;
+}
+/* 正文下方那一个（与 .wp-block-post-content 同父相邻之后）上间距改 18px；结构区分不了时回落上面的 0 0 12px */
+body.single-post .wp-block-post-content ~ .wxh-backlink{
+  margin:18px 0 0;
+}
+
+/* ===== 0.5.6 牌匾元素悬停动效（首页三类可点元素；旧章节不动） ===== */
+/* 1. 栏目牌匾条 a.wxh-secbar */
+a.wxh-secbar{
+  transition:background .22s ease, box-shadow .22s ease, transform .22s ease, color .22s ease;
+}
+a.wxh-secbar:hover{
+  background:linear-gradient(180deg,#35809f,#256a86 55%,#174a63);
+  color:#ffe9ad;
+  box-shadow:0 4px 14px rgb(17 55 76 / .35);
+  transform:translateY(-1px);
+}
+a.wxh-secbar:active{
+  transform:translateY(0);
+  box-shadow:0 2px 7px rgb(17 55 76 / .35);
+}
+/* 2. 今日状态 CTA 药丸 .wxh-status-cta a */
+.wxh-status-cta a{
+  transition:background .22s ease, box-shadow .22s ease, transform .22s ease, color .22s ease;
+}
+.wxh-status-cta a:hover{
+  background:linear-gradient(180deg,#35809f,#256a86 55%,#174a63);
+  color:#ffe9ad;
+  box-shadow:0 4px 14px rgb(17 55 76 / .35);
+  transform:translateY(-1px);
+}
+.wxh-status-cta a:active{
+  transform:translateY(0);
+  box-shadow:0 2px 7px rgb(17 55 76 / .35);
+}
+/* 3. 挂历翻月圆钮（钮底色/边框为页面内联，覆盖须 !important） */
+#wxcal2-prev,#wxcal2-next{
+  transition:all .2s ease;
+}
+#wxcal2-prev:hover,#wxcal2-next:hover{
+  background:#1e5069 !important;
+  color:#f2dfa0 !important;
+  transform:scale(1.08);
+  box-shadow:0 3px 8px rgb(24 54 72 / .3);
+}
+#wxcal2-prev:active,#wxcal2-next:active{
+  transform:scale(.96);
+}
+/* 4. 键盘焦点可见 */
+a.wxh-secbar:focus-visible,
+.wxh-status-cta a:focus-visible,
+#wxcal2-prev:focus-visible,
+#wxcal2-next:focus-visible{
+  outline:2px solid #c9973f;
+  outline-offset:2px;
+}
+
+/* ===== 0.5.7 性能：压过父主题全局样式 body 上的 Manrope（只改字体族，不动字号字重行距） ===== */
+:root body{
+  font-family:var(--wxh-font-sans);
+}
+
+/* ===== 0.5.9 前瞻资讯列表皮肤（追加；旧规则不动） =====
+   作用域：body.wxh-newsroom = 页面 136（/news/）以及分类存档 launch / class / dungeon。
+   首页、其他归档、单篇不在此列。
+   筛选是分类链接，不是当前页 JS 过滤。吸顶 top 让开现有顶栏 105px 与安全区，不照搬预览的 top:0。
+   「最近核对」日期在 functions.php 的 wuxianhe_news_checked_on()，不在这里写死计数。 */
+body.wxh-newsroom{
+  --wxh-news-body:#46565f;
+  --wxh-cat-launch:#1e5069;
+  --wxh-cat-class:#8f6b1e;
+  --wxh-cat-dungeon:#3d6b7a;
+  --wxh-news-sticky-top:calc(105px + env(safe-area-inset-top, 0px));
+}
+body.admin-bar.wxh-newsroom{ --wxh-news-sticky-top:calc(105px + 32px + env(safe-area-inset-top, 0px)); }
+@media (max-width:782px){
+  body.admin-bar.wxh-newsroom{ --wxh-news-sticky-top:calc(105px + 46px + env(safe-area-inset-top, 0px)); }
+}
+
+body.wxh-newsroom.page-id-136 .entry-content.has-global-padding{
+  padding-top:22px;
+  padding-left:max(var(--wp--style--root--padding-left, 16px), env(safe-area-inset-left, 0px));
+  padding-right:max(var(--wp--style--root--padding-right, 16px), env(safe-area-inset-right, 0px));
+  padding-bottom:max(28px, env(safe-area-inset-bottom, 0px));
+  box-sizing:border-box;
+}
+body.wxh-newsroom.page-id-136 .entry-content > .alignwide{
+  max-width:980px;
+}
+body.wxh-newsroom.archive main.wp-block-group{
+  margin-top:0 !important;
+  padding-top:22px;
+  padding-left:max(var(--wp--style--root--padding-left, 16px), env(safe-area-inset-left, 0px));
+  padding-right:max(var(--wp--style--root--padding-right, 16px), env(safe-area-inset-right, 0px));
+  padding-bottom:max(28px, env(safe-area-inset-bottom, 0px));
+  box-sizing:border-box;
+}
+body.wxh-newsroom.archive .wp-block-query.alignfull,
+body.wxh-newsroom.archive .wp-block-post-template.alignfull{
+  width:auto !important;
+  max-width:980px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+body.wxh-newsroom .wp-block-post-template > li > .wp-block-group.alignfull{
+  width:auto !important;
+  max-width:none !important;
+  margin-left:0 !important;
+  margin-right:0 !important;
+}
+body.wxh-newsroom .wp-block-query > .wp-block-group:not(:has(*)){
+  display:none !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+
+/* 牌匾页头（页面上的 .wxh-hero136，以及分类页注入的 .wxh-news-plaque） */
+body.wxh-newsroom .wxh-hero136,
+body.wxh-newsroom .wxh-news-plaque{
+  background:linear-gradient(180deg, var(--wxh-plaque-1), var(--wxh-plaque-2));
+  border:1px solid var(--wxh-gold);
+  border-radius:14px;
+  padding:18px 20px 16px;
+  color:var(--wxh-plaque-ink);
+  box-shadow:0 6px 18px rgba(17, 55, 76, .28), inset 0 1px 0 rgba(255, 255, 255, .22);
+  margin:0 0 16px;
+  max-width:980px;
+  box-sizing:border-box;
+}
+body.wxh-newsroom.page-id-136 .wxh-hero136 > div[style*="display:flex"]{
+  display:block !important;
+  margin:0 !important;
+  gap:0 !important;
+}
+body.wxh-newsroom.page-id-136 .wxh-hero136 > div > div[style*="width:104px"]{
+  display:none !important;
+}
+body.wxh-newsroom .wxh-news-kicker{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:0 0 6px;
+  font-family:var(--wxh-font-sans);
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:.28em;
+  color:#e9c96f;
+  line-height:1.4;
+}
+body.wxh-newsroom .wxh-news-orn{
+  width:14px;
+  height:14px;
+  flex:0 0 auto;
+  display:block;
+}
+body.wxh-newsroom .wxh-hero136 h1,
+body.wxh-newsroom .wxh-news-plaque h1{
+  margin:0 0 8px !important;
+  font-family:var(--wxh-font-serif) !important;
+  font-size:clamp(26px, 4vw, 34px) !important;
+  font-weight:700 !important;
+  letter-spacing:.12em !important;
+  line-height:1.25 !important;
+  color:var(--wxh-plaque-ink) !important;
+}
+body.wxh-newsroom .wxh-news-mission{
+  margin:0 0 14px !important;
+  max-width:42em;
+  font-family:var(--wxh-font-sans) !important;
+  font-size:14.5px !important;
+  font-weight:400 !important;
+  line-height:1.55 !important;
+  color:#e8eef0 !important;
+}
+body.wxh-newsroom .wxh-news-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+body.wxh-newsroom .wxh-news-chip{
+  font-family:var(--wxh-font-sans);
+  font-size:12px;
+  line-height:1.4;
+  background:rgba(242, 223, 160, .1);
+  border:1px solid rgba(201, 151, 63, .55);
+  border-radius:999px;
+  padding:4px 12px;
+  color:#f2dfa0;
+}
+body.wxh-newsroom .wxh-news-chip b{
+  color:var(--wxh-gold-bright);
+  font-weight:700;
+}
+
+/* 筛选条：真实链接。吸顶避开 105px 顶栏 */
+body.wxh-newsroom .wxh-news-filters-wrap{
+  position:sticky;
+  top:var(--wxh-news-sticky-top);
+  z-index:40;
+  background:rgba(244, 237, 218, .94);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  margin:0 0 18px;
+  padding:10px 4px 12px;
+  border-bottom:1px solid var(--wxh-card-line);
+  max-width:980px;
+  box-sizing:border-box;
+}
+body.wxh-newsroom .wxh-news-filters{
+  display:flex !important;
+  flex-wrap:wrap;
+  gap:8px;
+  align-items:center;
+  margin:0 !important;
+}
+body.wxh-newsroom .wxh-news-filters-label{
+  font-family:var(--wxh-font-sans);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.08em;
+  color:var(--wxh-gold-deep);
+  margin-right:2px;
+}
+body.wxh-newsroom .wxh-news-filters a{
+  display:inline-flex !important;
+  align-items:center;
+  justify-content:center;
+  box-sizing:border-box;
+  min-height:40px;
+  padding:8px 16px !important;
+  border-radius:999px !important;
+  border:1px solid var(--wxh-card-line) !important;
+  background:var(--wxh-card) !important;
+  color:var(--wxh-ink) !important;
+  font-family:var(--wxh-font-sans) !important;
+  font-size:13px !important;
+  font-weight:500;
+  line-height:1.2;
+  text-decoration:none !important;
+  transition:background .15s, border-color .15s, color .15s;
+}
+body.wxh-newsroom .wxh-news-filters a:hover{
+  border-color:var(--wxh-gold) !important;
+  color:var(--wxh-ink) !important;
+}
+body.wxh-newsroom .wxh-news-filters a[aria-current="page"],
+body.page-id-136.wxh-newsroom .wxh-news-filters a[href="/wp/news/"],
+body.page-id-136.wxh-newsroom .wxh-news-filters a[href$="/news/"],
+body.category-launch.wxh-newsroom .wxh-news-filters a[href*="/category/launch/"],
+body.category-class.wxh-newsroom .wxh-news-filters a[href*="/category/class/"],
+body.category-dungeon.wxh-newsroom .wxh-news-filters a[href*="/category/dungeon/"]{
+  background:linear-gradient(180deg, var(--wxh-plaque-1), var(--wxh-plaque-2)) !important;
+  color:var(--wxh-plaque-ink) !important;
+  border-color:var(--wxh-gold) !important;
+  box-shadow:inset 0 1px 0 rgba(255, 255, 255, .2);
+}
+body.wxh-newsroom .wxh-news-filters a:focus-visible{
+  outline:2px solid var(--wxh-gold);
+  outline-offset:2px;
+}
+
+/* 列表栅格：首页仍走旧规则。这里只改资讯页 / 三个分类 */
+body.wxh-newsroom .wp-block-query .wp-block-post-template{
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:12px !important;
+  max-width:980px;
+  width:100%;
+  margin:0 auto !important;
+  padding:0 !important;
+  box-sizing:border-box;
+  list-style:none;
+  align-items:stretch;
+}
+body.wxh-newsroom .wp-block-query .wp-block-post-template > li{
+  order:1;
+  margin:0 !important;
+  padding:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  overflow:visible;
+  position:relative;
+  min-height:0;
+}
+body.wxh-newsroom .wp-block-query .wp-block-post-template > li:hover{
+  transform:none;
+  box-shadow:none;
+}
+body.wxh-newsroom .wp-block-post-template > li.category-launch{ --wxh-cat:var(--wxh-cat-launch); }
+body.wxh-newsroom .wp-block-post-template > li.category-class{ --wxh-cat:var(--wxh-cat-class); }
+body.wxh-newsroom .wp-block-post-template > li.category-dungeon{ --wxh-cat:var(--wxh-cat-dungeon); }
+
+body.wxh-newsroom .wp-block-query .wp-block-post-template > li:not(:has(> .wp-block-group)),
+body.wxh-newsroom .wp-block-query .wp-block-post-template > li > .wp-block-group{
+  display:grid;
+  grid-template-columns:112px minmax(0, 1fr) auto;
+  grid-template-areas:
+    "img tags tags"
+    "img title title"
+    "img excerpt excerpt"
+    "img date more";
+  column-gap:0;
+  row-gap:0;
+  align-items:stretch;
+  min-height:118px;
+  height:100%;
+  box-sizing:border-box;
+  background:var(--wxh-card);
+  border:1px solid var(--wxh-card-line);
+  border-left:5px solid var(--wxh-cat, var(--wxh-cat-launch));
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 2px 8px rgba(120, 95, 30, .07);
+  padding:0 !important;
+  margin:0 !important;
+  transition:border-color .15s, transform .15s, box-shadow .15s;
+}
+body.wxh-newsroom .wp-block-query .wp-block-post-template > li:not(:has(> .wp-block-group)):hover{
+  transform:translateY(-1px);
+  border-color:var(--wxh-gold);
+  box-shadow:0 6px 16px rgba(120, 95, 30, .12);
+}
+body.wxh-newsroom .wp-block-query .wp-block-post-template > li:hover > .wp-block-group{
+  transform:translateY(-1px);
+  border-color:var(--wxh-gold);
+  box-shadow:0 6px 16px rgba(120, 95, 30, .12);
+}
+
+body.wxh-newsroom .wp-block-query .wp-block-post-template li .wp-block-post-featured-image{
+  grid-area:img;
+  position:relative !important;
+  top:auto !important;
+  right:auto !important;
+  bottom:auto !important;
+  left:auto !important;
+  width:100% !important;
+  max-width:100%;
+  min-width:0;
+  height:auto;
+  min-height:118px;
+  margin:0 !important;
+  aspect-ratio:auto !important;
+  align-self:stretch;
+  justify-self:stretch;
+  background:#1a2f3d;
+  border:0 !important;
+  border-right:1px solid var(--wxh-card-line) !important;
+  border-radius:0 !important;
+  overflow:hidden;
+  -webkit-mask-image:none !important;
+  mask-image:none !important;
+}
+body.wxh-newsroom .wp-block-query .wp-block-post-template li .wp-block-post-featured-image img{
+  position:absolute;
+  inset:0;
+  width:100% !important;
+  height:100% !important;
+  max-width:none;
+  object-fit:cover;
+  display:block;
+  border-radius:0 !important;
+  -webkit-mask-image:none !important;
+  mask-image:none !important;
+}
+body.wxh-newsroom .wp-block-query .wp-block-post-template li .wp-block-post-terms{
+  grid-area:tags;
+  align-self:start;
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  align-items:center;
+  margin:0;
+  padding:11px 12px 0 12px;
+}
+body.wxh-newsroom .wp-block-query .wp-block-post-terms a{
+  display:inline-flex;
+  align-items:center;
+  position:relative;
+  box-sizing:border-box;
+  font-family:var(--wxh-font-sans);
+  font-size:11.5px !important;
+  font-weight:700;
+  letter-spacing:.04em;
+  line-height:1.3;
+  border-radius:4px !important;
+  padding:2px 8px !important;
+  text-decoration:none !important;
+  background:rgba(30, 80, 105, .12) !important;
+  color:#1e5069 !important;
+  border:1px solid rgba(30, 80, 105, .25) !important;
+}
+/* 视觉保持预览里的小签，点按热区拉到 40px，不压到标题 */
+body.wxh-newsroom .wp-block-query .wp-block-post-terms a::before{
+  content:"";
+  position:absolute;
+  left:-4px;
+  right:-4px;
+  top:50%;
+  height:40px;
+  transform:translateY(-50%);
+}
+body.wxh-newsroom .category-class .wp-block-post-terms a{
+  background:rgba(143, 107, 30, .14) !important;
+  color:#8f6b1e !important;
+  border-color:rgba(143, 107, 30, .3) !important;
+}
+body.wxh-newsroom .category-dungeon .wp-block-post-terms a{
+  background:rgba(61, 107, 122, .12) !important;
+  color:#2d5560 !important;
+  border-color:rgba(61, 107, 122, .28) !important;
+}
+body.wxh-newsroom .wp-block-query .wp-block-post-template li .wp-block-post-title{
+  grid-area:title;
+  margin:0 !important;
+  padding:5px 12px 0 12px;
+  font-family:var(--wxh-font-serif) !important;
+  font-weight:700 !important;
+  font-size:14.5px !important;
+  line-height:1.4 !important;
+  letter-spacing:.02em;
+  color:var(--wxh-ink);
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  overflow:hidden;
+}
+body.wxh-newsroom .wp-block-query .wp-block-post-template li .wp-block-post-title a{
+  color:var(--wxh-ink) !important;
+  text-decoration:none !important;
+  border-bottom:0 !important;
+  font-family:inherit !important;
+  font-size:inherit !important;
+  font-weight:inherit !important;
+  line-height:inherit !important;
+  letter-spacing:inherit;
+}
+body.wxh-newsroom .wp-block-query .wp-block-post-template li .wp-block-post-title a:hover{
+  color:var(--wxh-ink) !important;
+}
+body.wxh-newsroom .wp-block-query .wp-block-post-template li .wp-block-post-excerpt{
+  grid-area:excerpt;
+  margin:0;
+  padding:5px 12px 0 12px;
+}
+body.wxh-newsroom .wp-block-query .wp-block-post-template li .wp-block-post-excerpt__excerpt{
+  margin:0 !important;
+  font-family:var(--wxh-font-sans) !important;
+  font-weight:400 !important;
+  font-size:12.5px !important;
+  line-height:1.55 !important;
+  color:var(--wxh-news-body) !important;
+  display:-webkit-box !important;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2 !important;
+  line-clamp:2 !important;
+  overflow:hidden !important;
+}
+body.wxh-newsroom .wp-block-query .wp-block-post-template li .wp-block-post-date{
+  grid-area:date;
+  align-self:center;
+  justify-self:start;
+  margin:0 !important;
+  padding:4px 8px 10px 12px;
+  font-family:var(--wxh-font-sans);
+  font-size:11.5px !important;
+  line-height:1.3;
+  color:var(--wxh-gold-deep);
+  background:none !important;
+  white-space:nowrap;
+}
+body.wxh-newsroom .wp-block-query .wp-block-post-template li .wp-block-post-date a{
+  color:var(--wxh-gold-deep) !important;
+  text-decoration:none !important;
+  font-size:inherit !important;
+}
+body.wxh-newsroom .wp-block-query .wp-block-post-template li .wp-block-read-more{
+  grid-area:more;
+  align-self:center;
+  justify-self:end;
+  display:inline-flex;
+  align-items:center;
+  box-sizing:border-box;
+  min-height:40px;
+  margin:0;
+  padding:4px 12px 4px 8px;
+  font-family:var(--wxh-font-sans);
+  font-size:12px;
+  font-weight:700;
+  line-height:1.2;
+  color:var(--wxh-gold) !important;
+  text-decoration:none !important;
+  white-space:nowrap;
+}
+body.wxh-newsroom .wp-block-query .wp-block-post-template li .wp-block-read-more:hover{
+  text-decoration:underline;
+  color:var(--wxh-gold-deep) !important;
+}
+
+/* 第一页第一篇 = 精选大卡。分页第 2 页起没有 wxh-news-first，全部走列表卡 */
+body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child{
+  order:-1;
+  grid-column:1 / -1;
+}
+body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template:has(> li:nth-child(2))::before{
+  content:"其余动态";
+  order:0;
+  grid-column:1 / -1;
+  display:flex;
+  align-items:center;
+  margin:6px 0 2px;
+  padding:0;
+  font-family:var(--wxh-font-serif);
+  font-size:18px;
+  font-weight:700;
+  line-height:1.3;
+  letter-spacing:.02em;
+  color:var(--wxh-ink);
+  background:linear-gradient(var(--wxh-gold), var(--wxh-gold)) right center / calc(100% - 6.2em) 1px no-repeat;
+}
+body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child:not(:has(> .wp-block-group)),
+body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child > .wp-block-group{
+  grid-template-columns:220px minmax(0, 1fr) auto;
+  border:1.5px solid var(--wxh-gold);
+  border-left:5px solid var(--wxh-cat, var(--wxh-cat-launch));
+  border-radius:16px;
+  box-shadow:0 8px 24px rgba(120, 95, 30, .14);
+  min-height:168px;
+}
+body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child:not(:has(> .wp-block-group)):hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 28px rgba(120, 95, 30, .2);
+}
+body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child:hover > .wp-block-group{
+  transform:translateY(-2px);
+  box-shadow:0 12px 28px rgba(120, 95, 30, .2);
+}
+body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child .wp-block-post-featured-image{
+  min-height:168px;
+  border-right:1px solid rgba(201, 151, 63, .45) !important;
+}
+body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child .wp-block-post-terms::before{
+  content:"最新";
+  display:inline-flex;
+  align-items:center;
+  box-sizing:border-box;
+  font-family:var(--wxh-font-sans);
+  font-size:11.5px;
+  font-weight:700;
+  letter-spacing:.04em;
+  border-radius:4px;
+  padding:2px 8px;
+  background:rgba(201, 151, 63, .18);
+  color:var(--wxh-gold-deep);
+  border:1px solid var(--wxh-card-line);
+}
+body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child .wp-block-post-title{
+  font-size:clamp(17px, 2.3vw, 21px) !important;
+  -webkit-line-clamp:3;
+}
+body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child .wp-block-post-excerpt__excerpt{
+  font-size:14px !important;
+  line-height:1.6 !important;
+  -webkit-line-clamp:3 !important;
+  line-clamp:3 !important;
+}
+body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child .wp-block-post-date{
+  font-size:12.5px !important;
+}
+body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child .wp-block-read-more{
+  min-height:40px;
+  margin:8px 14px 14px 0;
+  padding:8px 16px;
+  background:linear-gradient(180deg, var(--wxh-plaque-1), var(--wxh-plaque-2));
+  color:var(--wxh-plaque-ink) !important;
+  border:1px solid var(--wxh-gold);
+  border-radius:999px;
+  font-size:13px;
+  letter-spacing:.04em;
+  box-shadow:inset 0 1px 0 rgba(255, 255, 255, .2);
+}
+body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child .wp-block-read-more:hover{
+  text-decoration:none;
+  color:var(--wxh-gold-bright) !important;
+}
+
+/* 分页：点按不小于 40px，不改循环本身 */
+body.wxh-newsroom .wp-block-query-pagination{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:8px;
+  max-width:980px;
+  margin:18px auto 0;
+  padding-bottom:max(4px, env(safe-area-inset-bottom, 0px));
+}
+body.wxh-newsroom .wp-block-query-pagination-numbers{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+body.wxh-newsroom .wp-block-query-pagination a,
+body.wxh-newsroom .wp-block-query-pagination .page-numbers{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  box-sizing:border-box;
+  min-width:40px;
+  min-height:40px;
+  padding:0 12px;
+  border-radius:999px;
+  border:1px solid var(--wxh-card-line);
+  background:var(--wxh-card);
+  color:var(--wxh-ink);
+  font-family:var(--wxh-font-sans);
+  font-size:13px;
+  line-height:1;
+  text-decoration:none;
+}
+body.wxh-newsroom .wp-block-query-pagination a:hover{
+  border-color:var(--wxh-gold);
+  color:var(--wxh-ink);
+}
+body.wxh-newsroom .wp-block-query-pagination .page-numbers.current{
+  background:linear-gradient(180deg, var(--wxh-plaque-1), var(--wxh-plaque-2));
+  color:var(--wxh-plaque-ink);
+  border-color:var(--wxh-gold);
+}
+body.wxh-newsroom .wp-block-query-pagination a:focus-visible,
+body.wxh-newsroom .wp-block-query a:focus-visible{
+  outline:2px solid var(--wxh-gold);
+  outline-offset:2px;
+}
+
+@media (max-width:760px){
+  body.wxh-newsroom .wp-block-query .wp-block-post-template{
+    grid-template-columns:1fr !important;
+  }
+  body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child:not(:has(> .wp-block-group)),
+  body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child > .wp-block-group{
+    grid-template-columns:minmax(0, 1fr) auto;
+    grid-template-areas:
+      "img img"
+      "tags tags"
+      "title title"
+      "excerpt excerpt"
+      "date more";
+  }
+  body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child .wp-block-post-featured-image{
+    height:140px;
+    min-height:140px;
+    border-right:0 !important;
+    border-bottom:1px solid rgba(201, 151, 63, .45) !important;
+  }
+}
+@media (max-width:520px){
+  body.wxh-newsroom .wxh-hero136,
+  body.wxh-newsroom .wxh-news-plaque{
+    padding:16px 14px 14px;
+  }
+  body.wxh-newsroom .wxh-news-kicker{ letter-spacing:.16em; }
+  body.wxh-newsroom .wp-block-query .wp-block-post-template > li:not(:has(> .wp-block-group)),
+  body.wxh-newsroom .wp-block-query .wp-block-post-template > li > .wp-block-group{
+    grid-template-columns:96px minmax(0, 1fr) auto;
+  }
+  body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child:not(:has(> .wp-block-group)),
+  body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child > .wp-block-group{
+    grid-template-columns:minmax(0, 1fr) auto;
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  body.wxh-newsroom .wp-block-query .wp-block-post-template > li:not(:has(> .wp-block-group)),
+  body.wxh-newsroom .wp-block-query .wp-block-post-template > li > .wp-block-group{
+    transition:none;
+  }
+  body.wxh-newsroom .wp-block-query .wp-block-post-template > li:not(:has(> .wp-block-group)):hover,
+  body.wxh-newsroom .wp-block-query .wp-block-post-template > li:hover > .wp-block-group{
+    transform:none;
+  }
+}
+
+/* ===== 0.5.10 资讯列表裸 li 卡面修复（追加；0.5.9 的 li 重置与 group 变体一字不动） =====
+   页面 136 的查询循环是裸 li，子块直接挂在 li 下。0.5.9 先用
+   body.wxh-newsroom … > li 把 background / border / border-radius / box-shadow
+   清成透明并无阴影（!important），随后裸 li 卡面规则没有 !important，压不过重置。
+   分类存档的卡面在内层 .wp-block-group 上，重置打不到，故本章不改 group 选择器。
+   下面只把 0.5.9 裸 li 原值重声明并加上 !important。移动端两处重复出现的裸 li
+   选择器同样重声明，避免断点里再被重置压掉。 */
+body.wxh-newsroom .wp-block-query .wp-block-post-template > li:not(:has(> .wp-block-group)){
+  background:var(--wxh-card) !important;
+  border:1px solid var(--wxh-card-line) !important;
+  border-left:5px solid var(--wxh-cat, var(--wxh-cat-launch)) !important;
+  border-radius:14px !important;
+  box-shadow:0 2px 8px rgba(120, 95, 30, .07) !important;
+}
+body.wxh-newsroom .wp-block-query .wp-block-post-template > li:not(:has(> .wp-block-group)):hover{
+  border-color:var(--wxh-gold) !important;
+  box-shadow:0 6px 16px rgba(120, 95, 30, .12) !important;
+}
+body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child:not(:has(> .wp-block-group)){
+  background:var(--wxh-card) !important;
+  border:1.5px solid var(--wxh-gold) !important;
+  border-left:5px solid var(--wxh-cat, var(--wxh-cat-launch)) !important;
+  border-radius:16px !important;
+  box-shadow:0 8px 24px rgba(120, 95, 30, .14) !important;
+}
+body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child:not(:has(> .wp-block-group)):hover{
+  box-shadow:0 12px 28px rgba(120, 95, 30, .2) !important;
+}
+@media (max-width:760px){
+  body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child:not(:has(> .wp-block-group)){
+    background:var(--wxh-card) !important;
+    border:1.5px solid var(--wxh-gold) !important;
+    border-left:5px solid var(--wxh-cat, var(--wxh-cat-launch)) !important;
+    border-radius:16px !important;
+    box-shadow:0 8px 24px rgba(120, 95, 30, .14) !important;
+  }
+}
+@media (max-width:520px){
+  body.wxh-newsroom .wp-block-query .wp-block-post-template > li:not(:has(> .wp-block-group)){
+    background:var(--wxh-card) !important;
+    border:1px solid var(--wxh-card-line) !important;
+    border-left:5px solid var(--wxh-cat, var(--wxh-cat-launch)) !important;
+    border-radius:14px !important;
+    box-shadow:0 2px 8px rgba(120, 95, 30, .07) !important;
+  }
+  body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child:not(:has(> .wp-block-group)){
+    background:var(--wxh-card) !important;
+    border:1.5px solid var(--wxh-gold) !important;
+    border-left:5px solid var(--wxh-cat, var(--wxh-cat-launch)) !important;
+    border-radius:16px !important;
+    box-shadow:0 8px 24px rgba(120, 95, 30, .14) !important;
+  }
+}
+
+/* ===== 0.5.11 分类页牌匾列对齐 + 卡片悬停（追加；0.5.9 / 0.5.10 原文不动） =====
+   对齐：分类存档 main 是 is-layout-flow，左右留白等于根内边距 clamp(30px, 5vw, 50px)。
+   牌匾和筛选条是 render_block 换掉 query-title 之后的裸节点，不带 alignwide；
+   0.5.9 又把 margin 写成 0，所以它们贴在留白左缘（1919 宽屏约 50px），宽度仍是 980。
+   查询循环带 alignfull，0.5.9 收成 max-width:980px 且左右 auto，卡片列在留白后的
+   内容区里居中，左缘大约再往右半个剩余宽度（同视口约 462px）。
+   /news/ 的牌匾、筛选、查询都是 .entry-content 下的 .alignwide，max-width 同为 980，整列居中。
+   这里只把分类页牌匾和筛选条收进同一条居中 980 列，查询循环的居中不改。
+
+   悬停：0.5.9 的 li / li:hover 重置把裸 li 的阴影和位移清掉，列表卡只剩约 1px，
+   标题 a:hover 又被锁回墨色。动效落在卡面本身——有内层 group 时写在 group 上，
+   裸 li 时写在 li 上，精选卡同样上浮 2px。只在 (hover: hover) 启用。
+   (hover: none) 把 0.5.9 残留的上浮和描边收回，避免手机点按粘住悬停态。
+   prefers-reduced-motion 时不上浮，边框和标题色仍变化。 */
+body.wxh-newsroom.archive .wxh-news-plaque,
+body.wxh-newsroom.archive .wxh-news-filters-wrap{
+  box-sizing:border-box;
+  width:100%;
+  max-width:980px;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+
+@media (hover: hover){
+  body.wxh-newsroom .wp-block-query .wp-block-post-template > li:not(:has(> .wp-block-group)),
+  body.wxh-newsroom .wp-block-query .wp-block-post-template > li > .wp-block-group{
+    transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  body.wxh-newsroom .wp-block-query .wp-block-post-template li .wp-block-post-title,
+  body.wxh-newsroom .wp-block-query .wp-block-post-template li .wp-block-post-title a{
+    transition:color .15s ease;
+  }
+  body.wxh-newsroom .wp-block-query .wp-block-post-template > li:not(:has(> .wp-block-group)):hover{
+    transform:translateY(-2px) !important;
+    border-color:var(--wxh-gold) !important;
+    box-shadow:0 10px 22px rgba(120, 95, 30, .22) !important;
+  }
+  body.wxh-newsroom .wp-block-query .wp-block-post-template > li:hover > .wp-block-group{
+    transform:translateY(-2px) !important;
+    border-color:var(--wxh-gold) !important;
+    box-shadow:0 10px 22px rgba(120, 95, 30, .22) !important;
+  }
+  body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child:not(:has(> .wp-block-group)):hover{
+    transform:translateY(-2px) !important;
+    border-color:var(--wxh-gold) !important;
+    box-shadow:0 16px 32px rgba(120, 95, 30, .28) !important;
+  }
+  body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child:hover > .wp-block-group{
+    transform:translateY(-2px) !important;
+    border-color:var(--wxh-gold) !important;
+    box-shadow:0 16px 32px rgba(120, 95, 30, .28) !important;
+  }
+  body.wxh-newsroom .wp-block-query .wp-block-post-template > li:not(:has(> .wp-block-group)):hover .wp-block-post-title,
+  body.wxh-newsroom .wp-block-query .wp-block-post-template > li:not(:has(> .wp-block-group)):hover .wp-block-post-title a,
+  body.wxh-newsroom .wp-block-query .wp-block-post-template > li:hover > .wp-block-group .wp-block-post-title,
+  body.wxh-newsroom .wp-block-query .wp-block-post-template > li:hover > .wp-block-group .wp-block-post-title a{
+    color:#8f6b1e !important;
+  }
+}
+@media (hover: hover) and (prefers-reduced-motion: reduce){
+  body.wxh-newsroom .wp-block-query .wp-block-post-template > li:not(:has(> .wp-block-group)),
+  body.wxh-newsroom .wp-block-query .wp-block-post-template > li > .wp-block-group{
+    transition:none;
+  }
+  body.wxh-newsroom .wp-block-query .wp-block-post-template > li:not(:has(> .wp-block-group)):hover,
+  body.wxh-newsroom .wp-block-query .wp-block-post-template > li:hover > .wp-block-group,
+  body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child:not(:has(> .wp-block-group)):hover,
+  body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child:hover > .wp-block-group{
+    transform:none !important;
+  }
+}
+@media (hover: none){
+  body.wxh-newsroom .wp-block-query .wp-block-post-template > li:not(:has(> .wp-block-group)):hover{
+    transform:none !important;
+    border-color:var(--wxh-card-line) !important;
+    border-left-color:var(--wxh-cat, var(--wxh-cat-launch)) !important;
+    box-shadow:0 2px 8px rgba(120, 95, 30, .07) !important;
+  }
+  body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child:not(:has(> .wp-block-group)):hover{
+    transform:none !important;
+    border-color:var(--wxh-gold) !important;
+    border-left-color:var(--wxh-cat, var(--wxh-cat-launch)) !important;
+    box-shadow:0 8px 24px rgba(120, 95, 30, .14) !important;
+  }
+  body.wxh-newsroom .wp-block-query .wp-block-post-template > li:hover > .wp-block-group{
+    transform:none !important;
+    border-color:var(--wxh-card-line);
+    border-left-color:var(--wxh-cat, var(--wxh-cat-launch));
+    box-shadow:0 2px 8px rgba(120, 95, 30, .07);
+  }
+  body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template > li:first-child:hover > .wp-block-group{
+    transform:none !important;
+    border-color:var(--wxh-gold);
+    border-left-color:var(--wxh-cat, var(--wxh-cat-launch));
+    box-shadow:0 8px 24px rgba(120, 95, 30, .14);
+  }
+  body.wxh-newsroom .wp-block-query .wp-block-post-template > li:hover .wp-block-post-title,
+  body.wxh-newsroom .wp-block-query .wp-block-post-template > li:hover .wp-block-post-title a{
+    color:var(--wxh-ink) !important;
+  }
+}
+/* ===== 0.5.12 筛选带收口（追加；0.5.9 / 0.5.11 原文不动） =====
+   筛选药丸只占整列宽的约三成，原整列米白带右侧约七成空置，看着像空仓库。
+   本章把米白底、毛玻璃和描边从整列宽的 .wxh-news-filters-wrap 挪到药丸行
+   .wxh-news-filters 本身：带宽收至贴合内容（fit-content），左缘与内容列对齐，
+   吸顶仍挂在 wrap 上，吸顶时是一条紧凑的小工具条。wrap 的列宽与居中不改。 */
+body.wxh-newsroom .wxh-news-filters-wrap{
+  background:transparent;
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+  border-bottom:none;
+  padding:0;
+}
+body.wxh-newsroom .wxh-news-filters{
+  width:fit-content;
+  max-width:100%;
+  box-sizing:border-box;
+  background:rgba(244, 237, 218, .94);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border:1px solid var(--wxh-card-line);
+  border-radius:12px;
+  box-shadow:0 2px 8px rgba(120, 95, 30, .07);
+  padding:8px 14px;
+}
+/* ===== 0.5.13 点击不再留焦点描边（追加；旧规则原文不动） =====
+   旧规 .wp-block-query a:focus 给循环内链接加 2px 金色 outline：鼠标点过
+   标题或「阅读全文」后，描边贴着文字赖着不走，看着像没画全的方框。
+   本章只关掉「鼠标式焦点」（:focus 但非 :focus-visible）的描边；键盘 Tab
+   导航命中 :focus-visible 时，原金色描边照常显示，无障碍不受影响。 */
+.wp-block-query a:focus:not(:focus-visible){
+  outline:none;
+}
+/* ===== 0.5.14 焦点描边全站统一（追加；父主题与旧规则原文不动） =====
+   父主题总规 :where(.wp-site-blocks *:focus) 给一切聚焦元素描 2px 边，
+   导航、正文链接等处鼠标点过也留框。本章把 0.5.13 的口径推到全站链接：
+   鼠标式焦点（:focus 但非 :focus-visible）不描边；键盘 Tab 命中
+   :focus-visible 时，各处原有描边照常显示。按钮与输入框不在本章范围。 */
+a:focus:not(:focus-visible){
+  outline:none;
+}
+/* ===== 0.5.15 焦点描边补齐按钮（追加） =====
+   承 0.5.14：同样口径补到按钮（挂历翻月箭头等）——鼠标式焦点不描边，
+   键盘 Tab 命中 :focus-visible 时原有描边照常显示。至此全站链接与按钮
+   的点击描边全部统一；输入框不在本章范围。 */
+button:focus:not(:focus-visible){
+  outline:none;
+}
+
+/* ===== 0.5.16 资讯详情正文区（追加；旧章原文不动） =====
+   作用域仅 body.single-post。列表页 0.5.9–0.5.12、首页、Georgia 硬编码均不改。
+   版心收成 820px（比 0.5.4 的 1080 羊皮纸窄，按已批预览，不改回）。
+   正文度量沿用 0.5.4：Noto Serif SC 栈、17px、行高 1.9，本章只再声明一次，不改数字。
+   模板芯片只有分类 / 日期 / 作者。「未获官方证实」「采访转述」不写进模板。
+   下列类留给 Muse 按篇贴进正文，本章只备样式：
+     .wxh-chip.wxh-chip-warn   未证实类芯片
+     .wxh-takeaways > .wxh-take  要点牌匾（纯文字，无图标）
+     .wxh-callout              可信度说明（全稿唯一深色说明块）
+     .wxh-src-panel            来源脚注；.wxh-src-lab 为可选小标题
+     .wxh-tip                  段内金色提示
+   特色图说明只在附件自带 caption 时出现，不输出预览脚手架文案。
+   断点：预览的箭头隐藏 / 牌匾折列用 720 与 420；站内五档 1180 / 820 / 781 / 640 / 520
+   只收页边，避免 820 列在这些宽度溢出。1180 沿用旧章水印规则，此处不重复。 */
+body.single-post main.wp-block-group{
+  box-sizing:border-box;
+  width:100%;
+  max-width:820px;
+  margin-left:auto;
+  margin-right:auto;
+  padding:20px 16px 56px;
+  background:transparent;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+}
+body.single-post main.wp-block-group > .wp-block-group{
+  max-width:none !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+body.single-post main .alignfull,
+body.single-post main .alignwide,
+body.single-post main.has-global-padding > .alignfull,
+body.single-post main .has-global-padding > .alignfull{
+  max-width:100% !important;
+  width:auto !important;
+  margin-left:0 !important;
+  margin-right:0 !important;
+}
+body.single-post main .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){
+  max-width:none;
+  margin-left:0 !important;
+  margin-right:0 !important;
+}
+
+body.single-post .wxh-backlink{
+  font-family:var(--wxh-font-sans);
+  font-size:13.5px;
+  font-weight:700;
+  margin:0 0 14px;
+}
+body.single-post .wxh-backlink a{
+  color:var(--wxh-gold-deep);
+  text-decoration:none;
+  font-weight:700;
+}
+body.single-post .wxh-backlink a:hover{
+  color:var(--wxh-gold);
+  text-decoration:none;
+}
+body.single-post .wxh-backlink-bottom{
+  margin:18px 0 0;
+}
+
+body.single-post .wxh-article-head{
+  background:var(--wxh-card);
+  border:1.5px solid var(--wxh-gold);
+  border-radius:16px;
+  padding:20px 22px 18px;
+  margin:0 0 14px;
+  box-shadow:0 4px 14px rgba(120,95,30,.1);
+  box-sizing:border-box;
+  max-width:100%;
+}
+body.single-post .wxh-meta-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:0 0 14px;
+}
+body.single-post .wxh-chip{
+  font-family:var(--wxh-font-sans);
+  font-size:12px;
+  font-weight:500;
+  line-height:1.4;
+  border-radius:999px;
+  padding:4px 11px;
+  border:1px solid var(--wxh-card-line);
+  background:rgba(201,151,63,.12);
+  color:var(--wxh-gold-deep);
+}
+body.single-post .wxh-chip-muted{
+  color:var(--wxh-section-sub);
+  background:rgba(93,101,114,.08);
+  font-weight:500;
+}
+body.single-post .wxh-chip-warn{
+  background:rgba(160,90,44,.12);
+  border-color:rgba(160,90,44,.45);
+  color:#a05a2c;
+  font-weight:700;
+}
+body.single-post .wxh-article-head .wp-block-post-title{
+  margin:0 0 8px;
+  font-family:var(--wxh-font-serif);
+  font-size:clamp(22px, 3.6vw, 30px);
+  font-weight:700;
+  letter-spacing:.04em;
+  line-height:1.35;
+  color:var(--wxh-ink);
+  padding-bottom:10px;
+  border-bottom:2px solid var(--wxh-gold);
+  overflow-wrap:anywhere;
+}
+body.single-post .wxh-article-head .wp-block-post-title:last-child{
+  margin-bottom:0;
+}
+body.single-post .wxh-article-lead{
+  margin:0;
+  max-width:42em;
+  font-family:var(--wxh-font-sans);
+  font-size:14.5px;
+  font-weight:400;
+  line-height:1.65;
+  color:#46565f;
+}
+
+body.single-post .wxh-featured{
+  margin:0 0 16px;
+  border:1.5px solid var(--wxh-gold);
+  border-radius:14px;
+  overflow:hidden;
+  background:#0f1a22;
+  box-shadow:0 4px 14px rgba(17,55,76,.18);
+  max-width:100%;
+}
+body.single-post main.wp-block-group .wxh-featured img{
+  display:block;
+  width:100% !important;
+  max-width:100%;
+  height:auto !important;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  border-radius:0;
+}
+body.single-post .wxh-featured-cap{
+  margin:0;
+  padding:8px 12px;
+  font-family:var(--wxh-font-sans);
+  font-size:12px;
+  font-weight:400;
+  line-height:1.45;
+  color:var(--wxh-plaque-ink);
+  background:linear-gradient(90deg, var(--wxh-plaque-1), var(--wxh-plaque-2));
+  border-top:1px solid rgba(201,151,63,.45);
+  letter-spacing:.03em;
+}
+
+body.single-post .wxh-takeaways{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:10px;
+  margin:0 0 16px;
+}
+body.single-post .wxh-take{
+  min-width:0;
+  background:linear-gradient(180deg, var(--wxh-plaque-1), var(--wxh-plaque-2));
+  border:1px solid var(--wxh-gold);
+  border-radius:12px;
+  padding:14px 12px;
+  text-align:center;
+  color:var(--wxh-plaque-ink);
+  box-shadow:0 4px 12px rgba(17,55,76,.22);
+}
+body.single-post .wxh-take b{
+  display:block;
+  font-family:var(--wxh-font-sans);
+  font-size:13.5px;
+  font-weight:700;
+  line-height:1.35;
+}
+body.single-post .wxh-take span{
+  display:block;
+  margin-top:6px;
+  font-family:var(--wxh-font-sans);
+  font-size:11.5px;
+  font-weight:400;
+  line-height:1.4;
+  opacity:.88;
+}
+
+body.single-post .wxh-callout{
+  background:linear-gradient(180deg, #5c3a12, #3d2610);
+  border:1.5px solid var(--wxh-gold);
+  border-radius:14px;
+  padding:14px 16px;
+  margin:0 0 20px;
+  color:#f5e6c8;
+  box-shadow:0 4px 12px rgba(60,30,10,.2);
+}
+body.single-post .wxh-callout strong{
+  display:block;
+  font-family:var(--wxh-font-sans);
+  font-size:14px;
+  font-weight:700;
+  color:var(--wxh-gold-bright);
+  margin:0 0 4px;
+  letter-spacing:.04em;
+}
+body.single-post .wxh-callout p{
+  margin:0;
+  font-family:var(--wxh-font-sans);
+  font-size:13.5px;
+  font-weight:400;
+  line-height:1.55;
+  color:#f5e6c8;
+}
+
+body.single-post .wxh-article-body{
+  box-sizing:border-box;
+  max-width:100%;
+  background:var(--wxh-card);
+  border:1px solid var(--wxh-card-line);
+  border-radius:16px;
+  padding:22px 24px 20px;
+  margin:0 0 14px;
+  box-shadow:0 2px 10px rgba(120,95,30,.07);
+  font-family:var(--wxh-font-serif);
+  font-size:17px;
+  font-weight:400;
+  line-height:1.9;
+  color:#46565f;
+  overflow-wrap:break-word;
+}
+body.single-post .wxh-article-body p{
+  margin:0 0 14px;
+  font-family:var(--wxh-font-serif);
+  font-size:17px;
+  font-weight:400;
+  line-height:1.9;
+  color:#46565f;
+}
+body.single-post .wxh-article-body p:last-child{
+  margin-bottom:0;
+}
+body.single-post .wxh-article-body .wxh-callout p{
+  margin:0;
+  font-family:var(--wxh-font-sans);
+  font-size:13.5px;
+  font-weight:400;
+  line-height:1.55;
+  color:#f5e6c8;
+}
+body.single-post .wxh-article-body .wxh-callout strong{
+  color:var(--wxh-gold-bright);
+}
+body.single-post .wxh-article-body strong{
+  color:var(--wxh-ink);
+  font-weight:700;
+}
+body.single-post .wxh-article-body h2,
+body.single-post .wxh-article-body h3{
+  font-family:var(--wxh-font-serif);
+  font-weight:700;
+  color:var(--wxh-ink);
+  letter-spacing:.02em;
+  line-height:1.35;
+  border-bottom:1px solid var(--wxh-gold);
+  padding-bottom:6px;
+}
+body.single-post .wxh-article-body h2{
+  font-size:19px;
+  margin:22px 0 10px;
+}
+body.single-post .wxh-article-body h3{
+  font-size:20px;
+  margin:18px 0 8px;
+}
+body.single-post .wxh-article-body > h2:first-child,
+body.single-post .wxh-article-body > h3:first-child{
+  margin-top:0;
+}
+body.single-post .wxh-article-body ul,
+body.single-post .wxh-article-body ol{
+  margin:0 0 14px;
+  padding-left:1.3em;
+}
+body.single-post .wxh-article-body li{
+  margin:0 0 6px;
+}
+body.single-post .wxh-article-body li:last-child{
+  margin-bottom:0;
+}
+body.single-post .wxh-article-body img,
+body.single-post .wxh-article-body video,
+body.single-post .wxh-article-body svg{
+  max-width:100%;
+  height:auto;
+}
+body.single-post .wxh-article-body figure,
+body.single-post .wxh-article-body .wp-block-image,
+body.single-post .wxh-article-body .wp-block-table{
+  max-width:100%;
+}
+body.single-post .wxh-article-body .wp-block-image,
+body.single-post .wxh-article-body figure.wp-block-image{
+  margin-left:0;
+  margin-right:0;
+}
+body.single-post .wxh-article-body .wp-block-table{
+  overflow-x:auto;
+}
+body.single-post .wxh-article-body table{
+  width:100%;
+  max-width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
+}
+body.single-post .wxh-article-body th,
+body.single-post .wxh-article-body td{
+  border:1px solid var(--wxh-card-line);
+  padding:6px 8px;
+  vertical-align:top;
+  overflow-wrap:break-word;
+}
+body.single-post .wxh-article-body figcaption,
+body.single-post .wxh-article-body .wp-element-caption{
+  font-family:var(--wxh-font-sans);
+  font-size:12.5px;
+  line-height:1.5;
+  color:var(--wxh-section-sub);
+}
+body.single-post .wxh-tip{
+  display:inline-block;
+  background:rgba(201,151,63,.14);
+  border:1px solid var(--wxh-card-line);
+  border-radius:6px;
+  padding:1px 8px;
+  font-family:var(--wxh-font-serif);
+  font-weight:700;
+  color:var(--wxh-gold-deep);
+  font-size:15px;
+  line-height:1.6;
+}
+
+body.single-post .wxh-src-panel{
+  background:rgba(255,250,240,.72);
+  border:1px solid var(--wxh-card-line);
+  border-radius:12px;
+  padding:12px 14px 10px;
+  margin:0 0 20px;
+  color:#46565f;
+  box-sizing:border-box;
+  max-width:100%;
+}
+body.single-post .wxh-src-panel .wxh-src-lab{
+  margin:0 0 6px;
+  padding:0;
+  border:0;
+  font-family:var(--wxh-font-sans);
+  font-size:12.5px;
+  font-weight:700;
+  line-height:1.4;
+  letter-spacing:.06em;
+  color:var(--wxh-gold-deep);
+}
+body.single-post .wxh-src-panel p,
+body.single-post .wxh-src-panel li{
+  font-family:var(--wxh-font-sans);
+  font-size:13.5px;
+  font-weight:400;
+  line-height:1.55;
+  color:#46565f;
+  margin:0;
+  padding:2px 0 2px 10px;
+  border-left:2px solid var(--wxh-gold);
+}
+body.single-post .wxh-src-panel ul{
+  margin:0;
+  padding:0;
+  list-style:none;
+  display:grid;
+  gap:4px;
+}
+body.single-post .wxh-src-panel li em{
+  font-style:normal;
+  color:var(--wxh-ink);
+}
+body.single-post .wxh-src-panel .wxh-src-date{
+  color:var(--wxh-section-sub);
+  font-size:12.5px;
+}
+
+body.single-post .wxh-related{
+  margin:0 0 8px;
+  max-width:100%;
+}
+body.single-post .wxh-related-heading{
+  margin:0 0 12px;
+  font-family:var(--wxh-font-serif);
+  font-size:19px;
+  font-weight:700;
+  line-height:1.35;
+  letter-spacing:.02em;
+  color:var(--wxh-ink);
+  border-bottom:1px solid var(--wxh-gold);
+  padding-bottom:6px;
+}
+body.single-post .wxh-related-list{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  gap:0;
+  background:var(--wxh-card);
+  border:1px solid var(--wxh-card-line);
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 2px 8px rgba(120,95,30,.07);
+}
+body.single-post .wxh-related-list a{
+  display:grid;
+  grid-template-columns:minmax(0, 1fr) auto;
+  gap:12px;
+  align-items:center;
+  padding:14px 16px;
+  text-decoration:none;
+  border-bottom:1px solid var(--wxh-card-line);
+  min-width:0;
+}
+body.single-post .wxh-related-list li:last-child a{
+  border-bottom:0;
+}
+body.single-post .wxh-related-list a:hover{
+  background:rgba(244,237,218,.65);
+}
+body.single-post .wxh-related-text{
+  min-width:0;
+}
+body.single-post .wxh-related-title{
+  display:block;
+  font-family:var(--wxh-font-serif);
+  font-weight:700;
+  font-size:14.5px;
+  color:var(--wxh-ink);
+  line-height:1.45;
+  overflow-wrap:anywhere;
+}
+body.single-post .wxh-related-meta{
+  display:block;
+  margin-top:4px;
+  font-family:var(--wxh-font-sans);
+  font-size:12px;
+  font-weight:500;
+  line-height:1.4;
+  color:var(--wxh-gold-deep);
+}
+body.single-post .wxh-related-arrow{
+  font-family:var(--wxh-font-sans);
+  font-size:13px;
+  font-weight:700;
+  color:var(--wxh-gold);
+  white-space:nowrap;
+}
+
+body.single-post .wp-block-group:has(> .wp-block-post-author-name){
+  display:none !important;
+}
+body.single-post nav[aria-label="文章导航"],
+body.single-post .wp-block-group:has(> nav[aria-label="文章导航"]){
+  display:none !important;
+}
+body.single-post main .wp-block-group:empty{
+  display:none !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+body.single-post .wp-block-group > .wp-block-query{
+  display:none !important;
+}
+body.single-post .wxh-article-body .wp-block-query{
+  display:block !important;
+}
+
+@media (max-width:820px){
+  body.single-post main.wp-block-group{
+    padding:16px 16px 48px;
+  }
+}
+@media (max-width:781px){
+  body.single-post main.wp-block-group{
+    padding-left:max(16px, env(safe-area-inset-left, 0px));
+    padding-right:max(16px, env(safe-area-inset-right, 0px));
+  }
+}
+@media (max-width:720px){
+  body.single-post .wxh-related-list a{
+    grid-template-columns:minmax(0, 1fr);
+  }
+  body.single-post .wxh-related-arrow{
+    display:none;
+  }
+  body.single-post .wxh-takeaways{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width:640px){
+  body.single-post .wxh-article-head{
+    padding:16px 14px 14px;
+  }
+  body.single-post .wxh-article-body{
+    padding:16px;
+  }
+}
+@media (max-width:520px){
+  body.single-post main.wp-block-group{
+    padding-left:max(12px, env(safe-area-inset-left, 0px));
+    padding-right:max(12px, env(safe-area-inset-right, 0px));
+  }
+}
+@media (max-width:420px){
+  body.single-post .wxh-takeaways{
+    grid-template-columns:minmax(0, 1fr);
+  }
+  body.single-post .wxh-article-body{
+    padding:16px;
+  }
+}
+@media (hover: none){
+  body.single-post .wxh-related-list a:hover{
+    background:transparent;
+  }
+}
+
+/* ===== 0.5.17 文章页「返回前瞻资讯」pill 化（作用域仅 body.single-post，与全站页面返回按钮统一） ===== */
+body.single-post .wxh-backlink a{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--wxh-font-sans);font-size:13.5px;font-weight:700;line-height:1.4;
+  color:#8f6b1e;background:#fffdf6;border:1px solid #c9973f;border-radius:8px;
+  padding:8px 14px;text-decoration:none;
+}
+body.single-post .wxh-backlink a:hover{
+  background:linear-gradient(180deg,#1e5069,#11374c);border-color:#11374c;color:#f2dfa0;text-decoration:none;
+}
+
+
+/* ============================================================
+   0.5.18 资讯筛选条与站内药丸条统一
+   米色盒条 + 居中药丸；未选 = 白底金边金字，悬停/选中 = 牌匾蓝渐变金字
+   ============================================================ */
+body.wxh-newsroom .wxh-news-filters-wrap{
+  background:#f3ecd7;
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+  border:1px solid #d9c795;
+  border-radius:12px;
+  padding:10px 14px 8px;
+}
+body.wxh-newsroom .wxh-news-filters{
+  justify-content:center;
+  gap:7px;
+}
+body.wxh-newsroom .wxh-news-filters-label{
+  display:none;
+}
+body.wxh-newsroom .wxh-news-filters a{
+  min-height:0;
+  padding:5px 13px !important;
+  border:1px solid #c9973f !important;
+  background:#fffdf6 !important;
+  color:#8f6b1e !important;
+  font-weight:700;
+  line-height:1.5;
+}
+body.wxh-newsroom .wxh-news-filters a:hover{
+  background:linear-gradient(180deg, #1e5069, #11374c) !important;
+  border-color:#11374c !important;
+  color:#f2dfa0 !important;
+}
+
+
+/* ============================================================
+   0.5.19 资讯页站内格式对齐
+   羊皮纸底板 + 浅色页头（地精式抬头：眉题深金小字 / 衬线墨色大标题 / 导语 / 元信息签）
+   「其余动态」分节头对齐站内分节头；筛选条药丸组居中兜底
+   ============================================================ */
+body.wxh-newsroom.page-id-136 .entry-content.has-global-padding{
+  background:rgba(253,251,243,.95);
+  border:1px solid #d9c795;
+  border-radius:18px;
+  max-width:1024px;
+  margin:22px auto 30px;
+  padding:24px 22px 30px;
+}
+body.wxh-newsroom.archive main.wp-block-group{
+  background:rgba(253,251,243,.95);
+  border:1px solid #d9c795;
+  border-radius:18px;
+  max-width:1024px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-bottom:30px;
+  padding:24px 22px 30px;
+  box-sizing:border-box;
+}
+body.wxh-newsroom .wxh-hero136,
+body.wxh-newsroom .wxh-news-plaque{
+  background:none;
+  border:none;
+  border-bottom:1px solid var(--wxh-card-line);
+  border-radius:0;
+  box-shadow:none;
+  color:#22333d;
+  padding:0 0 16px;
+  margin:0 0 16px;
+}
+body.wxh-newsroom .wxh-news-kicker{
+  color:var(--wxh-gold-deep);
+  font-size:11.5px;
+  font-weight:700;
+  letter-spacing:.12em;
+  margin:0 0 4px;
+}
+body.wxh-newsroom .wxh-news-orn{ color:var(--wxh-gold-deep); }
+body.wxh-newsroom .wxh-hero136 h1,
+body.wxh-newsroom .wxh-news-plaque h1{
+  color:#22333d !important;
+  font-size:32px !important;
+  font-weight:900 !important;
+  letter-spacing:.03em !important;
+  line-height:1.2 !important;
+  margin:0 0 8px !important;
+}
+body.wxh-newsroom .wxh-news-mission{
+  color:var(--wxh-news-body) !important;
+  font-size:14.5px !important;
+  margin:0 0 12px !important;
+}
+body.wxh-newsroom .wxh-news-chip{
+  background:#fffdf6;
+  border:1px solid var(--wxh-gold);
+  color:var(--wxh-news-body);
+}
+body.wxh-newsroom .wxh-news-chip b{ color:var(--wxh-gold-deep); }
+body.wxh-newsroom.wxh-news-first .wp-block-query .wp-block-post-template:has(> li:nth-child(2))::before{
+  font-size:21px;
+  font-weight:900;
+  color:#22333d;
+  background:none;
+  border-bottom:2px solid var(--wxh-gold);
+  padding:0 0 8px;
+  margin:10px 0 4px;
+}
+body.wxh-newsroom .wxh-news-filters{
+  margin-left:auto !important;
+  margin-right:auto !important;
+  width:fit-content;
+  max-width:100%;
+}
+@media (max-width:760px){
+  body.wxh-newsroom.page-id-136 .entry-content.has-global-padding{
+    border-radius:14px;
+    padding:18px 14px 24px;
+    margin:14px auto 24px;
+  }
+  body.wxh-newsroom.archive main.wp-block-group{
+    border-radius:14px;
+    padding:18px 14px 24px;
+    margin-bottom:24px;
+  }
+  body.wxh-newsroom .wxh-hero136 h1,
+  body.wxh-newsroom .wxh-news-plaque h1{ font-size:27px !important; }
+}
+
+
+/* ============================================================
+   0.5.20 资讯页加宽
+   底板与内容列对齐站内 1180 体系（原 980 列在宽屏上偏窄）
+   ============================================================ */
+body.wxh-newsroom.page-id-136 .entry-content.has-global-padding{ max-width:1180px; }
+body.wxh-newsroom.page-id-136 .entry-content > .alignwide{ max-width:1136px; }
+body.wxh-newsroom .wxh-hero136,
+body.wxh-newsroom .wxh-news-plaque{ max-width:1136px; margin-left:auto; margin-right:auto; }
+body.wxh-newsroom .wxh-news-filters-wrap{ max-width:1136px; margin-left:auto; margin-right:auto; }
+body.wxh-newsroom .wp-block-query .wp-block-post-template{ max-width:1136px; }
+body.wxh-newsroom .wp-block-query-pagination{ max-width:1136px; }
+body.wxh-newsroom.archive main.wp-block-group{ max-width:1180px; }
+body.wxh-newsroom.archive .wp-block-query.alignfull,
+body.wxh-newsroom.archive .wp-block-post-template.alignfull{ max-width:1136px !important; }
+body.wxh-newsroom.archive .wxh-news-plaque,
+body.wxh-newsroom.archive .wxh-news-filters-wrap{ max-width:1136px; }
+
+
+/* ============================================================
+   0.5.21 资讯页头金句
+   眉题改纯文字「资讯 · News」（functions.php 同步去掉星形），
+   标题下补金句行，与各板块页头同一规格
+   ============================================================ */
+body.wxh-newsroom .wxh-news-tagline{
+  font-family:var(--wxh-font-serif);
+  font-size:15px;
+  font-weight:700;
+  color:var(--wxh-gold-deep);
+  letter-spacing:.02em;
+  line-height:1.5;
+  margin:4px 0 0;
+}
+
+</style>
+</head>
+<body class="single single-post">
+<!-- 上线：正文只取 .wxh-article-body 内部；标题 / 导语 / 芯片 / 特色图 / 来源面板按线上文章模板与已发稿件写法填入（芯片「国服未同步 / 未点名」用 wxh-chip-warn，按 0.5.16 注释由编辑贴进）；相关阅读由主题自动输出 -->
+<main class="wp-block-group has-global-padding is-layout-constrained">
+<div class="wp-block-group alignfull has-global-padding is-layout-constrained">
+<p class="wxh-backlink wp-block-paragraph"><a href="/wp/news/">← 返回前瞻资讯</a></p>
+
+<header class="wxh-article-head"><div class="wxh-meta-chips"><span class="wxh-chip">职业</span><time class="wxh-chip wxh-chip-muted" datetime="2026-11-12">2026-11-12</time><span class="wxh-chip wxh-chip-muted">作者 · 刀哥</span><span class="wxh-chip wxh-chip-warn">国服未同步</span></div><h1 class="wp-block-post-title">11 月 10 日热修复实数：增强萨风暴打击回到 100%、痛苦术 Wrack 重做，猎人宠物生命改为 115%</h1><p class="wxh-article-lead">11 月 7 日站内发过的职业调教预告，数字出来了。暴雪 11 月 10 日热修复（国际服官方列表）里，增强萨风暴打击降到 100% 武器伤害、冷却 8 秒；痛苦术 Wrack 伤害 -30%，改成引导时让持续伤害跳得快一倍；术士四种恶魔基础生命约 +15%；猎人宠物生命原本误为正常值的 150%，现改为 115%。本条为国际服官方口径，国服官网在线修正页截至 11 月 12 日仍停在 11 月 6 日，尚未同步这一批。</p></header>
+
+<!-- 预览：特色图用包内官方原图相对路径；上线时在 WordPress 设为特色图（附件无 caption，按 0.5.16 规则不输出图说），删掉这里的 src 相对路径 -->
+<figure class="wxh-featured wp-block-post-featured-image"><img width="2400" height="1350" src="images/official-hotfix-header-2400x1350.png" alt="暴雪官方热修复文章头图：黄昏下的部落营地，几名角色围着篝火"></figure>
+
+<div class="wxh-article-body entry-content alignfull wp-block-post-content has-global-padding is-layout-constrained">
+<div class="wxh-takeaways">
+<div class="wxh-take"><b>风暴打击 100%</b><span>增强萨 · 冷却 8 秒</span></div>
+<div class="wxh-take"><b>Wrack 伤害 -30%</b><span>改为加速持续伤害跳伤</span></div>
+<div class="wxh-take"><b>恶魔生命约 +15%</b><span>小鬼 · 虚空行者 · Incubus · 魅魔</span></div>
+<div class="wxh-take"><b>宠物生命 115%</b><span>猎人 · 原误为 150%</span></div>
+</div>
+
+<h2 class="wp-block-heading">萨满祭司</h2>
+<ul class="wp-block-list">
+<li><strong>风暴打击（增强）</strong>：150% 武器伤害、冷却 6 秒 → <b>100% 武器伤害、冷却 8 秒</b>。</li>
+<li><strong>Mental Dexterity（增强）</strong>：智力转攻击强度 50 / 100 / 150% → <b>33 / 66 / 100%</b>。</li>
+<li><strong>漩涡武器（增强）</strong>：每层减施法时间与法力消耗，原按等级 4 / 8 / 12 / 16 / 20%，现各等级每层均为 <b>20%</b>；触发频率原不论等级每分钟 20 次，现随等级每分钟 <b>6 / 7 / 8 / 9 / 10 次</b>。</li>
+<li><strong>武器强化与武器图腾（全专精）</strong>：现在可以同时生效，官方举例风怒武器和风怒图腾能一起触发。</li>
+<li>漩涡武器说明文字改为按主手武器速度显示触发几率：官方举例，5 点漩涡武器、3.6 速武器显示每次挥击 60%；2.0 速武器显示 33%。冷却管理器现在可以追踪漩涡武器。</li>
+<li>开发者说明要点：测试期的增强改动，加上给元素系的震击、闪电箭改动，让增强过于偏向法强与智力装备，离风怒越来越远；赶在团本开放前改，是为了不让玩家去抢之后会贬值的装备。这批改动很多是撤回测试期专门针对增强的调整。</li>
+<li>背景：站内 11 月 4 日《开服前最后一版官方开发说明》记录过测试期把风暴打击从 100% / 8 秒改到 150% / 6 秒，本次热修复等于改回。</li>
+</ul>
+
+<h2 class="wp-block-heading">术士</h2>
+<ul class="wp-block-list">
+<li><strong>Wrack（痛苦）</strong>：伤害 -30%；不再提高目标身上持续伤害的伤害。新效果：引导 6 秒，每 1 秒造成暗影伤害；引导期间，你在目标身上的生命虹吸、腐蚀术、Bane of Agony 跳伤速度加快 100%。</li>
+<li><strong>灵魂虹吸（痛苦天赋）</strong>：目标身上每有一个你的腐蚀术、生命虹吸、Bane of Agony，吸取生命、吸取灵魂、Wrack 效果提高 4 / 8 / 12%，最多 36%（原为任何痛苦法术都算）。</li>
+<li><strong>小鬼</strong>：火焰箭前 4 级基础伤害提高；基础生命约 +15%。<strong>虚空行者 / Incubus / 魅魔</strong>：基础生命各约 +15%。</li>
+<li><strong>毁灭</strong>：Bane of Havoc 不触发公共冷却的错误已修。</li>
+<li>官方特别说明：Wrack 加快的是跳伤频率，不是持续时间。Bane of Agony 仍持续满 24 秒，Wrack 引导期间跳得快一倍；引导结束或被打断后，已经「跳过」的时间保留。官方例子：3 秒一跳的腐蚀术期间引导 Wrack 1 秒，腐蚀术前进 2 秒，下一跳 1 秒后到。</li>
+</ul>
+
+<h2 class="wp-block-heading">猎人</h2>
+<ul class="wp-block-list">
+<li><strong>宠物生命</strong>：修正错误，宠物生命误为正常值的 150%，改为 <b>115%</b>。</li>
+<li><strong>奥术射击</strong>：各等级法力消耗统一为基础法力值的 11%；官方称 6 级与 60 级总体消耗与改前几乎相同，中间等级略低。</li>
+<li><strong>Summon Hawk（野兽控制）</strong>：法力消耗同样改为基础法力值的 11%；<strong>Hawk 宠物</strong>近战伤害约 +80%。</li>
+<li>预告里写的是「猎人宠物与虚空行者坦度上调」；实数里猎人这一条是把错误的 150% 改成 115%。115% 和预告里的「上调」是什么关系，官方没有解释，本站不推断。</li>
+</ul>
+
+<h2 class="wp-block-heading">其他职业</h2>
+<ul class="wp-block-list">
+<li><strong>德鲁伊</strong>：切换专精后清晰预兆无法触发的问题已修；恢复：自然迅捷现在也让野性成长瞬发。</li>
+<li><strong>圣骑士</strong>：冷却管理器可以追踪 Redoubt。</li>
+<li><strong>牧师</strong>：Revelation 附魔被吸血鬼的拥抱治疗触发的问题已修；神圣：取消天赋后神圣新星未正确遗忘的问题已修。</li>
+<li><strong>战士（武器）</strong>：横扫攻击没打到第二个目标时不再消耗次数。</li>
+</ul>
+
+<h2 class="wp-block-heading">同批其他改动（与本条相关的几项）</h2>
+<ul class="wp-block-list">
+<li><strong>任务</strong>：48 级及以上的大多数任务额外奖励金币，见站内同日《48 级以上任务加金》。</li>
+<li><strong>工程学</strong>：Swiftstrike Shot、Swiftfeather Arrow 不再拾取绑定；Iron Grenades 商人价 5 银 → 1 银 25 铜，见站内同日《工程弹药与拍卖行保证金》。</li>
+<li><strong>物品</strong>：种族坐骑商人出售的坐骑全部改为拾取绑定；萨满任务奖励 Rage of the Storm 改为 16 力量（原 16 智力），武器速度改为 3.6（原 3.2）。</li>
+</ul>
+
+<h2 class="wp-block-heading">拍卖行改动：已从列表撤下，11 月 17 日随维护上线</h2>
+<div class="wxh-callout"><strong>拍卖行保证金还不能当作已生效</strong><p>11 月 10 日列表最初含一条拍卖行改动：「随服务器重启：最低保证金调整为 1 铜（原为 1 银）」，另有两条拍卖行邮件修正。北京时间 11 月 12 日 08:48，Kaivax 在热修帖说明：拍卖行改动已暂时撤出前一天的更新，将随 11 月 17 日的每周例行维护上线，之后再写回热修列表。11 月 17 日是哪个地区的维护日、国服何时跟进，帖子没写。</p></div>
+
+<h2 class="wp-block-heading">生效时间与国服状态</h2>
+<ul class="wp-block-list">
+<li>热修帖没有给职业改动的具体上线时刻。选题阶段有欧服玩家反馈风暴打击仍是旧数值，本站未进游戏核对，不写成「已确认全服生效」。</li>
+<li><strong>国服</strong>：国服官网「在线修正」页 2026-11-12 现查，标题仍是《在线修正——11 月 6 日》，未同步 11 月 9 日、10 日、11 日三批。国服实际以游戏内与国服公告为准。</li>
+</ul>
+</div>
+
+<section class="wxh-src-panel" aria-label="数据来源"><p class="wxh-src-lab">数据来源</p><ul>
+<li>暴雪《WoW: Forever Hotfixes》（官方文章 24315281，现标题为 November 11, 2026，北京时间 11 月 12 日 08:46 更新，含 11 月 10 日段落）</li>
+<li>美服论坛 Kaivax 热修帖（11 月 10 日段落于北京时间 11 月 11 日 11:27 写入；拍卖行撤回说明为北京时间 11 月 12 日 08:48）</li>
+<li>国服官网在线修正页（现查）；站内《首批职业调教预告》（11-07）、《开服前最后一版官方开发说明》（11-04）</li>
+<li><span class="wxh-src-date">数据核对：2026 年 11 月 12 日（Asia/Shanghai）</span></li>
+</ul></section>
+
+<p class="wxh-backlink wp-block-paragraph"><a href="/wp/news/">← 返回前瞻资讯</a></p>
+
+<!-- 相关阅读由主题自动输出；预览按线上结构手写三条，上线时删除 -->
+<section class="wxh-related" aria-label="相关阅读"><h2 class="wxh-related-heading">相关阅读</h2><ul class="wxh-related-list">
+<li><a href="/wp/class-tuning-incoming-nov-10/"><span class="wxh-related-text"><span class="wxh-related-title">首批职业调教预告：11 月 10 日热修复，宠物坦度、痛苦术、增强萨三处要改</span><span class="wxh-related-meta">职业 · 2026-11-07</span></span><span class="wxh-related-arrow">阅读 →</span></a></li>
+<li><a href="/wp/final-dev-notes-nov-2/"><span class="wxh-related-text"><span class="wxh-related-title">开服前最后一版官方开发说明：全职业伤害上调，职业框架定版</span><span class="wxh-related-meta">职业 · 2026-11-04</span></span><span class="wxh-related-arrow">阅读 →</span></a></li>
+<li><a href="/wp/hotfixes-nov-6-full-list/"><span class="wxh-related-text"><span class="wxh-related-title">11 月 6 日热修复清单：5 职业修正，虚空行者血量提升、制皮门槛下调</span><span class="wxh-related-meta">职业 · 2026-11-07</span></span><span class="wxh-related-arrow">阅读 →</span></a></li>
+</ul></section>
+
+</div>
+</main>
+</body></html>
